@@ -1,19 +1,19 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
 
 :root {
-	--color-background: #0d1224;
-	--color-surface: #11162b;
+	--color-background: #090e23;
+	--color-surface: #0c1228;
 	--color-text: #ffffff;
-	--color-body: #d5d5e5;
-	--color-muted: #999bad;
-	--color-border: rgb(255 255 255 / 10%);
-	--color-accent: #9b32ff;
-	--color-accent-pink: #ff3f91;
-	--gradient-accent: linear-gradient(90deg, #9b32ff, #ff3f91);
+	--color-body: #d8d8ea;
+	--color-muted: #9a9bb0;
+	--color-accent: #c084fc;
+	--color-accent-strong: #a855f7;
+	--color-accent-pink: #ff4fa3;
+	--color-title: #c084fc;
+	--gradient-accent: linear-gradient(90deg, #ff4fa3, #9b32ff);
+	--gradient-hero: radial-gradient(ellipse 55% 70% at 78% 42%, rgb(88 70 255 / 55%) 0%, rgb(40 30 140 / 22%) 38%, transparent 70%);
 	--font-body: 'Poppins', sans-serif;
-	--font-display: 'Poppins', sans-serif;
-	--content-width: 1180px;
+	--content-width: 1080px;
 	--space-page: 24px;
 }
 
@@ -38,94 +38,21 @@ body {
 	line-height: 1.7;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-	margin-top: 0;
-	color: var(--color-text);
-	font-family: var(--font-body);
-}
-
-h1 {
-	font-size: clamp(42px, 5vw, 52px);
-	font-weight: 800;
-	line-height: 1.15;
-	letter-spacing: -1.5px;
-}
-
-h2 {
-	font-size: clamp(32px, 4vw, 38px);
-	font-weight: 700;
-	line-height: 1.2;
-	letter-spacing: -0.8px;
-}
-
-h3 {
-	font-size: clamp(20px, 3vw, 24px);
-	font-weight: 600;
-	line-height: 1.3;
-}
-
-p {
-	color: var(--color-body);
-	font-size: 16px;
-	font-weight: 400;
-	line-height: 1.7;
-}
-
-button,
-.button {
-	padding: 11px 24px;
-	color: var(--color-text);
-	border: 0;
-	border-radius: 30px;
-	background: var(--gradient-accent);
-	font-size: 15px;
-	font-weight: 600;
-	line-height: 1.4;
-	text-decoration: none;
-	transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-button:hover,
-.button:hover {
-	box-shadow: 0 8px 24px rgb(155 50 255 / 35%);
-	transform: translateY(-2px);
-}
-
-.gradient-text {
-	color: transparent;
-	background: var(--gradient-accent);
-	background-clip: text;
-	-webkit-background-clip: text;
-}
-
-.text-secondary {
-	color: var(--color-muted);
-	font-size: 13px;
-	font-weight: 300;
-}
-
 img,
 svg {
 	display: block;
 	max-width: 100%;
 }
 
-button,
-a,
-input,
-textarea,
-select {
-	font: inherit;
+a {
+	color: inherit;
+	text-decoration: none;
 }
 
 button,
-a {
-	-webkit-tap-highlight-color: transparent;
+a,
+input {
+	font: inherit;
 }
 
 :focus-visible {
@@ -134,8 +61,22 @@ a {
 }
 
 ::selection {
-	color: var(--color-surface);
+	color: #090e23;
 	background: var(--color-accent);
+}
+
+.page {
+	overflow: hidden;
+	background:
+		radial-gradient(ellipse 58% 34% at 79% 4%, rgb(91 61 255 / 30%) 0%, transparent 72%),
+		radial-gradient(ellipse 50% 32% at 12% 45%, rgb(54 38 176 / 20%) 0%, transparent 72%),
+		radial-gradient(ellipse 60% 28% at 84% 78%, rgb(35 78 218 / 18%) 0%, transparent 72%),
+		var(--color-background);
+}
+
+.container {
+	width: min(var(--content-width), calc(100% - (var(--space-page) * 2)));
+	margin-inline: auto;
 }
 
 @media (max-width: 700px) {
