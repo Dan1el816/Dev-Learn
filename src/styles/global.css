@@ -1,0 +1,145 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+	--color-background: #0d1224;
+	--color-surface: #11162b;
+	--color-text: #ffffff;
+	--color-body: #d5d5e5;
+	--color-muted: #999bad;
+	--color-border: rgb(255 255 255 / 10%);
+	--color-accent: #9b32ff;
+	--color-accent-pink: #ff3f91;
+	--gradient-accent: linear-gradient(90deg, #9b32ff, #ff3f91);
+	--font-body: 'Poppins', sans-serif;
+	--font-display: 'Poppins', sans-serif;
+	--content-width: 1180px;
+	--space-page: 24px;
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+html {
+	font-family: var(--font-body);
+	color: var(--color-body);
+	background: var(--color-background);
+}
+
+body {
+	min-width: 320px;
+	margin: 0;
+	background: var(--color-background);
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 1.7;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	margin-top: 0;
+	color: var(--color-text);
+	font-family: var(--font-body);
+}
+
+h1 {
+	font-size: clamp(42px, 5vw, 52px);
+	font-weight: 800;
+	line-height: 1.15;
+	letter-spacing: -1.5px;
+}
+
+h2 {
+	font-size: clamp(32px, 4vw, 38px);
+	font-weight: 700;
+	line-height: 1.2;
+	letter-spacing: -0.8px;
+}
+
+h3 {
+	font-size: clamp(20px, 3vw, 24px);
+	font-weight: 600;
+	line-height: 1.3;
+}
+
+p {
+	color: var(--color-body);
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 1.7;
+}
+
+button,
+.button {
+	padding: 11px 24px;
+	color: var(--color-text);
+	border: 0;
+	border-radius: 30px;
+	background: var(--gradient-accent);
+	font-size: 15px;
+	font-weight: 600;
+	line-height: 1.4;
+	text-decoration: none;
+	transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+button:hover,
+.button:hover {
+	box-shadow: 0 8px 24px rgb(155 50 255 / 35%);
+	transform: translateY(-2px);
+}
+
+.gradient-text {
+	color: transparent;
+	background: var(--gradient-accent);
+	background-clip: text;
+	-webkit-background-clip: text;
+}
+
+.text-secondary {
+	color: var(--color-muted);
+	font-size: 13px;
+	font-weight: 300;
+}
+
+img,
+svg {
+	display: block;
+	max-width: 100%;
+}
+
+button,
+a,
+input,
+textarea,
+select {
+	font: inherit;
+}
+
+button,
+a {
+	-webkit-tap-highlight-color: transparent;
+}
+
+:focus-visible {
+	outline: 3px solid var(--color-accent);
+	outline-offset: 3px;
+}
+
+::selection {
+	color: var(--color-surface);
+	background: var(--color-accent);
+}
+
+@media (max-width: 700px) {
+	:root {
+		--space-page: 16px;
+	}
+}
