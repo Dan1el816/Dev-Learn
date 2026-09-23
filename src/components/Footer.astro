@@ -1,50 +1,208 @@
 ---
+import logo from '../assets/logo.svg';
+import github from '../assets/social/github.svg';
+import discord from '../assets/social/discord.svg';
+import instagram from '../assets/social/instagram.svg';
+import globe from '../assets/social/globe.svg';
+
+const currentYear = new Date().getFullYear();
 ---
 
 <footer class="site-footer">
 	<div class="container">
-		<p class="welcome">Toda e Qualquer contribuição será bem vinda ;)</p>
-		<p class="copy">© 2024. Todos os direitos reservados</p>
+		<div class="footer-main">
+			<div class="footer-brand">
+				<a class="brand" href="/" aria-label="DevLearn - página inicial">
+					<img src={logo.src} width="42" height="42" alt="" />
+					<span>Dev<br />Learn</span>
+				</a>
+				<p>Aprenda, pratique e construa seu próximo projeto com o DevLearn.</p>
+			</div>
+
+			<div class="footer-column">
+				<h2>Explore</h2>
+				<a href="/">Início</a>
+				<a href="/conteudos">Conteúdos</a>
+				<a href="/projetos">Projetos</a>
+			</div>
+
+			<div class="footer-column">
+				<h2>DevLearn</h2>
+				<a href="/sobre">Sobre nós</a>
+				<a href="/contato">Contato</a>
+				<a href="/contato">Contribua</a>
+			</div>
+
+			<div class="footer-community">
+				<h2>Faça parte</h2>
+				<p>Toda e qualquer contribuição será bem-vinda.</p>
+				<div class="social-links" aria-label="Redes sociais">
+					<a href="#" aria-label="GitHub"><img src={github.src} width="20" height="20" alt="" /></a>
+					<a href="#" aria-label="Discord"><img src={discord.src} width="20" height="20" alt="" /></a>
+					<a href="#" aria-label="Instagram"><img src={instagram.src} width="20" height="20" alt="" /></a>
+					<a href="#" aria-label="Site"><img src={globe.src} width="20" height="20" alt="" /></a>
+				</div>
+			</div>
+		</div>
+
+		<div class="footer-bottom">
+			<p class="copy">© {currentYear} DevLearn. Todos os direitos reservados.</p>
+			<p class="made-with">Feito para quem aprende fazendo.</p>
+		</div>
 	</div>
 </footer>
 
 <style>
 	.site-footer {
-		padding: 28px 0 36px;
-		text-align: center;
+		margin-top: 48px;
+		padding: 56px 0 24px;
+		border-top: 1px solid rgb(192 132 252 / 16%);
+		background: rgb(7 10 30 / 72%);
 	}
 
-	.welcome {
-		margin: 0 0 6px;
-		color: #d8d8ea;
-		font-size: 0.92rem;
-	}
-
-	.copy {
-		margin: 0;
-		color: #8f90a8;
-		font-size: 0.78rem;
-	}
-
-	.container {
+	.footer-main {
 		display: grid;
-		justify-items: center;
+		grid-template-columns: minmax(220px, 1.7fr) repeat(2, minmax(110px, 0.8fr)) minmax(180px, 1.2fr);
+		gap: 38px;
+		padding-bottom: 42px;
 	}
 
-	@media (min-width: 720px) {
-		.container {
-			grid-template-columns: 1fr auto 1fr;
-			align-items: end;
+	.footer-brand .brand {
+		display: inline-flex;
+		align-items: center;
+		gap: 10px;
+		color: #fff;
+		font-size: 1.2rem;
+		font-weight: 700;
+		line-height: 1.1;
+	}
+
+	.footer-brand .brand img {
+		width: 42px;
+		height: 42px;
+		border-radius: 50%;
+		box-shadow: 0 0 18px rgb(155 80 255 / 38%);
+	}
+
+	.footer-brand > p {
+		max-width: 20rem;
+		margin: 18px 0 0;
+		color: #a9abc2;
+		font-size: 0.86rem;
+		line-height: 1.65;
+	}
+
+	.footer-column,
+	.footer-community {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+	}
+
+	.footer-column h2,
+	.footer-community h2 {
+		margin: 4px 0 16px;
+		color: #fff;
+		font-size: 0.88rem;
+		font-weight: 700;
+		letter-spacing: 0.04em;
+		text-transform: uppercase;
+	}
+
+	.footer-column a {
+		margin-bottom: 9px;
+		color: #a9abc2;
+		font-size: 0.86rem;
+		transition: color 0.2s ease, transform 0.2s ease;
+	}
+
+	.footer-column a:hover {
+		color: #ff75b7;
+		transform: translateX(3px);
+	}
+
+	.footer-community > p {
+		max-width: 14rem;
+		margin: 0;
+		color: #a9abc2;
+		font-size: 0.86rem;
+		line-height: 1.55;
+	}
+
+	.social-links {
+		display: flex;
+		gap: 10px;
+		margin-top: 18px;
+	}
+
+	.social-links a {
+		display: grid;
+		place-items: center;
+		width: 34px;
+		height: 34px;
+		border: 1px solid rgb(255 79 163 / 28%);
+		border-radius: 8px;
+		background: rgb(255 255 255 / 5%);
+		transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s ease;
+	}
+
+	.social-links a:hover {
+		border-color: #ff75b7;
+		background: rgb(255 79 163 / 16%);
+		transform: translateY(-3px);
+	}
+
+	.social-links img {
+		width: 18px;
+		height: 18px;
+		filter: invert(74%) sepia(31%) saturate(1200%) hue-rotate(285deg) brightness(105%);
+	}
+
+	.footer-bottom {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 20px;
+		padding-top: 20px;
+		border-top: 1px solid rgb(255 255 255 / 8%);
+	}
+
+	.copy,
+	.made-with {
+		margin: 0;
+		color: #777a98;
+		font-size: 0.76rem;
+	}
+
+	.made-with {
+		color: #9a9bb0;
+	}
+
+	@media (max-width: 800px) {
+		.footer-main {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			gap: 32px 24px;
 		}
 
-		.copy {
-			grid-column: 1;
-			justify-self: start;
+		.footer-brand,
+		.footer-community {
+			grid-column: 1 / -1;
+		}
+	}
+
+	@media (max-width: 520px) {
+		.site-footer {
+			padding-top: 42px;
 		}
 
-		.welcome {
-			grid-column: 2;
-			margin: 0;
+		.footer-main {
+			grid-template-columns: 1fr 1fr;
+		}
+
+		.footer-bottom {
+			align-items: flex-start;
+			flex-direction: column;
+			gap: 6px;
 		}
 	}
 </style>

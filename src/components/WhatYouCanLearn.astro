@@ -50,12 +50,12 @@ const comingSoon = Array.from({ length: 5 }, () => ({
 
 	.panel {
 		padding: 30px 28px;
-		border: 1px solid rgb(202 192 255 / 22%);
+		border: 1px solid rgb(192 132 252 / 24%);
 		border-radius: 24px;
 		background:
-			radial-gradient(circle at 12% 0%, rgb(211 119 255 / 42%), transparent 38%),
-			linear-gradient(135deg, #754dff 0%, #5145d5 52%, #245fd0 100%);
-		box-shadow: 0 18px 40px rgb(37 99 235 / 18%);
+			radial-gradient(circle at 12% 0%, rgb(139 60 224 / 18%), transparent 34%),
+			linear-gradient(135deg, #11152f 0%, #0d1228 52%, #101936 100%);
+		box-shadow: 0 18px 40px rgb(2 4 22 / 38%), inset 0 1px 0 rgb(255 255 255 / 6%);
 	}
 
 	.grid {
@@ -65,6 +65,8 @@ const comingSoon = Array.from({ length: 5 }, () => ({
 	}
 
 	.card {
+		position: relative;
+		overflow: hidden;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
@@ -77,11 +79,60 @@ const comingSoon = Array.from({ length: 5 }, () => ({
 		background: linear-gradient(180deg, rgb(255 255 255 / 18%), rgb(40 20 140 / 22%));
 		box-shadow: inset 0 1px 0 rgb(255 255 255 / 18%);
 		text-align: center;
+		transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+	isolation: isolate;
+	}
+
+	.card::before {
+		position: absolute;
+		inset: -40%;
+		z-index: -1;
+		content: '';
+		background: radial-gradient(circle, rgb(255 79 163 / 42%), transparent 62%);
+		opacity: 0;
+		transform: scale(0.7);
+		transition: opacity 0.3s ease, transform 0.4s ease;
+	}
+
+	.card::after {
+		position: absolute;
+		right: 18%;
+		bottom: 0;
+		left: 18%;
+		height: 3px;
+		content: '';
+		border-radius: 3px 3px 0 0;
+		background: linear-gradient(90deg, #ff4fa3, #c084fc);
+		transform: scaleX(0);
+		transform-origin: center;
+		transition: transform 0.3s ease;
+	}
+
+	.card:hover {
+		border-color: rgb(255 255 255 / 48%);
+		background: linear-gradient(180deg, rgb(255 255 255 / 28%), rgb(49 27 154 / 38%));
+		box-shadow: 0 16px 28px rgb(18 10 90 / 28%), inset 0 1px 0 rgb(255 255 255 / 28%);
+		transform: translateY(-8px) scale(1.025);
+	}
+
+	.card:hover::before {
+		opacity: 1;
+		transform: scale(1);
+	}
+
+	.card:hover::after {
+		transform: scaleX(1);
 	}
 
 	.card img {
 		width: 52px;
 		height: 52px;
+		transition: transform 0.3s ease, filter 0.3s ease;
+	}
+
+	.card:hover img {
+		filter: drop-shadow(0 0 10px rgb(255 255 255 / 42%));
+		transform: translateY(-4px) rotate(-4deg) scale(1.08);
 	}
 
 	.card p {
@@ -90,6 +141,15 @@ const comingSoon = Array.from({ length: 5 }, () => ({
 		font-size: 0.82rem;
 		font-weight: 500;
 		line-height: 1.25;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.card,
+		.card::before,
+		.card::after,
+		.card img {
+			transition: none;
+		}
 	}
 
 	@media (max-width: 900px) {

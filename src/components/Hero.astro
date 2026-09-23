@@ -6,9 +6,9 @@ import github from '../assets/social/github.svg';
 <section class="hero">
 	<div class="container hero-grid">
 		<div class="hero-copy">
-			<p class="hello">Hello World!</p>
+			<h1 class="hello">Hello World!</h1>
 			<blockquote>
-				<p class="quote">A Essência do conhecimento consiste em aplica-lo, uma vez possuído</p>
+				<p class="quote">O verdadeiro valor do conhecimento aparece quando o colocamos em prática.</p>
 				<cite>Confúcio</cite>
 			</blockquote>
 			<a class="cta" href="#">
@@ -37,11 +37,15 @@ import github from '../assets/social/github.svg';
 	}
 
 	.hello {
-		margin: 0 0 10px;
-		color: #fff;
-		font-size: clamp(1.7rem, 3vw, 2.15rem);
+		margin: 0 0 18px;
+		background: linear-gradient(100deg, #ffffff 8%, #d6b5ff 52%, #ff75b7 100%);
+		background-clip: text;
+		-webkit-background-clip: text;
+		color: transparent;
+		font-size: clamp(2.8rem, 6vw, 4.7rem);
 		font-weight: 700;
-		line-height: 1.2;
+		line-height: 1.05;
+		letter-spacing: -0.03em;
 	}
 
 	blockquote {
@@ -50,12 +54,15 @@ import github from '../assets/social/github.svg';
 
 	.quote {
 		margin: 0;
-		max-width: 34rem;
-		color: #fff;
-		font-size: clamp(1.45rem, 2.6vw, 2.05rem);
+		max-width: 40rem;
+		background: linear-gradient(100deg, #ffffff 8%, #d6b5ff 52%, #ff75b7 100%);
+		background-clip: text;
+		-webkit-background-clip: text;
+		color: transparent;
+		font-size: clamp(1.75rem, 3.2vw, 2.55rem);
 		font-weight: 700;
-		line-height: 1.25;
-		letter-spacing: -0.03em;
+		line-height: 1.15;
+		letter-spacing: -0.02em;
 	}
 
 	cite {

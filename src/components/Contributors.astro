@@ -26,9 +26,10 @@ const social = [
 
 <section class="contributors">
 	<div class="container">
-		<h2>Contribuidores</h2>
+		<div class="contributors-frame">
+			<h2>Contribuidores</h2>
 
-		<article class="profile profile-daniel">
+			<article class="profile profile-daniel">
 			<div class="bio">
 				<p>
 					Graduando em Analise e Desenvolvimento de Sistemas no IFRN, com foco em desenvolvimento de software.
@@ -53,9 +54,9 @@ const social = [
 					))}
 				</nav>
 			</div>
-		</article>
+			</article>
 
-		<article class="profile profile-kauan">
+			<article class="profile profile-kauan">
 			<div class="person">
 				<h3>José Kauan</h3>
 				<div class="avatar">
@@ -81,13 +82,52 @@ const social = [
 					<img class="vscode" src={vscode.src} width="64" height="64" alt="VS Code" />
 				</div>
 			</div>
-		</article>
+			</article>
+		</div>
 	</div>
 </section>
 
 <style>
 	.contributors {
 		padding: 56px 0 24px;
+	}
+
+	.contributors-frame {
+		position: relative;
+		isolation: isolate;
+		overflow: hidden;
+		padding: 32px 34px 4px;
+		border: 1px solid transparent;
+		border-radius: 14px;
+		background: rgb(11 15 40 / 96%);
+		box-shadow: 0 20px 48px rgb(2 4 22 / 28%), inset 0 1px 0 rgb(255 255 255 / 8%);
+	}
+
+	.contributors-frame::before,
+	.contributors-frame::after {
+		position: absolute;
+		content: '';
+		pointer-events: none;
+	}
+
+	.contributors-frame::before {
+		inset: -50%;
+		z-index: -2;
+		background: conic-gradient(from 0deg, transparent 0deg, #ff4fa3 48deg, #8b3ce0 100deg, transparent 150deg, transparent 280deg, #5b8cff 320deg, transparent 360deg);
+		animation: orbit-outline 8s linear infinite;
+	}
+
+	.contributors-frame::after {
+		inset: 1px;
+		z-index: -1;
+		border-radius: 13px;
+		background: rgb(11 15 40 / 98%);
+	}
+
+	@keyframes orbit-outline {
+		to {
+			transform: rotate(360deg);
+		}
 	}
 
 	h2 {
@@ -212,6 +252,10 @@ const social = [
 	}
 
 	@media (max-width: 800px) {
+		.contributors-frame {
+			padding: 24px 18px 2px;
+		}
+
 		.profile,
 		.profile-kauan {
 			grid-template-columns: 1fr;
@@ -231,6 +275,12 @@ const social = [
 
 		.person {
 			order: -1;
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.contributors-frame::before {
+			animation: none;
 		}
 	}
 </style>
