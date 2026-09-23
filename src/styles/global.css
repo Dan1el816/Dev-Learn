@@ -1,0 +1,86 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+	--color-background: #090e23;
+	--color-surface: #0c1228;
+	--color-text: #ffffff;
+	--color-body: #d8d8ea;
+	--color-muted: #9a9bb0;
+	--color-accent: #c084fc;
+	--color-accent-strong: #a855f7;
+	--color-accent-pink: #ff4fa3;
+	--color-title: #c084fc;
+	--gradient-accent: linear-gradient(90deg, #ff4fa3, #9b32ff);
+	--gradient-hero: radial-gradient(ellipse 55% 70% at 78% 42%, rgb(88 70 255 / 55%) 0%, rgb(40 30 140 / 22%) 38%, transparent 70%);
+	--font-body: 'Poppins', sans-serif;
+	--content-width: 1080px;
+	--space-page: 24px;
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+html {
+	font-family: var(--font-body);
+	color: var(--color-body);
+	background: var(--color-background);
+}
+
+body {
+	min-width: 320px;
+	margin: 0;
+	background: var(--color-background);
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 1.7;
+}
+
+img,
+svg {
+	display: block;
+	max-width: 100%;
+}
+
+a {
+	color: inherit;
+	text-decoration: none;
+}
+
+button,
+a,
+input {
+	font: inherit;
+}
+
+:focus-visible {
+	outline: 3px solid var(--color-accent);
+	outline-offset: 3px;
+}
+
+::selection {
+	color: #090e23;
+	background: var(--color-accent);
+}
+
+.page {
+	overflow: hidden;
+	background:
+		radial-gradient(ellipse 58% 34% at 79% 4%, rgb(91 61 255 / 30%) 0%, transparent 72%),
+		radial-gradient(ellipse 50% 32% at 12% 45%, rgb(54 38 176 / 20%) 0%, transparent 72%),
+		radial-gradient(ellipse 60% 28% at 84% 78%, rgb(35 78 218 / 18%) 0%, transparent 72%),
+		var(--color-background);
+}
+
+.container {
+	width: min(var(--content-width), calc(100% - (var(--space-page) * 2)));
+	margin-inline: auto;
+}
+
+@media (max-width: 700px) {
+	:root {
+		--space-page: 16px;
+	}
+}
