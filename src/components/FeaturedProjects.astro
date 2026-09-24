@@ -2,6 +2,7 @@
 import database from '../assets/icons/database.svg';
 import git from '../assets/icons/git.svg';
 import calculus from '../assets/icons/calculus.svg';
+import logo from '../assets/logo.svg';
 
 const projects = [
 	{
@@ -29,7 +30,6 @@ const projects = [
 	<div class="container">
 		<div class="section-heading">
 			<h2>Projetos em destaque</h2>
-			<p class="intro">Ideias para transformar cada conceito estudado em algo que você pode mostrar.</p>
 		</div>
 
 		<div class="projects-grid">
@@ -62,7 +62,6 @@ const projects = [
 		<div class="project-cta">
 			<div class="cta-copy">
 				<h3>Pronto para transformar aprendizado em prática?</h3>
-				<p>Escolha uma trilha, acompanhe os conteúdos e construa algo que seja seu.</p>
 			</div>
 			<a class="cta-button" href="/conteudos">
 				Explorar conteúdos
@@ -82,14 +81,164 @@ const projects = [
 				<h2>Nossos Diferenciais</h2>
 				<p>Por que confiar na gente e usar o DevLearn para aprender desenvolvimento?</p>
 			</div>
-			<div class="differentials-copy">
-				<p><strong>Focamos na prática.</strong> A gente sabe que ninguém aprende apenas lendo o conteúdo né? Então Aprenda fazendo: cada conteúdo foi pensado para levar você da teoria à aplicação. Projetos pensado em como você pode absorver o conteúdo da melhor forma enquanto constrói o projeto</p>
-				<p><strong>Sugerimos Projetos reais.</strong> Essa a parte divertida! Depois de toda a teoria te damos sugestões de projetos que irão desenvolver suas habilidades e formarão um portfólio de verdade.</p>
-				<p><strong>O Conteúdo é conectado.</strong> Se você é fã de outros conteúdos ou matérias escolares que não tem nada haver com programação, aqui vai uma novidade pra você: Relacionamos diferentes áreas do conhecimento nos nossos conteúdos de programação porque estudos em ciência cognitiva mostram que a aprendizagem intercalada e a retomada de conceitos em novos contextos está relacionada a uma compreensão mais duradoura.</p>
+			<div class="differentials-carousel" aria-label="Nossos diferenciais" aria-roledescription="carousel">
+				<div class="differentials-viewport" tabindex="0">
+					<div class="differentials-copy">
+						<p role="group" aria-roledescription="slide" aria-label="1 de 3"><strong>Focamos na prática.</strong> A gente sabe que ninguém aprende apenas lendo o conteúdo né? Então Aprenda fazendo: cada conteúdo foi pensado para levar você da teoria à aplicação. Projetos pensado em como você pode absorver o conteúdo da melhor forma enquanto constrói o projeto</p>
+						<p role="group" aria-roledescription="slide" aria-label="2 de 3"><strong>Sugerimos Projetos reais.</strong> Essa a parte divertida! Depois de toda a teoria te damos sugestões de projetos que irão desenvolver suas habilidades e formarão um portfólio de verdade.</p>
+						<p role="group" aria-roledescription="slide" aria-label="3 de 3"><strong>O Conteúdo é conectado.</strong> Se você é fã de outros conteúdos ou matérias escolares que não tem nada haver com programação, aqui vai uma novidade pra você: Relacionamos diferentes áreas do conhecimento nos nossos conteúdos de programação porque estudos em ciência cognitiva mostram que a aprendizagem intercalada e a retomada de conceitos em novos contextos está relacionada a uma compreensão mais duradoura.</p>
+					</div>
+				</div>
+				<div class="differentials-controls">
+					<button class="carousel-button" type="button" data-carousel-previous aria-label="Diferencial anterior">
+						<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6" /></svg>
+					</button>
+					<div class="carousel-indicators" aria-label="Selecionar diferencial">
+						<button class="carousel-indicator is-active" type="button" data-carousel-slide="0" aria-label="Ir para o diferencial 1" aria-current="true"></button>
+						<button class="carousel-indicator" type="button" data-carousel-slide="1" aria-label="Ir para o diferencial 2"></button>
+						<button class="carousel-indicator" type="button" data-carousel-slide="2" aria-label="Ir para o diferencial 3"></button>
+					</div>
+					<button class="carousel-button" type="button" data-carousel-next aria-label="Próximo diferencial">
+						<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6" /></svg>
+					</button>
+				</div>
 			</div>
 		</div>
+
+		<div class="about-cta" aria-labelledby="about-cta-title">
+			<h2 id="about-cta-title">Conheça quem está por trás do DevLearn</h2>
+			<div class="about-cta-visual" aria-hidden="true">
+				<img src={logo.src} width="96" height="96" alt="" />
+			</div>
+			<div class="about-cta-arrow" aria-hidden="true">
+				<span></span>
+				<svg viewBox="0 0 24 24">
+					<path d="m6 9 6 6 6-6" />
+				</svg>
+			</div>
+		</div>
+
 	</div>
 </section>
+
+<script>
+	const carousels = document.querySelectorAll<HTMLElement>('.differentials-carousel');
+
+	carousels.forEach((carousel) => {
+		const viewport = carousel.querySelector<HTMLElement>('.differentials-viewport');
+		const track = carousel.querySelector<HTMLElement>('.differentials-copy');
+		const slides = Array.from(carousel.querySelectorAll<HTMLElement>('[role="group"]'));
+		const indicators = Array.from(carousel.querySelectorAll<HTMLButtonElement>('[data-carousel-slide]'));
+		const previous = carousel.querySelector<HTMLButtonElement>('[data-carousel-previous]');
+		const next = carousel.querySelector<HTMLButtonElement>('[data-carousel-next]');
+		let currentSlide = 0;
+		let touchStartX = 0;
+		let autoplayTimer: ReturnType<typeof setTimeout> | undefined;
+		let isHovered = false;
+		let isFocused = false;
+		let isInteracting = false;
+		const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+		if (!viewport || !track || !previous || !next || slides.length === 0) return;
+
+		const showSlide = (index: number) => {
+			currentSlide = (index + slides.length) % slides.length;
+			track.style.transform = `translateX(-${currentSlide * 100}%)`;
+			indicators.forEach((indicator, indicatorIndex) => {
+				const isActive = indicatorIndex === currentSlide;
+				indicator.classList.toggle('is-active', isActive);
+				if (isActive) indicator.setAttribute('aria-current', 'true');
+				else indicator.removeAttribute('aria-current');
+			});
+		};
+
+		const canAutoplay = () => !document.hidden && !prefersReducedMotion.matches && !isHovered && !isFocused && !isInteracting;
+		const scheduleAutoplay = () => {
+			if (autoplayTimer !== undefined) window.clearTimeout(autoplayTimer);
+			if (!canAutoplay()) return;
+			autoplayTimer = window.setTimeout(() => {
+				autoplayTimer = undefined;
+				showSlide(currentSlide + 1);
+				scheduleAutoplay();
+			}, 5000);
+		};
+		const pauseAutoplay = () => {
+			if (autoplayTimer !== undefined) {
+				window.clearTimeout(autoplayTimer);
+				autoplayTimer = undefined;
+			}
+		};
+
+		const updateAutoplay = () => {
+			pauseAutoplay();
+			scheduleAutoplay();
+		};
+
+		previous.addEventListener('click', () => {
+			showSlide(currentSlide - 1);
+			updateAutoplay();
+		});
+		next.addEventListener('click', () => {
+			showSlide(currentSlide + 1);
+			updateAutoplay();
+		});
+		indicators.forEach((indicator) => {
+			indicator.addEventListener('click', () => {
+				showSlide(Number(indicator.dataset.carouselSlide));
+				updateAutoplay();
+			});
+		});
+
+		viewport.addEventListener('keydown', (event) => {
+			if (event.key === 'ArrowLeft' || event.key === 'ArrowRight' || event.key === 'Home' || event.key === 'End') {
+				event.preventDefault();
+			}
+			if (event.key === 'ArrowLeft') showSlide(currentSlide - 1);
+			if (event.key === 'ArrowRight') showSlide(currentSlide + 1);
+			if (event.key === 'Home') showSlide(0);
+			if (event.key === 'End') showSlide(slides.length - 1);
+			if (event.key === 'ArrowLeft' || event.key === 'ArrowRight' || event.key === 'Home' || event.key === 'End') updateAutoplay();
+		});
+		carousel.addEventListener('pointerenter', () => {
+			isHovered = true;
+			updateAutoplay();
+		});
+		carousel.addEventListener('pointerleave', () => {
+			isHovered = false;
+			updateAutoplay();
+		});
+		carousel.addEventListener('focusin', () => {
+			isFocused = true;
+			updateAutoplay();
+		});
+		carousel.addEventListener('focusout', (event) => {
+			if (!carousel.contains(event.relatedTarget as Node | null)) {
+				isFocused = false;
+				updateAutoplay();
+			}
+		});
+
+		viewport.addEventListener('touchstart', (event) => {
+			isInteracting = true;
+			updateAutoplay();
+			touchStartX = event.touches[0]?.clientX ?? 0;
+		}, { passive: true });
+		viewport.addEventListener('touchend', (event) => {
+			const touchEndX = event.changedTouches[0]?.clientX ?? touchStartX;
+			const distance = touchEndX - touchStartX;
+			if (Math.abs(distance) > 45) showSlide(currentSlide + (distance < 0 ? 1 : -1));
+			isInteracting = false;
+			updateAutoplay();
+		}, { passive: true });
+		viewport.addEventListener('touchcancel', () => {
+			isInteracting = false;
+			updateAutoplay();
+		}, { passive: true });
+		document.addEventListener('visibilitychange', updateAutoplay);
+		prefersReducedMotion.addEventListener('change', updateAutoplay);
+		scheduleAutoplay();
+	});
+</script>
 
 <style>
 	.featured-projects {
@@ -98,6 +247,7 @@ const projects = [
 
 	.section-heading {
 		margin-bottom: 28px;
+		text-align: center;
 	}
 
 	.eyebrow {
@@ -112,6 +262,7 @@ const projects = [
 	h2 {
 		margin: 0;
 		max-width: 52rem;
+		margin-inline: auto;
 		background: linear-gradient(100deg, #ffffff 8%, #d6b5ff 52%, #ff75b7 100%);
 		background-clip: text;
 		-webkit-background-clip: text;
@@ -124,9 +275,10 @@ const projects = [
 
 	.intro {
 		max-width: 42rem;
-		margin: 8px 0 0;
+		margin: 8px auto 0;
 		color: #d8d8ea;
 		font-size: 0.95rem;
+		text-align: center;
 	}
 
 	.projects-grid {
@@ -226,6 +378,7 @@ const projects = [
 
 	.project-copy {
 		padding: 20px 22px 22px;
+		text-align: center;
 	}
 
 	h3 {
@@ -246,7 +399,7 @@ const projects = [
 	.project-link {
 		display: grid;
 		place-items: center;
-		align-self: flex-end;
+		margin-inline: auto;
 		width: 40px;
 		height: 40px;
 		border: 1px solid rgb(255 117 183 / 45%);
@@ -274,20 +427,18 @@ const projects = [
 	}
 
 	.project-cta {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		gap: 28px;
-		margin-top: 34px;
-		padding: 28px 32px;
-		border: 1px solid rgb(255 79 163 / 28%);
-		border-radius: 10px;
-		background: rgb(26 29 67 / 96%);
-		box-shadow: inset 0 1px 0 rgb(255 255 255 / 10%);
-	}
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 28px;
+    margin-top: 34px;
+    padding: 28px 32px;
+    border-radius: 10px;
+}
 
 	.cta-copy {
 		max-width: 42rem;
+		text-align: center;
 	}
 
 	.project-cta h3 {
@@ -387,6 +538,7 @@ const projects = [
 
 	.differentials-heading {
 		margin-bottom: 24px;
+		text-align: center;
 	}
 
 	.differentials-heading h2 {
@@ -395,31 +547,115 @@ const projects = [
 	}
 
 	.differentials-heading p {
-		margin: 8px 0 0;
+		margin: 8px auto 0;
+		max-width: 42rem;
 		color: #d8d8ea;
 		font-size: 1.05rem;
 	}
 
 	.differentials-copy {
+		display: flex;
+		width: 100%;
+		transition: transform 0.45s ease;
+	}
+
+	.differentials-viewport {
 		max-width: 58rem;
+		margin-inline: auto;
+		overflow: hidden;
+		border: 1px solid rgb(192 132 252 / 18%);
+		border-radius: 12px;
+		background: linear-gradient(145deg, rgb(26 25 67 / 68%), rgb(15 20 50 / 54%));
+		box-shadow: inset 0 1px 0 rgb(255 255 255 / 7%);
+		outline: none;
+	}
+
+	.differentials-viewport:focus-visible {
+		box-shadow: 0 0 0 3px rgb(255 79 163 / 24%), inset 0 1px 0 rgb(255 255 255 / 7%);
 	}
 
 	.differentials-copy p {
+		box-sizing: border-box;
+		flex: 0 0 100%;
+		max-width: none;
+		min-height: 190px;
 		margin: 0;
-		padding: 20px 0;
-		border-bottom: 1px solid rgb(192 132 252 / 14%);
+		padding: 28px 30px;
+		border: 0;
 		color: #bfc0d7;
 		font-size: clamp(1.08rem, 1.6vw, 1.24rem);
 		line-height: 1.75;
 	}
 
-	.differentials-copy p:first-child {
-		padding-top: 0;
+	.differentials-controls {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		max-width: 58rem;
+		margin-top: 18px;
+		margin-inline: auto;
 	}
 
-	.differentials-copy p:last-child {
-		padding-bottom: 0;
-		border-bottom: 0;
+	.carousel-button,
+	.carousel-indicator {
+		border: 1px solid rgb(255 117 183 / 42%);
+		background: rgb(26 29 67 / 80%);
+		color: #fff;
+		cursor: pointer;
+	}
+
+	.carousel-button {
+		display: grid;
+		place-items: center;
+		width: 40px;
+		height: 40px;
+		border-radius: 50%;
+		transition: background 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+	}
+
+	.carousel-button svg {
+		width: 19px;
+		height: 19px;
+		fill: none;
+		stroke: currentColor;
+		stroke-linecap: round;
+		stroke-linejoin: round;
+		stroke-width: 1.8;
+	}
+
+	.carousel-button:hover,
+	.carousel-button:focus-visible {
+		border-color: #ff75b7;
+		background: linear-gradient(135deg, #ff4fa3, #8b3ce0);
+		transform: translateY(-2px);
+	}
+
+	.carousel-indicators {
+		display: flex;
+		align-items: center;
+		gap: 9px;
+	}
+
+	.carousel-indicator {
+		width: 9px;
+		height: 9px;
+		padding: 0;
+		border-radius: 50%;
+		opacity: 0.55;
+		transition: width 0.25s ease, opacity 0.25s ease, background 0.25s ease;
+	}
+
+	.carousel-indicator.is-active {
+		width: 26px;
+		border-radius: 6px;
+		background: linear-gradient(90deg, #ff4fa3, #8b3ce0);
+		opacity: 1;
+	}
+
+	.carousel-button:focus-visible,
+	.carousel-indicator:focus-visible {
+		outline: 3px solid rgb(255 117 183 / 38%);
+		outline-offset: 3px;
 	}
 
 	.differentials-copy strong {
@@ -429,6 +665,117 @@ const projects = [
 		color: transparent;
 		font-size: 1.08em;
 		font-weight: 800;
+	}
+
+	.about-cta {
+		position: relative;
+		display: grid;
+		grid-template-columns: minmax(0, 1fr) minmax(180px, 0.42fr);
+		align-items: center;
+		gap: 34px;
+		margin-top: 64px;
+		padding: 34px 36px 6px;
+		text-align: center;
+	}
+
+	.about-cta h2 {
+		position: relative;
+		z-index: 1;
+		max-width: 34rem;
+		margin: 0;
+		margin-inline: auto;
+		background: linear-gradient(100deg, #ffffff 8%, #d6b5ff 52%, #ff75b7 100%);
+		background-clip: text;
+		-webkit-background-clip: text;
+		color: transparent;
+		font-size: clamp(1.45rem, 3vw, 2.35rem);
+		font-weight: 700;
+		line-height: 1.15;
+	}
+
+	.about-cta-visual {
+		position: relative;
+		display: grid;
+		place-items: center;
+		min-height: 132px;
+		background: radial-gradient(circle at 50% 50%, rgb(53 183 255 / 7%), transparent 48%);
+	}
+
+	.about-cta-visual::before,
+	.about-cta-visual::after {
+		position: absolute;
+		content: '';
+	}
+
+	.about-cta-visual::before {
+		right: 8%;
+		bottom: 10px;
+		left: 8%;
+		height: 1px;
+		background: linear-gradient(90deg, transparent, rgb(192 132 252 / 30%), transparent);
+	}
+
+	.about-cta-visual::after {
+		top: 18px;
+		right: 18px;
+		width: 8px;
+		height: 8px;
+		border-radius: 50%;
+		background: rgb(53 183 255 / 68%);
+		box-shadow: 0 0 10px rgb(53 183 255 / 45%);
+	}
+
+	.about-cta-visual img {
+		width: clamp(72px, 10vw, 96px);
+		height: auto;
+		filter: drop-shadow(0 0 7px rgb(255 79 163 / 34%)) drop-shadow(0 0 12px rgb(53 183 255 / 22%));
+		animation: logo-float 1.9s ease-in-out infinite;
+	}
+
+	.about-cta-arrow {
+		display: grid;
+		grid-column: 1 / -1;
+		justify-items: center;
+		gap: 4px;
+		margin-top: 4px;
+		color: #ff75b7;
+		animation: arrow-bounce 1.8s ease-in-out infinite;
+	}
+
+	.about-cta-arrow span {
+		width: 1px;
+		height: 22px;
+		background: linear-gradient(#c084fc, #ff4fa3);
+	}
+
+	.about-cta-arrow svg {
+		width: 22px;
+		height: 22px;
+		fill: none;
+		stroke: currentColor;
+		stroke-linecap: round;
+		stroke-linejoin: round;
+		stroke-width: 1.7;
+	}
+
+	@keyframes arrow-bounce {
+		0%,
+		100% {
+			transform: translateY(0);
+		}
+		50% {
+			transform: translateY(5px);
+		}
+	}
+
+	@keyframes logo-float {
+		0%,
+		100% {
+			transform: translate(0, 0);
+		}
+		50% {
+			transform: translate(3px, -6px);
+		}
 	}
 
 	@media (max-width: 800px) {
@@ -471,11 +818,42 @@ const projects = [
 			margin-top: 48px;
 			padding-top: 28px;
 		}
+
+		.differentials-copy p {
+			min-height: 230px;
+			padding: 22px 20px;
+		}
+
+		.about-cta {
+			grid-template-columns: 1fr;
+			gap: 24px;
+			margin-top: 48px;
+			padding: 28px 20px 6px;
+		}
+
+		.about-cta-visual {
+			min-height: 132px;
+		}
 	}
 
 	@media (prefers-reduced-motion: reduce) {
-		.project-card {
+		.project-card,
+		.differentials-copy,
+		.carousel-button,
+		.carousel-indicator {
 			transition: none;
+		}
+
+		.about-cta-visual {
+			animation: none;
+		}
+
+		.about-cta-visual img {
+			animation: none;
+		}
+
+		.about-cta-arrow {
+			animation: none;
 		}
 	}
 </style>

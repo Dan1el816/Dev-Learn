@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
 
 :root {
-	--color-background: #090e23;
-	--color-surface: #0c1228;
+	--color-background: #070a18;
+	--color-surface: #0a0f22;
 	--color-text: #ffffff;
 	--color-body: #d8d8ea;
 	--color-muted: #9a9bb0;
@@ -61,7 +61,7 @@ input {
 }
 
 ::selection {
-	color: #090e23;
+	color: #070a18;
 	background: var(--color-accent);
 }
 

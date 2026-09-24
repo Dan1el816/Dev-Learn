@@ -1,7 +1,7 @@
 <section class="how-it-works">
 	<div class="container">
 		<div class="section-heading">
-			<h2>Um caminho simples para transformar curiosidade em prática.</h2>
+			<h2>Que Tal um caminho simples para transformar essa sua curiosidade em aprendizado?</h2>
 		</div>
 
 		<div class="steps">
@@ -44,11 +44,13 @@
 	.section-heading {
 		max-width: 100%;
 		margin-bottom: 28px;
+		text-align: center;
 	}
 
 	h2 {
 		margin: 0;
 		max-width: 52rem;
+		margin-inline: auto;
 		background: linear-gradient(100deg, #ffffff 8%, #d6b5ff 52%, #ff75b7 100%);
 		background-clip: text;
 		-webkit-background-clip: text;
@@ -63,7 +65,7 @@
 		display: block;
 		width: 72px;
 		height: 3px;
-		margin-top: 18px;
+		margin: 18px auto 0;
 		content: '';
 		border-radius: 3px;
 		background: linear-gradient(90deg, #ff4fa3, #8b3ce0);
@@ -78,7 +80,8 @@
 
 	.step {
 		display: flex;
-		align-items: flex-start;
+		align-items: center;
+		flex-direction: column;
 		gap: 16px;
 		min-height: 148px;
 		padding: 22px 20px;
@@ -86,6 +89,7 @@
 		border-radius: 16px;
 		background: linear-gradient(145deg, rgb(26 25 67 / 92%), rgb(15 20 50 / 88%));
 		box-shadow: inset 0 1px 0 rgb(255 255 255 / 8%);
+		text-align: center;
 		transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
 	}
 

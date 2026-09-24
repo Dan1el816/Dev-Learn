@@ -1,0 +1,214 @@
+<section class="about-cta-section" aria-labelledby="about-cta-title">
+	<div class="container">
+		<div class="about-cta">
+			<div class="cta-copy">
+				<p class="about-eyebrow">Por trás do código</p>
+				<h2 id="about-cta-title">Tem uma história por trás de cada projeto.</h2>
+				<p>Descubra quem somos, como pensamos o aprendizado e as pessoas que dão vida ao DevLearn.</p>
+				<a class="about-cta-button" href="/sobre">
+					Conheça o DevLearn
+					<svg viewBox="0 0 24 24" aria-hidden="true">
+						<path d="M5 12h13M13 6l6 6-6 6" />
+					</svg>
+				</a>
+			</div>
+			<div class="about-cta-visual" aria-hidden="true">
+				<span class="about-monogram">D<span>/</span>L</span>
+				<div class="code-lines">
+					<span><i>const</i> people = {'{'} learn(); {'}'}</span>
+					<span><i>return</i> {'<'} curiosity /{'>'}</span>
+					<span>build<span class="code-pink">(together)</span>;</span>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<style>
+	.about-cta-section {
+		padding: 38px 0 52px;
+	}
+
+	.about-cta {
+		display: grid;
+		grid-template-columns: minmax(0, 1.15fr) minmax(220px, 0.85fr);
+		align-items: center;
+		justify-content: space-between;
+		gap: 28px;
+		padding: 30px 32px;
+		border: 1px solid rgb(192 132 252 / 28%);
+		border-radius: 14px;
+		background:
+			radial-gradient(circle at 88% 12%, rgb(255 79 163 / 18%), transparent 34%),
+			linear-gradient(135deg, rgb(35 27 78 / 96%), rgb(26 29 67 / 96%));
+		box-shadow: inset 0 1px 0 rgb(255 255 255 / 10%);
+		overflow: hidden;
+	}
+
+	.about-cta .cta-copy {
+		max-width: 38rem;
+	}
+
+	.about-cta .about-eyebrow {
+		margin: 0 0 10px;
+		color: #ff75b7;
+		font-size: 0.72rem;
+		font-weight: 800;
+		letter-spacing: 0.16em;
+		text-transform: uppercase;
+	}
+
+	.about-cta h2 {
+		margin: 0 0 6px;
+		color: #fff;
+		font-size: clamp(1.2rem, 2.2vw, 1.55rem);
+		font-weight: 700;
+		line-height: 1.25;
+	}
+
+	.about-cta p {
+		margin: 0;
+		color: #c8c8df;
+		font-size: 0.9rem;
+		line-height: 1.5;
+	}
+
+	.about-cta .about-cta-button {
+		margin-top: 20px;
+	}
+
+	.about-cta-visual {
+		position: relative;
+		min-height: 156px;
+		padding: 22px;
+		border: 1px solid rgb(255 117 183 / 24%);
+		border-radius: 10px;
+		background: rgb(10 12 39 / 46%);
+		box-shadow: inset 0 1px 0 rgb(255 255 255 / 8%);
+		transform: rotate(2deg) translateY(4px);
+	}
+
+	.about-cta-visual::before,
+	.about-cta-visual::after {
+		position: absolute;
+		content: '';
+		border: 1px solid rgb(192 132 252 / 32%);
+	}
+
+	.about-cta-visual::before {
+		inset: 10px -10px -10px 10px;
+		z-index: -1;
+	}
+
+	.about-cta-visual::after {
+		top: 18px;
+		right: 18px;
+		width: 8px;
+		height: 8px;
+		border-radius: 50%;
+		background: #ff4fa3;
+		box-shadow: 0 0 18px rgb(255 79 163 / 80%);
+	}
+
+	.about-monogram {
+		display: block;
+		margin-bottom: 18px;
+		color: #fff;
+		font-size: clamp(2rem, 5vw, 3.2rem);
+		font-weight: 800;
+		letter-spacing: -0.08em;
+		line-height: 0.9;
+	}
+
+	.about-monogram span {
+		color: #ff4fa3;
+	}
+
+	.code-lines {
+		display: grid;
+		gap: 7px;
+		color: #a9a8d2;
+		font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+		font-size: 0.7rem;
+		line-height: 1.35;
+	}
+
+	.code-lines span:nth-child(2) {
+		padding-left: 16px;
+		color: #d2b9f4;
+	}
+
+	.code-lines i {
+		color: #ff75b7;
+		font-style: normal;
+	}
+
+	.code-pink {
+		color: #ff75b7;
+	}
+
+	.about-cta-button {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		gap: 10px;
+		flex: 0 0 auto;
+		padding: 12px 18px;
+		border-radius: 8px;
+		background: linear-gradient(90deg, #ff4fa3, #8b3ce0);
+		color: #fff;
+		font-size: 0.88rem;
+		font-weight: 600;
+		box-shadow: 0 8px 22px rgb(193 59 255 / 24%);
+		transition: filter 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+	}
+
+	.about-cta-button svg {
+		width: 18px;
+		height: 18px;
+		fill: none;
+		stroke: currentColor;
+		stroke-linecap: round;
+		stroke-linejoin: round;
+		stroke-width: 1.8;
+	}
+
+	.about-cta-button:hover {
+		box-shadow: 0 10px 26px rgb(255 79 163 / 30%);
+		filter: brightness(1.1);
+		transform: translateY(-2px);
+	}
+
+	.about-cta-button:focus-visible {
+		outline: 3px solid rgb(255 117 183 / 72%);
+		outline-offset: 4px;
+	}
+
+	@media (max-width: 520px) {
+		.about-cta-section {
+			padding: 28px 0 40px;
+		}
+
+		.about-cta {
+			grid-template-columns: 1fr;
+			align-items: flex-start;
+			padding: 24px 20px;
+		}
+
+		.about-cta-visual {
+			width: calc(100% - 10px);
+			min-height: 142px;
+			transform: rotate(1deg) translateX(5px);
+		}
+
+		.about-cta-button {
+			width: 100%;
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.about-cta-button {
+			transition: none;
+		}
+	}
+</style>

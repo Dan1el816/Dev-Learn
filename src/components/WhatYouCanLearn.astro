@@ -46,6 +46,7 @@ const comingSoon = Array.from({ length: 5 }, () => ({
 		color: #c084fc;
 		font-size: clamp(1.45rem, 2.4vw, 1.85rem);
 		font-weight: 700;
+		text-align: center;
 	}
 
 	.panel {
@@ -55,7 +56,20 @@ const comingSoon = Array.from({ length: 5 }, () => ({
 		background:
 			radial-gradient(circle at 12% 0%, rgb(139 60 224 / 18%), transparent 34%),
 			linear-gradient(135deg, #11152f 0%, #0d1228 52%, #101936 100%);
+		background-size: 160% 160%;
+		background-position: 0% 50%;
+		animation: learn-panel-gradient 18s ease-in-out infinite alternate;
 		box-shadow: 0 18px 40px rgb(2 4 22 / 38%), inset 0 1px 0 rgb(255 255 255 / 6%);
+	}
+
+	@keyframes learn-panel-gradient {
+		0% {
+			background-position: 0% 50%;
+		}
+
+		100% {
+			background-position: 100% 50%;
+		}
 	}
 
 	.grid {
@@ -80,7 +94,7 @@ const comingSoon = Array.from({ length: 5 }, () => ({
 		box-shadow: inset 0 1px 0 rgb(255 255 255 / 18%);
 		text-align: center;
 		transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
-	isolation: isolate;
+		isolation: isolate;
 	}
 
 	.card::before {
@@ -144,11 +158,16 @@ const comingSoon = Array.from({ length: 5 }, () => ({
 	}
 
 	@media (prefers-reduced-motion: reduce) {
+		.panel {
+			animation: none;
+		}
+
 		.card,
 		.card::before,
 		.card::after,
 		.card img {
 			transition: none;
+			animation: none;
 		}
 	}
 
