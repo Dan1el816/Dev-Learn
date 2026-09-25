@@ -1,0 +1,859 @@
+---
+import database from '../assets/icons/database.svg';
+import git from '../assets/icons/git.svg';
+import calculus from '../assets/icons/calculus.svg';
+import logo from '../assets/logo.svg';
+
+const projects = [
+	{
+		title: 'Dashboard de tarefas',
+		description: 'Organize atividades, prazos e prioridades em uma interface prática.',
+		icon: database,
+		className: 'project-database',
+	},
+	{
+		title: 'Portfólio com Git',
+		description: 'Publique seus projetos e acompanhe sua evolução como desenvolvedor.',
+		icon: git,
+		className: 'project-git',
+	},
+	{
+		title: 'Calculadora interativa',
+		description: 'Aplique lógica e matemática em uma ferramenta útil e responsiva.',
+		icon: calculus,
+		className: 'project-calculus',
+	},
+];
+---
+
+<section class="featured-projects">
+	<div class="container">
+		<div class="section-heading">
+			<h2>Projetos em destaque</h2>
+		</div>
+
+		<div class="projects-grid">
+			{projects.map((project) => (
+				<article class={`project-card ${project.className}`}>
+					<div class="project-preview">
+						<div class="preview-bar" aria-hidden="true">
+							<span></span><span></span><span></span>
+						</div>
+						<div class="preview-content">
+							<img src={project.icon.src} width="56" height="56" alt="" />
+							<div class="preview-lines" aria-hidden="true">
+								<span></span><span></span><span></span>
+							</div>
+						</div>
+					</div>
+					<div class="project-copy">
+						<h3>{project.title}</h3>
+						<p>{project.description}</p>
+						<a class="project-link" href="/projetos" aria-label={`Ver projeto: ${project.title}`} title={`Ver projeto: ${project.title}`}>
+							<svg viewBox="0 0 24 24" aria-hidden="true">
+								<path d="M5 12h13M13 6l6 6-6 6" />
+							</svg>
+						</a>
+					</div>
+				</article>
+			))}
+		</div>
+
+		<div class="project-cta">
+			<div class="cta-copy">
+				<h3>Pronto para transformar aprendizado em prática?</h3>
+			</div>
+			<a class="cta-button" href="/conteudos">
+				Explorar conteúdos
+				<svg viewBox="0 0 24 24" aria-hidden="true">
+					<path d="M5 12h13M13 6l6 6-6 6" />
+				</svg>
+			</a>
+		</div>
+
+		<blockquote class="learning-quote">
+			<p>"Só se aprende fazendo, pois, mesmo que penses que sabes, só terás certeza fazendo."</p>
+			<cite>Aristóteles</cite>
+		</blockquote>
+
+		<div class="differentials">
+			<div class="differentials-heading">
+				<h2>Nossos Diferenciais</h2>
+				<p>Por que confiar na gente e usar o DevLearn para aprender desenvolvimento?</p>
+			</div>
+			<div class="differentials-carousel" aria-label="Nossos diferenciais" aria-roledescription="carousel">
+				<div class="differentials-viewport" tabindex="0">
+					<div class="differentials-copy">
+						<p role="group" aria-roledescription="slide" aria-label="1 de 3"><strong>Focamos na prática.</strong> A gente sabe que ninguém aprende apenas lendo o conteúdo né? Então Aprenda fazendo: cada conteúdo foi pensado para levar você da teoria à aplicação. Projetos pensado em como você pode absorver o conteúdo da melhor forma enquanto constrói o projeto</p>
+						<p role="group" aria-roledescription="slide" aria-label="2 de 3"><strong>Sugerimos Projetos reais.</strong> Essa a parte divertida! Depois de toda a teoria te damos sugestões de projetos que irão desenvolver suas habilidades e formarão um portfólio de verdade.</p>
+						<p role="group" aria-roledescription="slide" aria-label="3 de 3"><strong>O Conteúdo é conectado.</strong> Se você é fã de outros conteúdos ou matérias escolares que não tem nada haver com programação, aqui vai uma novidade pra você: Relacionamos diferentes áreas do conhecimento nos nossos conteúdos de programação porque estudos em ciência cognitiva mostram que a aprendizagem intercalada e a retomada de conceitos em novos contextos está relacionada a uma compreensão mais duradoura.</p>
+					</div>
+				</div>
+				<div class="differentials-controls">
+					<button class="carousel-button" type="button" data-carousel-previous aria-label="Diferencial anterior">
+						<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6" /></svg>
+					</button>
+					<div class="carousel-indicators" aria-label="Selecionar diferencial">
+						<button class="carousel-indicator is-active" type="button" data-carousel-slide="0" aria-label="Ir para o diferencial 1" aria-current="true"></button>
+						<button class="carousel-indicator" type="button" data-carousel-slide="1" aria-label="Ir para o diferencial 2"></button>
+						<button class="carousel-indicator" type="button" data-carousel-slide="2" aria-label="Ir para o diferencial 3"></button>
+					</div>
+					<button class="carousel-button" type="button" data-carousel-next aria-label="Próximo diferencial">
+						<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6" /></svg>
+					</button>
+				</div>
+			</div>
+		</div>
+
+		<div class="about-cta" aria-labelledby="about-cta-title">
+			<h2 id="about-cta-title">Conheça quem está por trás do DevLearn</h2>
+			<div class="about-cta-visual" aria-hidden="true">
+				<img src={logo.src} width="96" height="96" alt="" />
+			</div>
+			<div class="about-cta-arrow" aria-hidden="true">
+				<span></span>
+				<svg viewBox="0 0 24 24">
+					<path d="m6 9 6 6 6-6" />
+				</svg>
+			</div>
+		</div>
+
+	</div>
+</section>
+
+<script>
+	const carousels = document.querySelectorAll<HTMLElement>('.differentials-carousel');
+
+	carousels.forEach((carousel) => {
+		const viewport = carousel.querySelector<HTMLElement>('.differentials-viewport');
+		const track = carousel.querySelector<HTMLElement>('.differentials-copy');
+		const slides = Array.from(carousel.querySelectorAll<HTMLElement>('[role="group"]'));
+		const indicators = Array.from(carousel.querySelectorAll<HTMLButtonElement>('[data-carousel-slide]'));
+		const previous = carousel.querySelector<HTMLButtonElement>('[data-carousel-previous]');
+		const next = carousel.querySelector<HTMLButtonElement>('[data-carousel-next]');
+		let currentSlide = 0;
+		let touchStartX = 0;
+		let autoplayTimer: ReturnType<typeof setTimeout> | undefined;
+		let isHovered = false;
+		let isFocused = false;
+		let isInteracting = false;
+		const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+		if (!viewport || !track || !previous || !next || slides.length === 0) return;
+
+		const showSlide = (index: number) => {
+			currentSlide = (index + slides.length) % slides.length;
+			track.style.transform = `translateX(-${currentSlide * 100}%)`;
+			indicators.forEach((indicator, indicatorIndex) => {
+				const isActive = indicatorIndex === currentSlide;
+				indicator.classList.toggle('is-active', isActive);
+				if (isActive) indicator.setAttribute('aria-current', 'true');
+				else indicator.removeAttribute('aria-current');
+			});
+		};
+
+		const canAutoplay = () => !document.hidden && !prefersReducedMotion.matches && !isHovered && !isFocused && !isInteracting;
+		const scheduleAutoplay = () => {
+			if (autoplayTimer !== undefined) window.clearTimeout(autoplayTimer);
+			if (!canAutoplay()) return;
+			autoplayTimer = window.setTimeout(() => {
+				autoplayTimer = undefined;
+				showSlide(currentSlide + 1);
+				scheduleAutoplay();
+			}, 5000);
+		};
+		const pauseAutoplay = () => {
+			if (autoplayTimer !== undefined) {
+				window.clearTimeout(autoplayTimer);
+				autoplayTimer = undefined;
+			}
+		};
+
+		const updateAutoplay = () => {
+			pauseAutoplay();
+			scheduleAutoplay();
+		};
+
+		previous.addEventListener('click', () => {
+			showSlide(currentSlide - 1);
+			updateAutoplay();
+		});
+		next.addEventListener('click', () => {
+			showSlide(currentSlide + 1);
+			updateAutoplay();
+		});
+		indicators.forEach((indicator) => {
+			indicator.addEventListener('click', () => {
+				showSlide(Number(indicator.dataset.carouselSlide));
+				updateAutoplay();
+			});
+		});
+
+		viewport.addEventListener('keydown', (event) => {
+			if (event.key === 'ArrowLeft' || event.key === 'ArrowRight' || event.key === 'Home' || event.key === 'End') {
+				event.preventDefault();
+			}
+			if (event.key === 'ArrowLeft') showSlide(currentSlide - 1);
+			if (event.key === 'ArrowRight') showSlide(currentSlide + 1);
+			if (event.key === 'Home') showSlide(0);
+			if (event.key === 'End') showSlide(slides.length - 1);
+			if (event.key === 'ArrowLeft' || event.key === 'ArrowRight' || event.key === 'Home' || event.key === 'End') updateAutoplay();
+		});
+		carousel.addEventListener('pointerenter', () => {
+			isHovered = true;
+			updateAutoplay();
+		});
+		carousel.addEventListener('pointerleave', () => {
+			isHovered = false;
+			updateAutoplay();
+		});
+		carousel.addEventListener('focusin', () => {
+			isFocused = true;
+			updateAutoplay();
+		});
+		carousel.addEventListener('focusout', (event) => {
+			if (!carousel.contains(event.relatedTarget as Node | null)) {
+				isFocused = false;
+				updateAutoplay();
+			}
+		});
+
+		viewport.addEventListener('touchstart', (event) => {
+			isInteracting = true;
+			updateAutoplay();
+			touchStartX = event.touches[0]?.clientX ?? 0;
+		}, { passive: true });
+		viewport.addEventListener('touchend', (event) => {
+			const touchEndX = event.changedTouches[0]?.clientX ?? touchStartX;
+			const distance = touchEndX - touchStartX;
+			if (Math.abs(distance) > 45) showSlide(currentSlide + (distance < 0 ? 1 : -1));
+			isInteracting = false;
+			updateAutoplay();
+		}, { passive: true });
+		viewport.addEventListener('touchcancel', () => {
+			isInteracting = false;
+			updateAutoplay();
+		}, { passive: true });
+		document.addEventListener('visibilitychange', updateAutoplay);
+		prefersReducedMotion.addEventListener('change', updateAutoplay);
+		scheduleAutoplay();
+	});
+</script>
+
+<style>
+	.featured-projects {
+		padding: 52px 0 34px;
+	}
+
+	.section-heading {
+		margin-bottom: 28px;
+		text-align: center;
+	}
+
+	.eyebrow {
+		margin: 0 0 6px;
+		color: #ff4fa3;
+		font-size: 0.76rem;
+		font-weight: 700;
+		letter-spacing: 0.14em;
+		text-transform: uppercase;
+	}
+
+	h2 {
+		margin: 0;
+		max-width: 52rem;
+		margin-inline: auto;
+		background: linear-gradient(100deg, #ffffff 8%, #d6b5ff 52%, #ff75b7 100%);
+		background-clip: text;
+		-webkit-background-clip: text;
+		color: transparent;
+		font-size: clamp(1.75rem, 3.2vw, 2.55rem);
+		font-weight: 700;
+		line-height: 1.15;
+		letter-spacing: -0.02em;
+	}
+
+	.intro {
+		max-width: 42rem;
+		margin: 8px auto 0;
+		color: #d8d8ea;
+		font-size: 0.95rem;
+		text-align: center;
+	}
+
+	.projects-grid {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: 22px;
+	}
+
+	.project-card {
+		overflow: hidden;
+		border: 1px solid rgb(192 132 252 / 20%);
+		border-radius: 18px;
+		background: linear-gradient(145deg, rgb(26 25 67 / 92%), rgb(15 20 50 / 88%));
+		box-shadow: inset 0 1px 0 rgb(255 255 255 / 8%);
+		transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+	}
+
+	.project-card:hover {
+		border-color: rgb(255 79 163 / 62%);
+		box-shadow: 0 18px 34px rgb(3 5 25 / 35%), inset 0 1px 0 rgb(255 255 255 / 12%);
+		transform: translateY(-7px);
+	}
+
+	.project-preview {
+		min-height: 168px;
+		padding: 14px;
+		background:
+			radial-gradient(circle at 80% 20%, rgb(255 79 163 / 32%), transparent 45%),
+			linear-gradient(135deg, #29245f, #121b49);
+	}
+
+	.project-git .project-preview {
+		background:
+			radial-gradient(circle at 20% 20%, rgb(192 132 252 / 35%), transparent 45%),
+			linear-gradient(135deg, #20245e, #15294d);
+	}
+
+	.project-calculus .project-preview {
+		background:
+			radial-gradient(circle at 80% 80%, rgb(53 183 255 / 28%), transparent 45%),
+			linear-gradient(135deg, #27306b, #17234d);
+	}
+
+	.preview-bar {
+		display: flex;
+		gap: 6px;
+	}
+
+	.preview-bar span {
+		width: 7px;
+		height: 7px;
+		border-radius: 50%;
+		background: rgb(255 255 255 / 58%);
+	}
+
+	.preview-content {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		width: 78%;
+		min-height: 102px;
+		margin: 12px auto 0;
+		padding: 20px;
+		border: 1px solid rgb(255 255 255 / 16%);
+		border-radius: 12px;
+		background: rgb(8 12 36 / 42%);
+		box-shadow: 0 12px 22px rgb(3 5 25 / 18%);
+	}
+
+	.preview-content img {
+		width: 56px;
+		height: 56px;
+		filter: drop-shadow(0 0 12px rgb(255 255 255 / 25%));
+	}
+
+	.preview-lines {
+		display: grid;
+		gap: 8px;
+		width: 42%;
+	}
+
+	.preview-lines span {
+		display: block;
+		height: 6px;
+		border-radius: 4px;
+		background: rgb(255 255 255 / 24%);
+	}
+
+	.preview-lines span:nth-child(2) {
+		width: 72%;
+		background: rgb(255 79 163 / 62%);
+	}
+
+	.preview-lines span:nth-child(3) {
+		width: 88%;
+	}
+
+	.project-copy {
+		padding: 20px 22px 22px;
+		text-align: center;
+	}
+
+	h3 {
+		margin: 0 0 8px;
+		color: #fff;
+		font-size: 1.08rem;
+		font-weight: 600;
+	}
+
+	.project-copy p {
+		min-height: 50px;
+		margin: 0 0 12px;
+		color: #bfc0d7;
+		font-size: 0.88rem;
+		line-height: 1.55;
+	}
+
+	.project-link {
+		display: grid;
+		place-items: center;
+		margin-inline: auto;
+		width: 40px;
+		height: 40px;
+		border: 1px solid rgb(255 117 183 / 45%);
+		border-radius: 50%;
+		background: linear-gradient(135deg, rgb(255 79 163 / 22%), rgb(139 60 224 / 35%));
+		color: #fff;
+		transition: background 0.25s ease, border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+	}
+
+	.project-link svg {
+		width: 19px;
+		height: 19px;
+		fill: none;
+		stroke: currentColor;
+		stroke-linecap: round;
+		stroke-linejoin: round;
+		stroke-width: 1.8;
+	}
+
+	.project-link:hover {
+		border-color: #ff75b7;
+		background: linear-gradient(135deg, #ff4fa3, #8b3ce0);
+		box-shadow: 0 8px 18px rgb(255 79 163 / 28%);
+		transform: translateX(3px);
+	}
+
+	.project-cta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 28px;
+    margin-top: 34px;
+    padding: 28px 32px;
+    border-radius: 10px;
+}
+
+	.cta-copy {
+		max-width: 42rem;
+		text-align: center;
+	}
+
+	.project-cta h3 {
+		margin: 0 0 6px;
+		color: #fff;
+		font-size: clamp(1.2rem, 2.2vw, 1.55rem);
+		font-weight: 700;
+		line-height: 1.25;
+	}
+
+	.cta-copy > p:last-child {
+		margin: 0;
+		color: #c8c8df;
+		font-size: 0.9rem;
+		line-height: 1.5;
+	}
+
+	.cta-button {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		gap: 10px;
+		flex: 0 0 auto;
+		padding: 12px 18px;
+		border-radius: 8px;
+		background: linear-gradient(90deg, #ff4fa3, #8b3ce0);
+		color: #fff;
+		font-size: 0.88rem;
+		font-weight: 600;
+		box-shadow: 0 8px 22px rgb(193 59 255 / 24%);
+		transition: filter 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+	}
+
+	.cta-button svg {
+		width: 18px;
+		height: 18px;
+		fill: none;
+		stroke: currentColor;
+		stroke-linecap: round;
+		stroke-linejoin: round;
+		stroke-width: 1.8;
+	}
+
+	.cta-button:hover {
+		box-shadow: 0 10px 26px rgb(255 79 163 / 30%);
+		filter: brightness(1.1);
+		transform: translateY(-2px);
+	}
+
+	.learning-quote {
+		position: relative;
+		max-width: 58rem;
+		margin: 56px auto 8px;
+		padding: 26px 42px 0;
+		text-align: center;
+	}
+
+	.learning-quote::before {
+		position: absolute;
+		top: 0;
+		left: 50%;
+		width: 72px;
+		height: 3px;
+		content: '';
+		border-radius: 3px;
+		background: linear-gradient(90deg, #ff4fa3, #8b3ce0);
+		transform: translateX(-50%);
+	}
+
+	.learning-quote p {
+		margin: 0;
+		background: linear-gradient(100deg, #ffffff 8%, #d6b5ff 52%, #ff75b7 100%);
+		background-clip: text;
+		-webkit-background-clip: text;
+		color: transparent;
+		font-size: clamp(1.2rem, 2.1vw, 1.65rem);
+		font-weight: 600;
+		font-style: italic;
+		line-height: 1.45;
+	}
+
+	.learning-quote cite {
+		display: block;
+		margin-top: 12px;
+		color: #ff75b7;
+		font-size: 0.9rem;
+		font-style: italic;
+		font-weight: 600;
+		letter-spacing: 0.04em;
+	}
+
+	.differentials {
+		margin-top: 64px;
+		padding-top: 34px;
+		border-top: 1px solid rgb(192 132 252 / 18%);
+	}
+
+	.differentials-heading {
+		margin-bottom: 24px;
+		text-align: center;
+	}
+
+	.differentials-heading h2 {
+		max-width: none;
+		font-size: clamp(1.55rem, 2.8vw, 2.2rem);
+	}
+
+	.differentials-heading p {
+		margin: 8px auto 0;
+		max-width: 42rem;
+		color: #d8d8ea;
+		font-size: 1.05rem;
+	}
+
+	.differentials-copy {
+		display: flex;
+		width: 100%;
+		transition: transform 0.45s ease;
+	}
+
+	.differentials-viewport {
+		max-width: 58rem;
+		margin-inline: auto;
+		overflow: hidden;
+		border: 1px solid rgb(192 132 252 / 18%);
+		border-radius: 12px;
+		background: linear-gradient(145deg, rgb(26 25 67 / 68%), rgb(15 20 50 / 54%));
+		box-shadow: inset 0 1px 0 rgb(255 255 255 / 7%);
+		outline: none;
+	}
+
+	.differentials-viewport:focus-visible {
+		box-shadow: 0 0 0 3px rgb(255 79 163 / 24%), inset 0 1px 0 rgb(255 255 255 / 7%);
+	}
+
+	.differentials-copy p {
+		box-sizing: border-box;
+		flex: 0 0 100%;
+		max-width: none;
+		min-height: 190px;
+		margin: 0;
+		padding: 28px 30px;
+		border: 0;
+		color: #bfc0d7;
+		font-size: clamp(1.08rem, 1.6vw, 1.24rem);
+		line-height: 1.75;
+	}
+
+	.differentials-controls {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		max-width: 58rem;
+		margin-top: 18px;
+		margin-inline: auto;
+	}
+
+	.carousel-button,
+	.carousel-indicator {
+		border: 1px solid rgb(255 117 183 / 42%);
+		background: rgb(26 29 67 / 80%);
+		color: #fff;
+		cursor: pointer;
+	}
+
+	.carousel-button {
+		display: grid;
+		place-items: center;
+		width: 40px;
+		height: 40px;
+		border-radius: 50%;
+		transition: background 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+	}
+
+	.carousel-button svg {
+		width: 19px;
+		height: 19px;
+		fill: none;
+		stroke: currentColor;
+		stroke-linecap: round;
+		stroke-linejoin: round;
+		stroke-width: 1.8;
+	}
+
+	.carousel-button:hover,
+	.carousel-button:focus-visible {
+		border-color: #ff75b7;
+		background: linear-gradient(135deg, #ff4fa3, #8b3ce0);
+		transform: translateY(-2px);
+	}
+
+	.carousel-indicators {
+		display: flex;
+		align-items: center;
+		gap: 9px;
+	}
+
+	.carousel-indicator {
+		width: 9px;
+		height: 9px;
+		padding: 0;
+		border-radius: 50%;
+		opacity: 0.55;
+		transition: width 0.25s ease, opacity 0.25s ease, background 0.25s ease;
+	}
+
+	.carousel-indicator.is-active {
+		width: 26px;
+		border-radius: 6px;
+		background: linear-gradient(90deg, #ff4fa3, #8b3ce0);
+		opacity: 1;
+	}
+
+	.carousel-button:focus-visible,
+	.carousel-indicator:focus-visible {
+		outline: 3px solid rgb(255 117 183 / 38%);
+		outline-offset: 3px;
+	}
+
+	.differentials-copy strong {
+		background: linear-gradient(100deg, #ffffff, #ff75b7);
+		background-clip: text;
+		-webkit-background-clip: text;
+		color: transparent;
+		font-size: 1.08em;
+		font-weight: 800;
+	}
+
+	.about-cta {
+		position: relative;
+		display: grid;
+		grid-template-columns: minmax(0, 1fr) minmax(180px, 0.42fr);
+		align-items: center;
+		gap: 34px;
+		margin-top: 64px;
+		padding: 34px 36px 6px;
+		text-align: center;
+	}
+
+	.about-cta h2 {
+		position: relative;
+		z-index: 1;
+		max-width: 34rem;
+		margin: 0;
+		margin-inline: auto;
+		background: linear-gradient(100deg, #ffffff 8%, #d6b5ff 52%, #ff75b7 100%);
+		background-clip: text;
+		-webkit-background-clip: text;
+		color: transparent;
+		font-size: clamp(1.45rem, 3vw, 2.35rem);
+		font-weight: 700;
+		line-height: 1.15;
+	}
+
+	.about-cta-visual {
+		position: relative;
+		display: grid;
+		place-items: center;
+		min-height: 132px;
+		background: radial-gradient(circle at 50% 50%, rgb(53 183 255 / 7%), transparent 48%);
+	}
+
+	.about-cta-visual::before,
+	.about-cta-visual::after {
+		position: absolute;
+		content: '';
+	}
+
+	.about-cta-visual::before {
+		right: 8%;
+		bottom: 10px;
+		left: 8%;
+		height: 1px;
+		background: linear-gradient(90deg, transparent, rgb(192 132 252 / 30%), transparent);
+	}
+
+	.about-cta-visual::after {
+		top: 18px;
+		right: 18px;
+		width: 8px;
+		height: 8px;
+		border-radius: 50%;
+		background: rgb(53 183 255 / 68%);
+		box-shadow: 0 0 10px rgb(53 183 255 / 45%);
+	}
+
+	.about-cta-visual img {
+		width: clamp(72px, 10vw, 96px);
+		height: auto;
+		filter: drop-shadow(0 0 7px rgb(255 79 163 / 34%)) drop-shadow(0 0 12px rgb(53 183 255 / 22%));
+		animation: logo-float 1.9s ease-in-out infinite;
+	}
+
+	.about-cta-arrow {
+		display: grid;
+		grid-column: 1 / -1;
+		justify-items: center;
+		gap: 4px;
+		margin-top: 4px;
+		color: #ff75b7;
+		animation: arrow-bounce 1.8s ease-in-out infinite;
+	}
+
+	.about-cta-arrow span {
+		width: 1px;
+		height: 22px;
+		background: linear-gradient(#c084fc, #ff4fa3);
+	}
+
+	.about-cta-arrow svg {
+		width: 22px;
+		height: 22px;
+		fill: none;
+		stroke: currentColor;
+		stroke-linecap: round;
+		stroke-linejoin: round;
+		stroke-width: 1.7;
+	}
+
+	@keyframes arrow-bounce {
+		0%,
+		100% {
+			transform: translateY(0);
+		}
+		50% {
+			transform: translateY(5px);
+		}
+	}
+
+	@keyframes logo-float {
+		0%,
+		100% {
+			transform: translate(0, 0);
+		}
+		50% {
+			transform: translate(3px, -6px);
+		}
+	}
+
+	@media (max-width: 800px) {
+		.projects-grid {
+			grid-template-columns: 1fr;
+		}
+
+		.project-card {
+			display: grid;
+			grid-template-columns: minmax(180px, 0.85fr) 1.15fr;
+		}
+
+		.project-preview {
+			min-height: 100%;
+		}
+	}
+
+	@media (max-width: 520px) {
+		.project-card {
+			display: block;
+		}
+
+		.project-cta {
+			align-items: flex-start;
+			flex-direction: column;
+			padding: 24px 20px;
+		}
+
+		.cta-button {
+			width: 100%;
+		}
+
+		.learning-quote {
+			margin-top: 44px;
+			padding-right: 8px;
+			padding-left: 8px;
+		}
+
+		.differentials {
+			margin-top: 48px;
+			padding-top: 28px;
+		}
+
+		.differentials-copy p {
+			min-height: 230px;
+			padding: 22px 20px;
+		}
+
+		.about-cta {
+			grid-template-columns: 1fr;
+			gap: 24px;
+			margin-top: 48px;
+			padding: 28px 20px 6px;
+		}
+
+		.about-cta-visual {
+			min-height: 132px;
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.project-card,
+		.differentials-copy,
+		.carousel-button,
+		.carousel-indicator {
+			transition: none;
+		}
+
+		.about-cta-visual {
+			animation: none;
+		}
+
+		.about-cta-visual img {
+			animation: none;
+		}
+
+		.about-cta-arrow {
+			animation: none;
+		}
+	}
+</style>
