@@ -80,11 +80,30 @@ import  Footer  from "../components/Footer.astro";
   @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
 
   :global(*) { box-sizing: border-box; }
-  :global(body) { margin: 0; min-width: 320px; background: #070a18; color: #d8d8ea; font-family: 'Poppins', sans-serif; }
+
+  /* Gradiente movido pro body: agora cobre a página inteira,
+     incluindo a área atrás do Navbar (que é transparente). */
+  :global(body) {
+    margin: 0;
+    min-width: 320px;
+    background:
+      radial-gradient(ellipse 58% 34% at 79% 4%, rgb(91 61 255 / 30%) 0%, transparent 72%),
+      radial-gradient(ellipse 50% 32% at 12% 45%, rgb(54 38 176 / 20%) 0%, transparent 72%),
+      #070a18;
+    color: #d8d8ea;
+    font-family: 'Poppins', sans-serif;
+  }
+
   :global(a) { color: inherit; text-decoration: none; }
   :global(::selection) { color: #070a18; background: #c084fc; }
 
-  .page { min-height: 100vh; overflow: hidden; padding: 34px 0 28px; background: radial-gradient(ellipse 58% 34% at 79% 4%, rgb(91 61 255 / 30%) 0%, transparent 72%), radial-gradient(ellipse 50% 32% at 12% 45%, rgb(54 38 176 / 20%) 0%, transparent 72%), #070a18; }
+  .page {
+    min-height: 100vh;
+    overflow: hidden;
+    padding: 34px 0 28px;
+    /* background removido daqui: agora vive no body */
+  }
+
   .container { width: min(1240px, calc(100% - 48px)); margin-inline: auto; }
   .hero { position: relative; min-height: 390px; }
   .brand { display: inline-flex; align-items: center; gap: 10px; color: #fff; font-size: 20px; font-weight: 700; letter-spacing: -.6px; }
