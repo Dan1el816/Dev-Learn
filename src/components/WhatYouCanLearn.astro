@@ -6,8 +6,9 @@ import oop from '../assets/icons/oop.svg';
 import git from '../assets/icons/git.svg';
 import rocket from '../assets/icons/rocket.svg';
 
+// O caminho '/linguagens' redireciona automaticamente para o arquivo src/pages/linguagens.astro
 const topics = [
-	{ label: 'Linguagens', icon: python },
+	{ label: 'Linguagens', icon: python, href: '/linguagens' },
 	{ label: 'Estrutura de dados', icon: database },
 	{ label: 'Cálculo', icon: calculus },
 	{ label: 'POO', icon: oop },
@@ -25,12 +26,17 @@ const comingSoon = Array.from({ length: 5 }, () => ({
 		<h2>O Que você pode Aprender</h2>
 		<div class="panel">
 			<div class="grid">
-				{[...topics, ...comingSoon].map((item) => (
-					<article class="card">
-						<img src={item.icon.src} width="56" height="56" alt="" />
-						<p>{item.label}</p>
-					</article>
-				))}
+				{
+					[...topics, ...comingSoon].map((item) => {
+						const Element = item.href ? 'a' : 'article';
+						return (
+							<Element href={item.href} class="card">
+								<img src={item.icon.src} width="56" height="56" alt="" />
+								<p>{item.label}</p>
+							</Element>
+						);
+					})
+				}
 			</div>
 		</div>
 	</div>
@@ -95,6 +101,7 @@ const comingSoon = Array.from({ length: 5 }, () => ({
 		text-align: center;
 		transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
 		isolation: isolate;
+		text-decoration: none; /* Remove a linha de sublinhado do link */
 	}
 
 	.card::before {
