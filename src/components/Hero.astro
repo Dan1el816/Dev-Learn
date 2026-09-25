@@ -1,6 +1,7 @@
 ---
 import computer from '../assets/illustrations/computer.svg';
 import github from '../assets/social/github.svg';
+import logo from '../assets/logo.svg';
 ---
 
 <section class="hero">
@@ -8,8 +9,8 @@ import github from '../assets/social/github.svg';
 		<div class="hero-copy">
 			<h1 class="hello">Hello World!</h1>
 			<blockquote>
-				<p class="quote">O verdadeiro valor do conhecimento aparece quando o colocamos em prática.</p>
-				<cite>Confúcio</cite>
+				<p class="quote">Aprenda programação praticando. Do zero ao seu primeiro projeto</p>
+				
 			</blockquote>
 			<a class="cta" href="#">
 				Saiba Mais
@@ -17,7 +18,7 @@ import github from '../assets/social/github.svg';
 			</a>
 		</div>
 		<div class="hero-art">
-			<img src={computer.src} width="520" height="360" alt="Computador com código e ícones de tecnologia" />
+			<img src={logo.src} width="240" height="160" alt="Computador com código e ícones de tecnologia" />
 		</div>
 	</div>
 	<div class="hero-rule container"></div>
@@ -273,8 +274,9 @@ import github from '../assets/social/github.svg';
 
 	.hero-art img {
 		position: relative;
-		width: min(100%, 540px);
-		height: auto;
+		width: 96px;
+		height: 96px;
+		max-width: 96px;
 		filter: drop-shadow(0 18px 30px rgb(41 26 142 / 28%));
 		transform: translateY(-3px);
 		animation: hero-art-float 5s ease-in-out infinite;

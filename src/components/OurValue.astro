@@ -1,0 +1,173 @@
+---
+const beneficios = [
+	{
+		titulo: 'Sem mensalidade, sem pegadinha',
+		texto: 'Todo o conteúdo, todas as trilhas e todos os projetos ficam disponíveis sem cobrança, hoje e pra sempre amigão!',
+		icon: 'M12 2L3 7v6c0 5 4 9 9 9s9-4 9-9V7l-9-5z',
+	},
+	{
+		titulo: 'Sem anúncio interrompendo o aprendizado',
+		texto: 'Você estuda do seu jeito, sem pop-up, sem banner e sem distração pagando pra aparecer na sua tela.',
+		icon: 'M4 4h16v12H4z M4 20h16 M8 16v4 M16 16v4',
+	},
+	{
+		titulo: 'Comunidade aberta pra todo mundo',
+		texto: 'Dúvida, projeto, feedback: a comunidade do DevLearn é aberta e gratuita pra quem quiser aprender junto.',
+		icon: 'M17 20v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2 M9 10a4 4 0 1 0 0-8 4 4 0 0 0 0 8z M23 20v-2a4 4 0 0 0-3-3.87 M16 3.13a4 4 0 0 1 0 7.75',
+	},
+	{
+		titulo: 'Conteúdo novo, sempre gratuito',
+		texto: 'Trilha nova, projeto novo, atualização: tudo que adicionamos continua acessível sem custo pra você.',
+		icon: 'M12 2v20 M2 12h20 M4.93 4.93l14.14 14.14 M19.07 4.93L4.93 19.07',
+	},
+];
+---
+
+<section class="value">
+	<div class="container value-inner">
+		<div class="value-head">
+			<h2 class="value-title">É gratuito de verdade, sem letra miúda</h2>
+			<p class="value-lead">
+				O DevLearn nasceu pra derrubar qualquer barreira de quem quer aprender a programar. Por isso,
+				mantemos tudo acessível pra você!
+			</p>
+		</div>
+
+		<div class="value-grid">
+			{beneficios.map((item) => (
+				<div class="value-card">
+					<span class="value-icon" aria-hidden="true">
+						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+							<path d={item.icon} />
+						</svg>
+					</span>
+					<h3>{item.titulo}</h3>
+					<p>{item.texto}</p>
+				</div>
+			))}
+		</div>
+	</div>
+</section>
+
+<style>
+	.value {
+		padding: clamp(48px, 8vw, 88px) 0;
+	}
+
+	.value-inner {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: clamp(32px, 5vw, 48px);
+		text-align: center;
+	}
+
+	.value-head {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		max-width: 42rem;
+		margin: 0 auto;
+	}
+
+	.value-title {
+		margin: 0 0 14px;
+		color: #ffffff;
+		font-family: var(--font-body, 'Poppins', sans-serif);
+		font-size: clamp(1.9rem, 3.4vw, 2.5rem);
+		font-weight: 700;
+		line-height: 1.2;
+		letter-spacing: -0.02em;
+	}
+
+	.value-lead {
+		margin: 0;
+		color: #b7b9c9;
+		font-family: var(--font-body, 'Poppins', sans-serif);
+		font-size: clamp(1rem, 1.4vw, 1.1rem);
+		font-weight: 400;
+		line-height: 1.7;
+	}
+
+	.value-grid {
+		display: grid;
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+		gap: 20px;
+		width: 100%;
+	}
+
+	.value-card {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		padding: 26px 24px;
+		border: 1px solid rgb(139 92 246 / 22%);
+		border-radius: 20px;
+		background: linear-gradient(160deg, rgb(139 92 246 / 8%), rgb(255 117 183 / 5%));
+		text-align: center;
+		transition: border-color 0.25s ease, transform 0.25s ease;
+	}
+
+	.value-card:hover {
+		border-color: rgb(255 117 183 / 45%);
+		transform: translateY(-3px);
+	}
+
+	.value-icon {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 42px;
+		height: 42px;
+		margin-bottom: 16px;
+		border-radius: 12px;
+		background: linear-gradient(135deg, #9b32ff, #ff3f91);
+		color: #ffffff;
+	}
+
+	.value-icon svg {
+		width: 22px;
+		height: 22px;
+	}
+
+	.value-card h3 {
+		margin: 0 0 8px;
+		color: #ffffff;
+		font-family: var(--font-body, 'Poppins', sans-serif);
+		font-size: 1.05rem;
+		font-weight: 600;
+		line-height: 1.35;
+	}
+
+	.value-card p {
+		margin: 0;
+		color: #999bad;
+		font-family: var(--font-body, 'Poppins', sans-serif);
+		font-size: 0.92rem;
+		font-weight: 400;
+		line-height: 1.6;
+	}
+
+	@media (max-width: 1080px) {
+		.value-grid {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+	}
+
+	@media (max-width: 560px) {
+		.value-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.value-card {
+			transition: none;
+		}
+
+		.value-card:hover {
+			transform: none;
+		}
+	}
+</style>

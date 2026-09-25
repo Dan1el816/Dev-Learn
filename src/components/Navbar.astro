@@ -42,12 +42,11 @@ const links = [
 
 <style>
 	.site-header {
-		position: relative;
-		z-index: 10;
-		padding: 18px 24px;
-		background: #0c0e1c;
-		border-bottom: 1px solid rgb(255 255 255 / 6%);
-	}
+    position: relative;
+    z-index: 10;
+    padding: 18px 24px;
+    background: none;
+}
 
 	.navbar {
 		display: flex;
@@ -223,23 +222,23 @@ const links = [
 		}
 
 		.nav-links {
-			position: absolute;
-			top: 100%;
-			right: 0;
-			left: 0;
-			flex-direction: column;
-			align-items: flex-start;
-			gap: 4px;
-			margin-right: 0;
-			padding: 16px;
-			background: #0c0e1c;
-			border-bottom: 1px solid rgb(255 255 255 / 6%);
-			transform: scaleY(0);
-			transform-origin: top;
-			opacity: 0;
-			pointer-events: none;
-			transition: transform 0.2s ease, opacity 0.2s ease;
-		}
+    position: absolute;
+    top: 100%;
+    right: 0;
+    left: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    margin-right: 0;
+    padding: 16px;
+    background: none;
+    border-bottom: 1px solid rgb(255 255 255 / 6%);
+    transform: scaleY(0);
+    transform-origin: top;
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
 
 		.nav-links.open {
 			transform: scaleY(1);
