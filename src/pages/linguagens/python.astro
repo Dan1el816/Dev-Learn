@@ -1,0 +1,102 @@
+---
+const topicos = [
+  { numero: '01', titulo: 'Tipos primitivos', descricao: 'Os blocos fundamentais para representar informações no Python.', ancora: 'tipos' },
+  { numero: '02', titulo: 'Condicionais', descricao: 'Tome decisões no código usando if, elif e else.', ancora: 'condicionais' },
+  { numero: '03', titulo: 'Laços de repetição', descricao: 'Repita tarefas com for e while sem duplicar código.', ancora: 'lacos' },
+];
+---
+
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Python: fundamentos | Dev Learn</title>
+    <meta name="description" content="Aprenda os fundamentos de Python: tipos primitivos, condicionais e laços de repetição." />
+  </head>
+  <body>
+    <main class="page">
+      <header class="container header">
+        <a class="brand" href="../linguagens.astro" aria-label="Voltar para linguagens">
+          <span class="brand-mark">&lt;/&gt;</span>
+          <span>dev<span>Learn</span></span>
+        </a>
+        <a class="back-link" href="../linguagens">← todas as linguagens</a>
+      </header>
+
+      <section class="container hero" aria-labelledby="titulo">
+        <div class="hero-copy">
+          <p class="eyebrow"><span></span> python · fundamentos</p>
+          <h1 id="titulo">Comece a pensar<br /><strong>como Python.</strong></h1>
+          <p class="intro">Uma introdução prática aos conceitos que formam a base de qualquer programa: dados, decisões e repetição.</p>
+        </div>
+        <div class="python-badge" aria-hidden="true"><span>Py</span><small>01</small></div>
+      </section>
+
+      <nav class="container topic-nav" aria-label="Nesta aula">
+        {topicos.map((topico) => (
+          <a href={`#${topico.ancora}`}><span>{topico.numero}</span>{topico.titulo}</a>
+        ))}
+      </nav>
+
+      <section class="container lesson" aria-label="Conteúdo da aula">
+        <article class="lesson-block" id="tipos">
+          <div class="block-heading"><span class="number">01</span><div><p class="eyebrow"><span></span> dados</p><h2>Tipos primitivos</h2></div></div>
+          <p class="lead">Antes de tomar decisões, precisamos guardar informações. Python possui tipos simples para os valores mais comuns.</p>
+          <div class="code-card"><div class="code-head"><span><i></i><i></i><i></i></span><small>tipos.py</small></div><pre><code><span class="purple">nome</span> = <span class="green">"Ada"</span>          <span class="comment"># str</span>
+<span class="purple">idade</span> = <span class="orange">28</span>             <span class="comment"># int</span>
+<span class="purple">altura</span> = <span class="orange">1.68</span>          <span class="comment"># float</span>
+<span class="purple">estudando</span> = <span class="blue">True</span>       <span class="comment"># bool</span></code></pre></div>
+          <div class="tip"><strong>Atalho mental</strong><span>str é texto · int é número inteiro · float é decimal · bool é verdadeiro ou falso.</span></div>
+        </article>
+
+        <article class="lesson-block" id="condicionais">
+          <div class="block-heading"><span class="number">02</span><div><p class="eyebrow"><span></span> decisões</p><h2>Condicionais</h2></div></div>
+          <p class="lead">Use condicionais para executar um trecho apenas quando uma condição for verdadeira. A indentação define o bloco de código.</p>
+          <div class="code-card"><div class="code-head"><span><i></i><i></i><i></i></span><small>decisao.py</small></div><pre><code><span class="purple">nota</span> = <span class="orange">8</span>
+
+<span class="pink">if</span> nota &gt;= <span class="orange">7</span>:
+    <span class="blue">print</span>(<span class="green">"Aprovado!"</span>)
+<span class="pink">elif</span> nota &gt;= <span class="orange">5</span>:
+    <span class="blue">print</span>(<span class="green">"Recuperação"</span>)
+<span class="pink">else</span>:
+    <span class="blue">print</span>(<span class="green">"Continue estudando"</span>)</code></pre></div>
+          <div class="tip"><strong>Importante</strong><span>Os dois-pontos <b>:</b> iniciam o bloco. Os espaços à esquerda mostram o que pertence à condição.</span></div>
+        </article>
+
+        <article class="lesson-block" id="lacos">
+          <div class="block-heading"><span class="number">03</span><div><p class="eyebrow"><span></span> repetição</p><h2>Laços de repetição</h2></div></div>
+          <p class="lead">Laços automatizam tarefas repetitivas. O <code>for</code> percorre uma sequência; o <code>while</code> continua enquanto a condição for verdadeira.</p>
+          <div class="code-columns">
+            <div class="code-card"><div class="code-head"><span><i></i><i></i><i></i></span><small>for.py</small></div><pre><code><span class="pink">for</span> fruta <span class="pink">in</span> [<span class="green">"maçã"</span>, <span class="green">"uva"</span>]:
+    <span class="blue">print</span>(fruta)</code></pre></div>
+            <div class="code-card"><div class="code-head"><span><i></i><i></i><i></i></span><small>while.py</small></div><pre><code><span class="purple">contador</span> = <span class="orange">0</span>
+<span class="pink">while</span> contador &lt; <span class="orange">3</span>:
+    <span class="blue">print</span>(contador)
+    contador += <span class="orange">1</span></code></pre></div>
+          </div>
+        </article>
+      </section>
+
+      <footer class="container sources">
+        <div><p class="eyebrow"><span></span> para continuar</p><h2>Aprender é praticar.</h2><p>Este conteúdo foi baseado na documentação oficial do Python. Consulte as fontes para aprofundar seus estudos.</p></div>
+        <div class="source-links"><a href="https://docs.python.org/3/tutorial/introduction.html#using-python-as-a-calculator" target="_blank" rel="noreferrer">Tipos e valores ↗</a><a href="https://docs.python.org/3/tutorial/controlflow.html#if-statements" target="_blank" rel="noreferrer">Condicionais ↗</a><a href="https://docs.python.org/3/tutorial/controlflow.html#for-statements" target="_blank" rel="noreferrer">Laços for ↗</a><a href="https://docs.python.org/3/reference/compound_stmts.html#while" target="_blank" rel="noreferrer">Laços while ↗</a></div>
+      </footer>
+    </main>
+  </body>
+</html>
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Source+Code+Pro:wght@400;500;600&display=swap');
+  :global(*) { box-sizing: border-box; } :global(body) { margin: 0; min-width: 320px; background: #070a18; color: #d8d8ea; font-family: 'Poppins', sans-serif; } :global(a) { color: inherit; text-decoration: none; } :global(::selection) { color: #070a18; background: #c084fc; }
+  .page { min-height: 100vh; padding: 30px 0 70px; background: radial-gradient(ellipse 55% 28% at 85% 3%, rgb(91 61 255 / 27%), transparent 72%), radial-gradient(ellipse 48% 25% at 8% 40%, rgb(54 38 176 / 18%), transparent 72%), #070a18; } .container { width: min(1000px, calc(100% - 48px)); margin-inline: auto; } .header { display: flex; justify-content: space-between; align-items: center; } .brand { display: inline-flex; align-items: center; gap: 10px; color: #fff; font-size: 20px; font-weight: 700; letter-spacing: -.6px; } .brand span:last-child span { color: #c084fc; } .brand-mark { display: grid; width: 34px; height: 34px; place-items: center; border: 1px solid #a855f7; border-radius: 10px; color: #fff; font-family: monospace; font-size: 12px; box-shadow: 0 0 22px rgb(168 85 247 / 35%); } .back-link { color: #9a9bb0; font-size: 12px; } .back-link:hover, .source-links a:hover { color: #c084fc; }
+  .hero { position: relative; padding: 100px 0 72px; } .hero-copy { max-width: 680px; } .eyebrow { display: flex; align-items: center; gap: 9px; margin: 0 0 13px; color: #c084fc; font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; } .eyebrow span { width: 22px; height: 2px; background: linear-gradient(90deg, #ff4fa3, #9b32ff); } h1 { margin: 0; color: #fff; font-size: clamp(42px, 8vw, 76px); font-weight: 500; letter-spacing: -4px; line-height: 1.08; } h1 strong { color: #c084fc; font-weight: 700; } .intro { max-width: 550px; margin: 24px 0 0; color: #9a9bb0; font-size: 15px; line-height: 1.8; } .python-badge { position: absolute; right: 4%; top: 110px; display: flex; width: 140px; height: 140px; flex-direction: column; align-items: center; justify-content: center; border: 1px solid rgb(34 197 94 / 40%); border-radius: 40px; background: linear-gradient(145deg, rgb(34 197 94 / 18%), rgb(192 132 252 / 10%)); box-shadow: 0 0 55px rgb(34 197 94 / 12%); transform: rotate(9deg); } .python-badge span { color: #4ade80; font-family: 'Source Code Pro', monospace; font-size: 42px; font-weight: 600; } .python-badge small { color: #9a9bb0; font-size: 10px; letter-spacing: 3px; }
+  .topic-nav { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 78px; } .topic-nav a { display: flex; align-items: center; gap: 13px; padding: 17px 18px; border: 1px solid rgb(255 255 255 / 8%); border-radius: 12px; background: rgb(255 255 255 / 3%); color: #d8d8ea; font-size: 12px; transition: .2s ease; } .topic-nav a:hover { border-color: #a855f7; transform: translateY(-2px); } .topic-nav span, .number { color: #c084fc; font-family: 'Source Code Pro', monospace; font-weight: 600; }
+  .lesson { max-width: 850px; } .lesson-block { margin-bottom: 88px; scroll-margin-top: 24px; } .block-heading { display: flex; align-items: center; gap: 22px; margin-bottom: 19px; } .number { font-size: 38px; opacity: .45; } .block-heading .eyebrow { margin-bottom: 5px; } h2 { margin: 0; color: #fff; font-size: clamp(28px, 4vw, 39px); letter-spacing: -1.5px; } .lead { max-width: 650px; margin: 0 0 24px; color: #a5a6b7; font-size: 14px; line-height: 1.8; } .code-columns { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; } .code-card { overflow: hidden; border: 1px solid rgb(255 255 255 / 9%); border-radius: 13px; background: #0c1022; } .code-head { display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid rgb(255 255 255 / 7%); padding: 12px 15px; } .code-head span { display: flex; gap: 5px; } .code-head i { display: block; width: 7px; height: 7px; border-radius: 50%; background: #5f6174; } .code-head i:first-child { background: #ff5f57; } .code-head i:nth-child(2) { background: #febc2e; } .code-head small { color: #696a80; font: 11px 'Source Code Pro', monospace; } pre { overflow-x: auto; margin: 0; padding: 21px; color: #e1e1ed; font: 13px/1.85 'Source Code Pro', monospace; } code { font-family: inherit; } .purple { color: #c084fc; } .green { color: #4ade80; } .orange { color: #fb923c; } .blue { color: #67e8f9; } .pink { color: #f472b6; } .comment { color: #62647a; } .tip { display: flex; gap: 17px; align-items: baseline; margin-top: 12px; padding: 15px 18px; border-left: 2px solid #a855f7; background: rgb(168 85 247 / 7%); font-size: 12px; } .tip strong { color: #c084fc; white-space: nowrap; } .tip span { color: #9a9bb0; line-height: 1.7; } .tip b { color: #fff; font-family: monospace; }
+  .sources { display: flex; align-items: end; justify-content: space-between; gap: 50px; border-top: 1px solid rgb(255 255 255 / 9%); padding-top: 45px; } .sources h2 { font-size: 30px; } .sources p:not(.eyebrow) { max-width: 430px; margin: 10px 0 0; color: #88899d; font-size: 12px; line-height: 1.7; } .source-links { display: grid; gap: 10px; min-width: 190px; } .source-links a { color: #9a9bb0; font-size: 12px; transition: color .2s; }
+  :global(:focus-visible) { outline: 3px solid #c084fc; outline-offset: 3px; } @media (max-width: 700px) { .container { width: min(100% - 32px, 1000px); } .header { align-items: start; } .back-link { padding-top: 8px; } .hero { padding: 78px 0 55px; } .python-badge { top: 55px; right: 0; width: 78px; height: 78px; border-radius: 22px; } .python-badge span { font-size: 25px; } .python-badge small { font-size: 7px; } .topic-nav { grid-template-columns: 1fr; margin-bottom: 58px; } .lesson-block { margin-bottom: 65px; } .code-columns, .sources { grid-template-columns: 1fr; display: grid; gap: 25px; } .sources { gap: 30px; } .tip { align-items: start; flex-direction: column; gap: 5px; } }
+</style>
+
+<style is:global>
+  :focus-visible { outline: 3px solid #c084fc; outline-offset: 3px; }
+</style>
