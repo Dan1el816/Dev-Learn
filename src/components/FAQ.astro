@@ -1,0 +1,250 @@
+---
+const faqs = [
+	{
+		pergunta: 'Preciso saber programar antes de começar?',
+		resposta: 'Não! O DevLearn foi pensado pra quem está começando do zero. Os conteúdos partem do básico e vão te guiando passo a passo até você construir seus primeiros projetos.',
+	},
+	{
+		pergunta: 'É gratuito mesmo, sem pegadinha?',
+		resposta: 'Sim, totalmente gratuito. Todo o conteúdo, as trilhas e os projetos ficam disponíveis sem cobrança, sem plano pago escondido e sem anúncio interrompendo seu aprendizado.',
+	},
+	{
+		pergunta: 'Quanto tempo leva para aprender?',
+		resposta: 'Isso depende do seu ritmo. Como o conteúdo é modular, você pode estudar aos poucos e no seu tempo — o importante é praticar com constância, não a velocidade.',
+	},
+	{
+		pergunta: 'Preciso instalar algum programa no meu computador?',
+		resposta: 'Para a maioria das trilhas, não. Você pode acompanhar os conteúdos e testar códigos direto no navegador. Ferramentas específicas, quando necessárias, são explicadas na própria trilha.',
+	},
+	{
+		pergunta: 'Vou conseguir montar um portfólio de verdade?',
+		resposta: 'Sim! Depois da teoria, sugerimos projetos práticos pensados pra desenvolver suas habilidades e formar um portfólio real, que você pode mostrar depois.',
+	},
+];
+---
+
+<section class="faq">
+	<div class="container">
+		<div class="section-heading">
+			<h2>Perguntas frequentes</h2>
+			<p class="faq-lead">Tirou uma dúvida rápida ou quer mais detalhes? Separamos as perguntas que mais recebemos.</p>
+		</div>
+
+		<div class="faq-list">
+			{faqs.map((item, index) => (
+				<div class="faq-item">
+					<h3>
+						<button
+							class="faq-trigger"
+							type="button"
+							aria-expanded="false"
+							aria-controls={`faq-panel-${index}`}
+							id={`faq-trigger-${index}`}
+						>
+							<span>{item.pergunta}</span>
+							<span class="faq-icon" aria-hidden="true">
+								<svg viewBox="0 0 24 24">
+									<path d="M5 12h14M12 5v14" />
+								</svg>
+							</span>
+						</button>
+					</h3>
+					<div
+						class="faq-panel"
+						id={`faq-panel-${index}`}
+						role="region"
+						aria-labelledby={`faq-trigger-${index}`}
+					>
+						<div class="faq-panel-inner">
+							<p>{item.resposta}</p>
+						</div>
+					</div>
+				</div>
+			))}
+		</div>
+	</div>
+</section>
+
+<script>
+	const items = document.querySelectorAll<HTMLElement>('.faq-item');
+
+	items.forEach((item) => {
+		const trigger = item.querySelector<HTMLButtonElement>('.faq-trigger');
+		const panel = item.querySelector<HTMLElement>('.faq-panel');
+		if (!trigger || !panel) return;
+
+		trigger.addEventListener('click', () => {
+			const isOpen = trigger.getAttribute('aria-expanded') === 'true';
+
+			// Fecha os outros itens abertos (comportamento tipo acordeão)
+			items.forEach((other) => {
+				if (other === item) return;
+				const otherTrigger = other.querySelector<HTMLButtonElement>('.faq-trigger');
+				const otherPanel = other.querySelector<HTMLElement>('.faq-panel');
+				otherTrigger?.setAttribute('aria-expanded', 'false');
+				otherPanel?.style.setProperty('grid-template-rows', '0fr');
+				other.classList.remove('is-open');
+			});
+
+			trigger.setAttribute('aria-expanded', String(!isOpen));
+			panel.style.setProperty('grid-template-rows', isOpen ? '0fr' : '1fr');
+			item.classList.toggle('is-open', !isOpen);
+		});
+	});
+</script>
+
+<style>
+	.faq {
+		padding: clamp(48px, 8vw, 88px) 0;
+	}
+
+	.section-heading {
+		max-width: 42rem;
+		margin: 0 auto 34px;
+		text-align: center;
+	}
+
+	.section-heading h2 {
+		margin: 0;
+		background: linear-gradient(100deg, #ffffff 8%, #d6b5ff 52%, #ff75b7 100%);
+		background-clip: text;
+		-webkit-background-clip: text;
+		color: transparent;
+		font-size: clamp(1.75rem, 3.2vw, 2.55rem);
+		font-weight: 700;
+		line-height: 1.15;
+		letter-spacing: -0.02em;
+	}
+
+	.faq-lead {
+		margin: 12px 0 0;
+		color: #b7b9c9;
+		font-size: 0.98rem;
+		line-height: 1.6;
+	}
+
+	.faq-list {
+		display: grid;
+		max-width: 52rem;
+		margin: 0 auto;
+		gap: 14px;
+	}
+
+	.faq-item {
+		border: 1px solid rgb(192 132 252 / 20%);
+		border-radius: 16px;
+		background: linear-gradient(145deg, rgb(26 25 67 / 92%), rgb(15 20 50 / 88%));
+		box-shadow: inset 0 1px 0 rgb(255 255 255 / 8%);
+		transition: border-color 0.25s ease;
+	}
+
+	.faq-item.is-open {
+		border-color: rgb(255 79 163 / 45%);
+	}
+
+	.faq-item h3 {
+		margin: 0;
+	}
+
+	.faq-trigger {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 16px;
+		width: 100%;
+		padding: 18px 22px;
+		border: 0;
+		background: transparent;
+		color: #fff;
+		font-family: inherit;
+		font-size: 1rem;
+		font-weight: 600;
+		text-align: left;
+		cursor: pointer;
+	}
+
+	.faq-trigger:hover span:first-child {
+		color: #ff75b7;
+	}
+
+	.faq-trigger span:first-child {
+		transition: color 0.25s ease;
+	}
+
+	.faq-icon {
+		display: grid;
+		place-items: center;
+		width: 30px;
+		height: 30px;
+		flex: 0 0 30px;
+		border: 1px solid rgb(255 117 183 / 40%);
+		border-radius: 50%;
+		background: linear-gradient(135deg, rgb(255 79 163 / 18%), rgb(139 60 224 / 28%));
+		color: #fff;
+		transition: background 0.25s ease, border-color 0.25s ease, transform 0.3s ease;
+	}
+
+	.faq-icon svg {
+		width: 16px;
+		height: 16px;
+		fill: none;
+		stroke: currentColor;
+		stroke-linecap: round;
+		stroke-linejoin: round;
+		stroke-width: 2;
+		transition: transform 0.3s ease;
+	}
+
+	.faq-item.is-open .faq-icon {
+		border-color: #ff75b7;
+		background: linear-gradient(135deg, #ff4fa3, #8b3ce0);
+	}
+
+	.faq-item.is-open .faq-icon svg {
+		transform: rotate(45deg);
+	}
+
+	.faq-trigger:focus-visible {
+		outline: 3px solid rgb(255 117 183 / 55%);
+		outline-offset: -2px;
+		border-radius: 16px;
+	}
+
+	.faq-panel {
+		display: grid;
+		grid-template-rows: 0fr;
+		transition: grid-template-rows 0.3s ease;
+	}
+
+	.faq-panel-inner {
+		overflow: hidden;
+	}
+
+	.faq-panel p {
+		margin: 0;
+		padding: 0 22px 20px;
+		color: #bfc0d7;
+		font-size: 0.92rem;
+		line-height: 1.65;
+	}
+
+	@media (max-width: 560px) {
+		.faq-trigger {
+			padding: 15px 16px;
+			font-size: 0.95rem;
+		}
+
+		.faq-panel p {
+			padding: 0 16px 16px;
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.faq-item,
+		.faq-icon,
+		.faq-icon svg,
+		.faq-panel {
+			transition: none;
+		}
+	}
+</style>
