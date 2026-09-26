@@ -1,4 +1,3 @@
-
 ---
 import python from '../assets/icons/python.svg';
 import database from '../assets/icons/database.svg';
@@ -83,7 +82,6 @@ const journey = [
 <section class="learn">
 	<div class="container">
 		<div class="section-heading">
-			<span class="eyebrow">APRENDA NA PRÁTICA</span>
 
 			<h2>O que você pode aprender</h2>
 
@@ -168,39 +166,9 @@ const journey = [
 				</p>
 			</div>
 
-			<!-- =========================
-			     JORNADA
-			========================= -->
-
-			<div class="journey" aria-label="Caminho de aprendizado">
-				{
-					journey.map((step, index) => (
-						<>
-							<div class="journey-step">
-								<span class="journey-number">
-									{step.icon}
-								</span>
-
-								<span class="journey-label">
-									{step.label}
-								</span>
-							</div>
-
-							{index < journey.length - 1 && (
-								<span
-									class="journey-arrow"
-									aria-hidden="true"
-								>
-									→
-								</span>
-							)}
-						</>
-					))
-				}
-			</div>
 
 			<!-- =========================
-			     VÍDEO
+			     VÍDEO 1
 			========================= -->
 
 			<div class="video-showcase">
@@ -260,11 +228,20 @@ const journey = [
 				</div>
 			</div>
 
+			<!-- =========================
+			     TEXTO DE TRANSIÇÃO ENTRE OS VÍDEOS
+			========================= -->
 
-<br><br>
+			<p class="video-transition">
+				Colocando projetos em prática é possível desenvolver interfaces
+				bonitas, funcionais e com a sua própria identidade.
+			</p>
 
+			<!-- =========================
+			     VÍDEO 2
+			========================= -->
 
-<div class="video-showcase">
+			<div class="video-showcase">
 				<div class="video-frame">
 
 					<div class="video-topbar" aria-hidden="true">
@@ -319,7 +296,7 @@ const journey = [
 						</div>
 					</div>
 				</div>
-			</div>			
+			</div>
 		</div>
 	</div>
 </section>
@@ -855,6 +832,9 @@ const journey = [
 
 	.video-showcase {
 		position: relative;
+
+		max-width: 640px;
+		margin: 0 auto;
 	}
 
 	.video-frame {
@@ -1122,6 +1102,22 @@ const journey = [
 	}
 
 	/* =========================
+	   TEXTO DE TRANSIÇÃO ENTRE VÍDEOS
+	========================= */
+
+	.video-transition {
+		max-width: 560px;
+
+		margin: 28px auto;
+
+		color: #c2c4d3;
+		font-size: 0.95rem;
+		font-weight: 600;
+		line-height: 1.6;
+		text-align: center;
+	}
+
+	/* =========================
 	   REDUÇÃO DE MOVIMENTO
 	========================= */
 
@@ -1154,6 +1150,10 @@ const journey = [
 		.journey {
 			flex-wrap: wrap;
 		}
+
+		.video-showcase {
+			max-width: 520px;
+		}
 	}
 
 	@media (max-width: 768px) {
@@ -1176,6 +1176,10 @@ const journey = [
 
 		.journey {
 			gap: 10px;
+		}
+
+		.video-showcase {
+			max-width: 440px;
 		}
 	}
 
@@ -1217,6 +1221,10 @@ const journey = [
 
 		.journey::-webkit-scrollbar {
 			display: none;
+		}
+
+		.video-showcase {
+			max-width: 100%;
 		}
 	}
 
@@ -1260,4 +1268,3 @@ const journey = [
 		}
 	}
 </style>
-```
