@@ -1,23 +1,23 @@
 ---
 const beneficios = [
 	{
-		titulo: 'Sem mensalidade, sem pegadinha',
-		texto: 'Todo o conteúdo, todas as trilhas e todos os projetos ficam disponíveis sem cobrança, hoje e pra sempre amigão!',
+		titulo: 'Acesso total, sem truques',
+		texto: 'Todo o conteúdo, trilhas e projetos ficam liberados desde o começo — sem mensalidade escondida, sem cobrança por etapas e sem armadilhas.',
 		icon: 'M12 2L3 7v6c0 5 4 9 9 9s9-4 9-9V7l-9-5z',
 	},
 	{
-		titulo: 'Sem anúncio interrompendo o aprendizado',
-		texto: 'Você estuda do seu jeito, sem pop-up, sem banner e sem distração pagando pra aparecer na sua tela.',
+		titulo: 'Aprenda sem distrações',
+		texto: 'Você estuda no seu ritmo, sem pop-up, sem anúncio invasivo e sem elementos que roubam seu foco do que realmente importa: evoluir.',
 		icon: 'M4 4h16v12H4z M4 20h16 M8 16v4 M16 16v4',
 	},
 	{
-		titulo: 'Comunidade aberta pra todo mundo',
-		texto: 'Dúvida, projeto, feedback: a comunidade do DevLearn é aberta e gratuita pra quem quiser aprender junto.',
+		titulo: 'Comunidade que ajuda de verdade',
+		texto: 'Troque ideia, tire dúvidas e receba feedback em um ambiente aberto, acolhedor e pensado para quem quer crescer junto.',
 		icon: 'M17 20v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2 M9 10a4 4 0 1 0 0-8 4 4 0 0 0 0 8z M23 20v-2a4 4 0 0 0-3-3.87 M16 3.13a4 4 0 0 1 0 7.75',
 	},
 	{
-		titulo: 'Conteúdo novo, sempre gratuito',
-		texto: 'Trilha nova, projeto novo, atualização: tudo que adicionamos continua acessível sem custo pra você.',
+		titulo: 'Conteúdo em constante evolução',
+		texto: 'Novas trilhas, projetos e atualizações entram em constante movimento para que a sua jornada acompanhe a tecnologia de forma real.',
 		icon: 'M12 2v20 M2 12h20 M4.93 4.93l14.14 14.14 M19.07 4.93L4.93 19.07',
 	},
 ];
@@ -26,10 +26,9 @@ const beneficios = [
 <section class="value">
 	<div class="container value-inner">
 		<div class="value-head">
-			<h2 class="value-title">É gratuito de verdade, sem letra miúda</h2>
+			<h2 class="value-title">Aprender tecnologia sem barreira, sem distração e sem enrolação.</h2>
 			<p class="value-lead">
-				O DevLearn nasceu pra derrubar qualquer barreira de quem quer aprender a programar. Por isso,
-				mantemos tudo acessível pra você!
+				O DevLearn foi criado para remover obstáculos e dar espaço ao que realmente importa: prática, clareza e evolução real.
 			</p>
 		</div>
 
@@ -59,34 +58,53 @@ const beneficios = [
 		flex-direction: column;
 		align-items: center;
 		gap: clamp(32px, 5vw, 48px);
-		text-align: center;
+		ttext-align: center;
 	}
 
 	.value-head {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		max-width: 42rem;
+		justify-content: center;
+		max-width: 48rem;
 		margin: 0 auto;
+		text-align: center;
+	}
+
+	.value-kicker {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		margin-bottom: 12px;
+		padding: 7px 12px;
+		border: 1px solid rgb(167 139 250 / 45%);
+		border-radius: 999px;
+		background: rgb(139 92 246 / 12%);
+		color: #d9c7ff;
+		font-size: 0.75rem;
+		font-weight: 700;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
 	}
 
 	.value-title {
 		margin: 0 0 14px;
 		color: #ffffff;
 		font-family: var(--font-body, 'Poppins', sans-serif);
-		font-size: clamp(1.9rem, 3.4vw, 2.5rem);
-		font-weight: 700;
-		line-height: 1.2;
-		letter-spacing: -0.02em;
+		font-size: clamp(2rem, 3.6vw, 3rem);
+		font-weight: 800;
+		line-height: 1.15;
+		letter-spacing: -0.03em;
 	}
 
 	.value-lead {
 		margin: 0;
 		color: #b7b9c9;
 		font-family: var(--font-body, 'Poppins', sans-serif);
-		font-size: clamp(1rem, 1.4vw, 1.1rem);
+		font-size: clamp(1rem, 1.5vw, 1.15rem);
 		font-weight: 400;
 		line-height: 1.7;
+		max-width: 42rem;
 	}
 
 	.value-grid {
@@ -101,52 +119,55 @@ const beneficios = [
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		padding: 26px 24px;
+		padding: 28px 22px 24px;
 		border: 1px solid rgb(139 92 246 / 22%);
-		border-radius: 20px;
-		background: linear-gradient(160deg, rgb(139 92 246 / 8%), rgb(255 117 183 / 5%));
+		border-radius: 22px;
+		background: linear-gradient(180deg, rgba(139, 92, 246, 0.12), rgba(255, 117, 183, 0.04));
+		box-shadow: 0 10px 30px rgba(17, 24, 39, 0.18);
 		text-align: center;
-		transition: border-color 0.25s ease, transform 0.25s ease;
+		transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
 	}
 
 	.value-card:hover {
-		border-color: rgb(255 117 183 / 45%);
-		transform: translateY(-3px);
+		border-color: rgb(255 117 183 / 50%);
+		box-shadow: 0 18px 36px rgba(168, 85, 247, 0.18);
+		transform: translateY(-4px);
 	}
 
 	.value-icon {
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
-		width: 42px;
-		height: 42px;
-		margin-bottom: 16px;
-		border-radius: 12px;
+		width: 48px;
+		height: 48px;
+		margin-bottom: 18px;
+		border-radius: 14px;
 		background: linear-gradient(135deg, #9b32ff, #ff3f91);
 		color: #ffffff;
+		box-shadow: 0 10px 25px rgba(171, 85, 255, 0.4);
 	}
 
 	.value-icon svg {
-		width: 22px;
-		height: 22px;
+		width: 23px;
+		height: 23px;
 	}
 
 	.value-card h3 {
 		margin: 0 0 8px;
 		color: #ffffff;
 		font-family: var(--font-body, 'Poppins', sans-serif);
-		font-size: 1.05rem;
-		font-weight: 600;
+		font-size: 1.08rem;
+		font-weight: 700;
 		line-height: 1.35;
 	}
 
 	.value-card p {
 		margin: 0;
-		color: #999bad;
+		color: #9ca3b8;
 		font-family: var(--font-body, 'Poppins', sans-serif);
-		font-size: 0.92rem;
+		font-size: 0.95rem;
 		font-weight: 400;
-		line-height: 1.6;
+		line-height: 1.7;
 	}
 
 	@media (max-width: 1080px) {
