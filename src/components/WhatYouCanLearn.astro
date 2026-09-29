@@ -82,12 +82,16 @@ const journey = [
 <section class="learn">
 	<div class="container">
 		<div class="section-heading">
+			<span class="eyebrow">
+				<span class="eyebrow-dot" aria-hidden="true"></span>
+				Trilhas de estudo
+			</span>
 
-			<h2>O que você pode aprender</h2>
+			<h2>O que você pode <span class="accent">aprender</span></h2>
 
 			<p class="learn-lead">
-				Trilhas pensadas pra levar você da teoria à prática,
-				uma habilidade de cada vez.
+				Trilhas pensadas pra levar você da <strong>teoria</strong> à
+				<strong>prática</strong>, uma habilidade de cada vez.
 			</p>
 		</div>
 
@@ -157,12 +161,13 @@ const journey = [
 			========================= -->
 
 			<div class="practice-heading">
+				
 
-				<h3>O que você vai conseguir fazer</h3>
+				<h3>O que você vai <span class="accent">conseguir fazer</span></h3>
 
 				<p>
-					Aprenda os fundamentos, conecte as habilidades e transforme
-					o conhecimento em projetos reais.
+					Aprenda os fundamentos, <strong>conecte as habilidades</strong> e
+					transforme o conhecimento em <strong>projetos reais</strong>.
 				</p>
 			</div>
 
@@ -233,8 +238,9 @@ const journey = [
 			========================= -->
 
 			<p class="video-transition">
-				Colocando projetos em prática é possível desenvolver interfaces
-				bonitas, funcionais e com a sua própria identidade.
+				Colocando projetos em prática é possível desenvolver
+				<strong>interfaces bonitas</strong>, <strong>funcionais</strong> e com a
+				sua <strong>própria identidade</strong>.
 			</p>
 
 			<!-- =========================
@@ -316,42 +322,71 @@ const journey = [
 		text-align: center;
 	}
 
+	/* ===== Eyebrow (selo) ===== */
 	.eyebrow {
 		display: inline-flex;
 		align-items: center;
-		margin-bottom: 10px;
-		color: #ff75b7;
-		font-size: 0.68rem;
+		gap: 8px;
+
+		margin-bottom: 14px;
+		padding: 6px 14px;
+
+		border: 1px solid rgb(255 117 183 / 28%);
+		border-radius: 999px;
+
+		background: rgb(255 79 163 / 8%);
+		color: #ff8cc3;
+
+		font-size: 0.66rem;
 		font-weight: 800;
 		letter-spacing: 0.14em;
 		text-transform: uppercase;
 	}
 
+	.eyebrow-dot {
+		width: 6px;
+		height: 6px;
+
+		border-radius: 50%;
+
+		background: #ff4fa3;
+		box-shadow: 0 0 10px rgb(255 79 163 / 80%);
+	}
+
+	/* ===== Título da seção ===== */
 	.section-heading h2 {
 		margin: 0;
 
-		background: linear-gradient(
-			100deg,
-			#ffffff 8%,
-			#d6b5ff 52%,
-			#ff75b7 100%
-		);
+		color: #fff;
 
+		font-size: clamp(1.85rem, 3.4vw, 2.7rem);
+		font-weight: 800;
+		line-height: 1.12;
+		letter-spacing: -0.03em;
+	}
+
+	/* palavra de destaque (vale para h2 e h3) */
+	.accent {
+		background: linear-gradient(100deg, #d6b5ff 0%, #ff75b7 100%);
 		background-clip: text;
 		-webkit-background-clip: text;
 		color: transparent;
-
-		font-size: clamp(1.75rem, 3.2vw, 2.55rem);
-		font-weight: 700;
-		line-height: 1.15;
-		letter-spacing: -0.02em;
 	}
 
 	.learn-lead {
-		margin: 12px 0 0;
-		color: #b7b9c9;
-		font-size: 0.98rem;
-		line-height: 1.6;
+		max-width: 34rem;
+		margin: 14px auto 0;
+
+		color: #a9abc0;
+
+		font-size: 1rem;
+		line-height: 1.7;
+	}
+
+	.learn-lead strong,
+	.practice-heading p strong {
+		color: #e6e7f2;
+		font-weight: 600;
 	}
 
 	/* =========================
@@ -714,19 +749,39 @@ const journey = [
 	.practice-label {
 		display: inline-flex;
 		align-items: center;
-		gap: 7px;
+		gap: 12px;
 
-		margin-bottom: 10px;
+		margin-bottom: 12px;
 
-		color: #ff75b7;
+		color: #ff8cc3;
 
 		font-size: 0.67rem;
 		font-weight: 800;
+		letter-spacing: 0.18em;
+	}
 
-		letter-spacing: 0.14em;
+	/* linhas laterais */
+	.practice-label::before,
+	.practice-label::after {
+		width: 34px;
+		height: 1px;
+
+		content: '';
+
+		background: linear-gradient(
+			90deg,
+			transparent,
+			rgb(255 117 183 / 60%)
+		);
+	}
+
+	.practice-label::after {
+		transform: scaleX(-1);
 	}
 
 	.practice-dot {
+		order: 0;
+
 		width: 6px;
 		height: 6px;
 
@@ -743,27 +798,21 @@ const journey = [
 
 		color: #fff;
 
-		font-size: clamp(
-			1.4rem,
-			2.5vw,
-			2rem
-		);
-
-		font-weight: 700;
-		line-height: 1.2;
-
-		letter-spacing: -0.02em;
+		font-size: clamp(1.5rem, 2.7vw, 2.15rem);
+		font-weight: 800;
+		line-height: 1.15;
+		letter-spacing: -0.03em;
 	}
 
 	.practice-heading p {
 		max-width: 570px;
 
-		margin: 10px auto 0;
+		margin: 12px auto 0;
 
 		color: #9fa2b8;
 
-		font-size: 0.9rem;
-		line-height: 1.6;
+		font-size: 0.95rem;
+		line-height: 1.7;
 	}
 
 	/* =========================
@@ -1106,15 +1155,41 @@ const journey = [
 	========================= */
 
 	.video-transition {
-		max-width: 560px;
+		position: relative;
 
-		margin: 28px auto;
+		max-width: 540px;
+		margin: 44px auto 32px;
+		padding-top: 22px;
 
-		color: #c2c4d3;
-		font-size: 0.95rem;
-		font-weight: 600;
-		line-height: 1.6;
+		color: #a9abc0;
+
+		font-size: 1.02rem;
+		font-weight: 500;
+		line-height: 1.7;
 		text-align: center;
+	}
+
+	/* traço em gradiente acima do texto */
+	.video-transition::before {
+		position: absolute;
+		top: 0;
+		left: 50%;
+
+		width: 44px;
+		height: 3px;
+
+		content: '';
+
+		border-radius: 3px;
+		background: linear-gradient(90deg, #b44cff, #ff4fa3);
+		box-shadow: 0 0 14px rgb(255 79 163 / 45%);
+
+		transform: translateX(-50%);
+	}
+
+	.video-transition strong {
+		color: #fff;
+		font-weight: 700;
 	}
 
 	/* =========================
@@ -1206,6 +1281,11 @@ const journey = [
 
 		.practice-heading {
 			margin-top: 44px;
+		}
+
+		.practice-label::before,
+		.practice-label::after {
+			width: 20px;
 		}
 
 		.journey {
