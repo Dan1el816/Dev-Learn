@@ -66,11 +66,11 @@ const faqs = [
 </section>
 
 <script>
-	const items = document.querySelectorAll<HTMLElement>('.faq-item');
+	const items = document.querySelectorAll('.faq-item');
 
 	items.forEach((item) => {
-		const trigger = item.querySelector<HTMLButtonElement>('.faq-trigger');
-		const panel = item.querySelector<HTMLElement>('.faq-panel');
+		const trigger = item.querySelector('.faq-trigger');
+		const panel = item.querySelector('.faq-panel');
 		if (!trigger || !panel) return;
 
 		trigger.addEventListener('click', () => {
@@ -79,10 +79,10 @@ const faqs = [
 			// Fecha os outros itens abertos (comportamento tipo acordeão)
 			items.forEach((other) => {
 				if (other === item) return;
-				const otherTrigger = other.querySelector<HTMLButtonElement>('.faq-trigger');
-				const otherPanel = other.querySelector<HTMLElement>('.faq-panel');
-				otherTrigger?.setAttribute('aria-expanded', 'false');
-				otherPanel?.style.setProperty('grid-template-rows', '0fr');
+				const otherTrigger = other.querySelector('.faq-trigger');
+				const otherPanel = other.querySelector('.faq-panel');
+				if (otherTrigger) otherTrigger.setAttribute('aria-expanded', 'false');
+				if (otherPanel) otherPanel.style.setProperty('grid-template-rows', '0fr');
 				other.classList.remove('is-open');
 			});
 
