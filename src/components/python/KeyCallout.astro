@@ -1,0 +1,63 @@
+---
+interface Props {
+	title: string;
+	kind?: 'key' | 'preview' | 'note';
+}
+
+const { title, kind = 'key' } = Astro.props;
+---
+
+<aside class:list={['callout', `callout-${kind}`]}>
+	<strong>{title}</strong>
+	<div><slot /></div>
+</aside>
+
+<style>
+	.callout {
+		display: grid;
+		grid-template-columns: auto minmax(0, 1fr);
+		gap: 12px;
+		margin: 18px 0 0;
+		padding: 15px 18px;
+		border: 1px solid color-mix(in srgb, var(--color-accent) 24%, transparent);
+		border-left: 3px solid var(--color-accent);
+		border-radius: 12px;
+		background: color-mix(in srgb, var(--color-accent) 7%, transparent);
+		color: var(--color-body);
+		font-size: 0.88rem;
+		line-height: 1.7;
+	}
+
+	.callout strong {
+		color: var(--color-accent);
+		white-space: nowrap;
+	}
+
+	.callout-preview {
+		border-left-color: var(--color-accent-pink);
+		background: color-mix(in srgb, var(--color-accent-pink) 7%, transparent);
+	}
+
+	.callout-preview strong {
+		color: var(--color-accent-pink);
+	}
+
+	.callout-note {
+		border-left-color: var(--color-accent-strong);
+	}
+
+	.callout-note strong {
+		color: var(--color-accent-strong);
+	}
+
+	@media (max-width: 560px) {
+		.callout {
+			grid-template-columns: 1fr;
+			gap: 3px;
+		}
+
+		.callout strong {
+			white-space: normal;
+		}
+	}
+</style>

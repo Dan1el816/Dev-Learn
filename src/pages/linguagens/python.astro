@@ -1,102 +1,1526 @@
 ---
+import Layout from '../../layouts/Layout.astro';
 import Navbar from '../../components/Navbar.astro';
+import CodeSample from '../../components/python/CodeSample.astro';
+import KeyCallout from '../../components/python/KeyCallout.astro';
+import PythonCourseNavigation from '../../components/python/PythonCourseNavigation.astro';
 
-const topicos = [
-  { numero: '01', titulo: 'Tipos primitivos', descricao: 'Os blocos fundamentais para representar informações no Python.', ancora: 'tipos' },
-  { numero: '02', titulo: 'Condicionais', descricao: 'Tome decisões no código usando if, elif e else.', ancora: 'condicionais' },
-  { numero: '03', titulo: 'Laços de repetição', descricao: 'Repita tarefas com for e while sem duplicar código.', ancora: 'lacos' },
+const sections = [
+	{ id: 'parte-1-1', title: 'O que é Python?' },
+	{ id: 'parte-1-2', title: 'Um pouco da história' },
+	{ id: 'parte-1-3', title: 'Por que é tão popular?' },
+	{ id: 'parte-1-4', title: 'Onde Python é utilizado?' },
+	{ id: 'parte-1-5', title: 'Características da linguagem' },
+	{ id: 'parte-1-6', title: 'Seu primeiro código' },
+	{ id: 'parte-1-7', title: 'Instalar e verificar' },
+	{ id: 'parte-1-8', title: 'Como executar Python' },
+	{ id: 'parte-1-9', title: 'Interpretador e REPL' },
+	{ id: 'parte-1-10', title: 'Arquivos .py' },
+	{ id: 'parte-1-11', title: 'Comentários' },
+	{ id: 'parte-1-12', title: 'Conceitos fundamentais' },
+	{ id: 'parte-1-13', title: 'Como ler código Python' },
+	{ id: 'parte-1-14', title: 'Python e outras linguagens' },
+	{ id: 'parte-1-15', title: 'Vantagens e limitações' },
+	{ id: 'parte-1-16', title: 'Erros comuns de iniciantes' },
+	{ id: 'parte-1-17', title: 'Como estudar Python' },
+];
+
+const areas = [
+	{
+		title: 'Desenvolvimento web',
+		text: 'Crie sites e serviços que recebem requisições, processam informações e devolvem páginas ou dados. Django, Flask e FastAPI são ferramentas usadas nesse espaço.',
+		tag: 'Django · Flask · FastAPI',
+	},
+	{
+		title: 'Ciência de dados',
+		text: 'Explore conjuntos de dados, faça análises estatísticas e comunique resultados com tabelas e gráficos. NumPy, Pandas e Matplotlib são exemplos do ecossistema.',
+		tag: 'NumPy · Pandas · Matplotlib',
+	},
+	{
+		title: 'Inteligência artificial',
+		text: 'Prepare dados e experimente modelos de aprendizado de máquina para tarefas como classificação ou previsão. Há ferramentas como scikit-learn, TensorFlow e PyTorch.',
+		tag: 'scikit-learn · TensorFlow · PyTorch',
+	},
+	{
+		title: 'Automação',
+		text: 'Escreva pequenos programas para organizar arquivos, processar informações ou automatizar etapas repetitivas do trabalho.',
+		tag: 'Scripts · arquivos · tarefas',
+	},
+	{
+		title: 'Backend e APIs',
+		text: 'Implemente a parte de um sistema que roda no servidor e crie APIs — interfaces que permitem que programas troquem dados.',
+		tag: 'Serviços · integrações',
+	},
+	{
+		title: 'Educação',
+		text: 'Use uma sintaxe legível para aprender lógica de programação, testar ideias e criar projetos didáticos.',
+		tag: 'Aprendizagem · protótipos',
+	},
+	{
+		title: 'Segurança e ferramentas',
+		text: 'Apoie análises defensivas, automatize verificações autorizadas e processe registros para entender o funcionamento de sistemas.',
+		tag: 'Análise · automação defensiva',
+	},
+];
+
+const concepts = [
+	{ title: 'Valor', text: 'Uma informação concreta usada pelo programa.', example: '"Oi"  ·  12' },
+	{ title: 'Expressão', text: 'Um trecho que pode ser avaliado para produzir um valor.', example: '10 + 5  →  15' },
+	{ title: 'Instrução', text: 'Uma ordem que o programa executa.', example: 'print("Oi")' },
+	{ title: 'Objeto', text: 'Uma entidade criada durante a execução, com valor e comportamento.', example: 'O texto "Oi" é um objeto.' },
+	{ title: 'Variável', text: 'Um nome associado a um valor; será estudada na próxima parte.', example: 'nome = "Ana"' },
+	{ title: 'Tipo', text: 'Uma categoria que define que valores e operações são compatíveis.', example: '12 é inteiro; "Oi" é texto.' },
+	{ title: 'Função', text: 'Uma operação identificada por um nome e que pode ser chamada.', example: 'print("Oi")' },
+];
+
+const exercises = [
+	{
+		title: 'Imprima uma mensagem',
+		level: 'Fácil',
+		prompt: 'Escreva uma linha que mostre uma mensagem de boas-vindas.',
+		hint: 'Use `print()` e coloque o texto entre aspas.',
+		solution: 'print("Bem-vinda ao Python!")',
+		output: 'Bem-vinda ao Python!',
+	},
+	{
+		title: 'Apresente seu nome',
+		level: 'Fácil',
+		prompt: 'Mostre seu nome na tela usando uma única chamada a `print()`.',
+		hint: 'Um nome escrito entre aspas é tratado como texto.',
+		solution: 'print("Ana")',
+		output: 'Ana',
+	},
+	{
+		title: 'Faça uma conta',
+		level: 'Fácil',
+		prompt: 'Exiba o resultado de 18 dividido por 3.',
+		hint: 'Coloque a expressão matemática dentro de `print()`.',
+		solution: 'print(18 / 3)',
+		output: '6.0',
+	},
+	{
+		title: 'Adicione um comentário',
+		level: 'Fácil',
+		prompt: 'Acrescente um comentário explicando por que o programa mostra uma saudação.',
+		hint: 'Comece a linha de comentário com `#`.',
+		solution: '# Saudação inicial do programa\nprint("Olá!")',
+		output: 'Olá!',
+	},
+	{
+		title: 'Monte uma apresentação',
+		level: 'Médio',
+		prompt: 'Use várias chamadas a `print()` para mostrar uma saudação, uma área de interesse e uma mensagem final.',
+		hint: 'Cada chamada pode exibir uma linha diferente.',
+		solution: 'print("Olá!")\nprint("Estou aprendendo programação.")\nprint("Este é meu primeiro programa.")',
+		output: 'Olá!\nEstou aprendendo programação.\nEste é meu primeiro programa.',
+	},
+	{
+		title: 'Encontre o erro',
+		level: 'Médio',
+		prompt: 'Corrija o código para que ele mostre `Vamos começar!`.',
+		hint: 'Confira se os parênteses e as aspas foram abertos e fechados.',
+		solution: 'print("Vamos começar!")',
+		output: 'Vamos começar!',
+	},
+	{
+		title: 'Preveja a saída',
+		level: 'Médio',
+		prompt: 'Antes de executar, escreva qual será a saída deste código.',
+		hint: 'A operação matemática é calculada antes de `print()` exibir o resultado.',
+		solution: 'print(7 + 4)\n\n# Saída:\n11',
+		output: '11',
+	},
 ];
 ---
 
-<!doctype html>
-<html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>Python: fundamentos | Dev Learn</title>
-    <meta name="description" content="Aprenda os fundamentos de Python: tipos primitivos, condicionais e laços de repetição." />
-  </head>
-  <body>
-    <Navbar />
+<Layout title="Parte 1 — Introdução ao Python | Dev Learn">
+	<div class="python-page">
+		<Navbar />
+		<div class="python-course-layout">
+			<PythonCourseNavigation />
+			<div class="container course-content">
+			<header class="course-hero">
+				<a class="back-link" href="/linguagens">← Todas as linguagens</a>
+				<p class="eyebrow"><span></span> Trilha de Python · Parte 1</p>
+				<h1>Introdução ao <span>Python</span></h1>
+				<p class="hero-lead">
+					Conheça a linguagem, entenda como um programa é executado e escreva seu primeiro código.
+					Esta introdução foi pensada para quem está começando.
+				</p>
+				<div class="course-meta">
+					<span><i aria-hidden="true">✓</i> Pré-requisitos: nenhum</span>
+					<a href="/linguagens/python/fundamentos">Conteúdo complementar: tipos, condicionais e laços <span aria-hidden="true">↗</span></a>
+				</div>
+				<div class="objectives">
+					<h2>Ao final desta parte, você será capaz de:</h2>
+					<ul>
+						<li>explicar para que Python serve e onde é utilizado;</li>
+						<li>reconhecer os elementos de um pequeno programa;</li>
+						<li>verificar a instalação e executar código no REPL e em um arquivo;</li>
+						<li>usar `print()`, textos, contas simples e comentários.</li>
+					</ul>
+				</div>
+			</header>
 
-    <main class="page">
-      <header class="container header">
-        <a class="back-link" href="../linguagens">← todas as linguagens</a>
-      </header>
+			<nav class="toc" aria-label="Índice desta parte">
+				<div class="toc-heading">
+					<p class="eyebrow"><span></span> Roteiro de estudo</p>
+					<h2>Nesta parte</h2>
+				</div>
+				<ol>
+					{sections.map((section, index) => (
+						<li>
+							<a href={`#${section.id}`}>
+								<span>{String(index + 1).padStart(2, '0')}</span>
+								{section.title}
+							</a>
+						</li>
+					))}
+				</ol>
+			</nav>
 
-      <section class="container hero" aria-labelledby="titulo">
-        <div class="hero-copy">
-          
-          <h1 id="titulo">Comece a pensar<br /><strong>como Python.</strong></h1>
-          <p class="intro">Uma introdução prática aos conceitos que formam a base de qualquer programa: dados, decisões e repetição.</p>
-        </div>
-        <div class="python-badge" aria-hidden="true"><span>Py</span><small>01</small></div>
-      </section>
+			<article class="lesson" aria-label="Parte 1 — Introdução ao Python">
+				<section class="lesson-section" id="parte-1-1" aria-labelledby="title-1-1">
+					<div class="section-heading"><span class="section-number">1.1</span><div><p class="eyebrow"><span></span> Conceito</p><h2 id="title-1-1">O que é Python?</h2></div></div>
+					<p>Python é uma linguagem de programação de propósito geral: usamos instruções escritas por pessoas para orientar um computador a realizar tarefas. Com ela, é possível criar programas, automatizar rotinas, analisar dados e desenvolver serviços para a web.</p>
+					<p>Pense numa receita: ela descreve passos numa ordem compreensível. Um programa também reúne instruções; Python busca tornar essas instruções legíveis, para que seja mais fácil escrevê-las, revisá-las e colaborar com outras pessoas.</p>
+					<div class="split-grid">
+						<div class="info-card"><h3>Uma linguagem para construir</h3><p>A mesma base pode ser usada em projetos de estudo, ferramentas internas e sistemas profissionais.</p></div>
+						<div class="info-card"><h3>Legibilidade como princípio</h3><p>O design valoriza código claro. O <em>Zen of Python</em> reúne princípios e ideias que ajudam a explicar essa filosofia.</p></div>
+					</div>
+					<p>O ecossistema inclui a biblioteca padrão, pacotes mantidos pela comunidade e ferramentas para instalar e organizar projetos. Essa combinação contribui para a popularidade da linguagem, mas a escolha de uma tecnologia depende sempre da tarefa.</p>
+					<p>Como curiosidade, o interpretador interativo pode exibir o <em>Zen of Python</em> com o comando abaixo. A palavra <code>import</code> carrega recursos adicionais e será estudada mais adiante.</p>
+					<CodeSample label="Curiosidade: o Zen of Python" code="import this" language="python" />
+					<KeyCallout title="Você precisa saber">Python é uma linguagem de propósito geral, conhecida por favorecer a legibilidade. Você não precisa escolher uma área de atuação para começar a praticar.</KeyCallout>
+				</section>
 
-      <nav class="container topic-nav" aria-label="Nesta aula">
-        {topicos.map((topico) => (
-          <a href={`#${topico.ancora}`}><span>{topico.numero}</span>{topico.titulo}</a>
-        ))}
-      </nav>
+				<section class="lesson-section" id="parte-1-2" aria-labelledby="title-1-2">
+					<div class="section-heading"><span class="section-number">1.2</span><div><p class="eyebrow"><span></span> Contexto</p><h2 id="title-1-2">Um pouco da história do Python</h2></div></div>
+					<p>Python foi criado por Guido van Rossum, que buscava uma linguagem prática, extensível e agradável de ler. O nome escolhido foi uma referência ao grupo de comédia britânico Monty Python — não à cobra.</p>
+					<ol class="timeline">
+						<li><span>Final dos anos 1980</span><p>Van Rossum começa a trabalhar na ideia de uma nova linguagem enquanto atuava no CWI, nos Países Baixos.</p></li>
+						<li><span>Dezembro de 1989</span><p>O projeto começa durante o período de recesso de fim de ano.</p></li>
+						<li><span>1991</span><p>Uma primeira versão pública do Python é compartilhada.</p></li>
+						<li><span>1994</span><p>Python 1.0 é lançado.</p></li>
+						<li><span>2000</span><p>Python 2.0 chega com novas funcionalidades e continua a evolução da linguagem.</p></li>
+						<li><span>2008</span><p>Python 3.0 é lançado. Algumas mudanças incompatíveis foram necessárias para corrigir e simplificar aspectos da linguagem; a migração levou tempo.</p></li>
+						<li><span>1º de janeiro de 2020</span><p>Python 2 chega ao fim do suporte. O desenvolvimento atual da linguagem segue na linha Python 3, com participação da comunidade e da Python Software Foundation (PSF).</p></li>
+					</ol>
+					<KeyCallout title="Você precisa saber">Python 2 e Python 3 não são totalmente compatíveis entre si. Para aprender e iniciar projetos hoje, use uma versão compatível com Python 3.</KeyCallout>
+				</section>
 
-      <section class="container lesson" aria-label="Conteúdo da aula">
-        <article class="lesson-block" id="tipos">
-          <div class="block-heading"><span class="number">01</span><div><p class="eyebrow"><span></span> dados</p><h2>Tipos primitivos</h2></div></div>
-          <p class="lead">Antes de tomar decisões, precisamos guardar informações. Python possui tipos simples para os valores mais comuns.</p>
-          <div class="code-card"><div class="code-head"><span><i></i><i></i><i></i></span><small>tipos.py</small></div><pre><code><span class="purple">nome</span> = <span class="green">"Ada"</span>          <span class="comment"># str</span>
-<span class="purple">idade</span> = <span class="orange">28</span>             <span class="comment"># int</span>
-<span class="purple">altura</span> = <span class="orange">1.68</span>          <span class="comment"># float</span>
-<span class="purple">estudando</span> = <span class="blue">True</span>       <span class="comment"># bool</span></code></pre></div>
-          <div class="tip"><strong>Atalho mental</strong><span>str é texto · int é número inteiro · float é decimal · bool é verdadeiro ou falso.</span></div>
-        </article>
+				<section class="lesson-section" id="parte-1-3" aria-labelledby="title-1-3">
+					<div class="section-heading"><span class="section-number">1.3</span><div><p class="eyebrow"><span></span> Relevância</p><h2 id="title-1-3">Por que Python é tão popular?</h2></div></div>
+					<p>Python combina uma sintaxe relativamente acessível com ferramentas para diferentes tipos de projeto. Isso permite que iniciantes avancem gradualmente e que equipes experientes usem a linguagem em sistemas maiores.</p>
+					<ul class="feature-list">
+						<li><strong>Aprendizagem gradual</strong><span>O código costuma ser legível, ajudando a manter o foco nos conceitos.</span></li>
+						<li><strong>Produtividade</strong><span>É possível expressar muitas tarefas com pouco código e testar ideias rapidamente.</span></li>
+						<li><strong>Comunidade e bibliotecas</strong><span>Há documentação, fóruns e pacotes que atendem a várias áreas.</span></li>
+						<li><strong>Versatilidade</strong><span>A linguagem aparece em educação, automação, web, análise de dados e outros contextos.</span></li>
+						<li><strong>Integração</strong><span>Projetos Python podem se comunicar com serviços e componentes escritos em outras tecnologias.</span></li>
+					</ul>
+					<p>Popularidade, porém, não significa que Python seja ideal para toda situação. Desempenho, ambiente de execução, requisitos de produto e experiência da equipe também importam.</p>
+					<KeyCallout title="Você precisa saber">Aprender Python amplia suas opções; não existe uma linguagem que seja a melhor escolha para todos os problemas.</KeyCallout>
+				</section>
 
-        <article class="lesson-block" id="condicionais">
-          <div class="block-heading"><span class="number">02</span><div><p class="eyebrow"><span></span> decisões</p><h2>Condicionais</h2></div></div>
-          <p class="lead">Use condicionais para executar um trecho apenas quando uma condição for verdadeira. A indentação define o bloco de código.</p>
-          <div class="code-card"><div class="code-head"><span><i></i><i></i><i></i></span><small>decisao.py</small></div><pre><code><span class="purple">nota</span> = <span class="orange">8</span>
+				<section class="lesson-section" id="parte-1-4" aria-labelledby="title-1-4">
+					<div class="section-heading"><span class="section-number">1.4</span><div><p class="eyebrow"><span></span> Aplicações</p><h2 id="title-1-4">Onde Python é utilizado?</h2></div></div>
+					<p>Estes exemplos mostram possibilidades, não uma lista de ferramentas que você precisa estudar agora. Primeiro, vamos construir os fundamentos da linguagem.</p>
+					<div class="area-grid">
+						{areas.map((area, index) => (
+							<article class="area-card">
+								<span class="area-index">{String(index + 1).padStart(2, '0')}</span>
+								<h3>{area.title}</h3>
+								<p>{area.text}</p>
+								<span class="area-tag">{area.tag}</span>
+							</article>
+						))}
+					</div>
+					<KeyCallout title="Sem pressa">As bibliotecas citadas são exemplos do ecossistema; você não precisa aprendê-las agora.</KeyCallout>
+				</section>
 
-<span class="pink">if</span> nota &gt;= <span class="orange">7</span>:
-    <span class="blue">print</span>(<span class="green">"Aprovado!"</span>)
-<span class="pink">elif</span> nota &gt;= <span class="orange">5</span>:
-    <span class="blue">print</span>(<span class="green">"Recuperação"</span>)
-<span class="pink">else</span>:
-    <span class="blue">print</span>(<span class="green">"Continue estudando"</span>)</code></pre></div>
-          <div class="tip"><strong>Importante</strong><span>Os dois-pontos <b>:</b> iniciam o bloco. Os espaços à esquerda mostram o que pertence à condição.</span></div>
-        </article>
+				<section class="lesson-section" id="parte-1-5" aria-labelledby="title-1-5">
+					<div class="section-heading"><span class="section-number">1.5</span><div><p class="eyebrow"><span></span> Como a linguagem funciona</p><h2 id="title-1-5">Características da linguagem</h2></div></div>
+					<div class="trait-grid">
+						<article class="trait-card">
+							<h3>Alto nível</h3>
+							<p>Uma linguagem de alto nível oferece abstrações — recursos que escondem detalhes de baixo nível — para que a pessoa pense mais na tarefa e menos em instruções específicas do processador ou no gerenciamento manual de memória.</p>
+							<p>Em linguagens de baixo nível, esse controle costuma ser mais explícito. Cada abordagem serve a necessidades diferentes.</p>
+						</article>
+						<article class="trait-card">
+							<h3>Sintaxe legível</h3>
+							<p><strong>Sintaxe</strong> é o conjunto de regras que define como escrever instruções válidas. Python usa palavras e estruturas concisas:</p>
+							<CodeSample label="Uma instrução simples" code={'print("Olá!")'} output="Olá!" />
+						</article>
+						<article class="trait-card">
+							<h3>Tipagem dinâmica <span class="preview-badge">prévia</span></h3>
+							<p>Os tipos são verificados durante a execução, e o tipo pertence ao valor ou objeto. A função embutida <code>type()</code> pode nos mostrar essa informação; vamos aprofundar o assunto numa próxima parte.</p>
+							<CodeSample label="Observando o tipo de um valor" code="type(5)" output={"<class 'int'>"} />
+						</article>
+						<article class="trait-card">
+							<h3>Tipagem forte</h3>
+							<p>Ser dinâmica não significa que a linguagem combina tipos incompatíveis sem aviso. Em Python, tentar somar um texto com um número causa um <code>TypeError</code>, um erro de tipos.</p>
+							<CodeSample label="Tipos incompatíveis" code={'"5" + 3'} />
+							<p class="sample-note">Neste exemplo, a operação gera <code>TypeError</code>; Python não transforma o texto em número automaticamente.</p>
+						</article>
+						<article class="trait-card">
+							<h3>Compilação e execução</h3>
+							<p>Na implementação mais usada, CPython, o código-fonte é compilado para <strong>bytecode</strong> — uma representação intermediária — e executado pela máquina virtual do Python. Quando aplicável, o bytecode pode ser armazenado como arquivos <code>.pyc</code> em <code>__pycache__</code>.</p>
+							<p>Por isso, dizer que Python é “interpretado” descreve o modelo da implementação, não uma regra absoluta da linguagem. Existem outras implementações, como PyPy.</p>
+						</article>
+						<article class="trait-card">
+							<h3>Multiparadigma</h3>
+							<p>Um <strong>paradigma</strong> é uma maneira de organizar a solução de um problema. Python permite programação procedural (sequência de instruções), orientada a objetos e funcional. Vamos conhecer essas abordagens no momento certo.</p>
+						</article>
+						<article class="trait-card">
+							<h3>Portabilidade</h3>
+							<p>O mesmo programa pode funcionar em diferentes sistemas operacionais quando há um interpretador compatível e o código não depende de recursos exclusivos de uma plataforma.</p>
+						</article>
+						<article class="trait-card">
+							<h3>Ecossistema amplo</h3>
+							<p>A biblioteca padrão acompanha Python, o PyPI é um índice de pacotes de terceiros, e <code>pip</code> é uma ferramenta comum para instalá-los. A biblioteca padrão é frequentemente descrita pela ideia de “baterias incluídas”.</p>
+						</article>
+					</div>
+					<KeyCallout title="Você precisa saber">Python é de alto nível, dinâmica e fortemente tipada. No CPython, o código passa por bytecode antes de ser executado pela máquina virtual.</KeyCallout>
+				</section>
 
-        <article class="lesson-block" id="lacos">
-          <div class="block-heading"><span class="number">03</span><div><p class="eyebrow"><span></span> repetição</p><h2>Laços de repetição</h2></div></div>
-          <p class="lead">Laços automatizam tarefas repetitivas. O <code>for</code> percorre uma sequência; o <code>while</code> continua enquanto a condição for verdadeira.</p>
-          <div class="code-columns">
-            <div class="code-card"><div class="code-head"><span><i></i><i></i><i></i></span><small>for.py</small></div><pre><code><span class="pink">for</span> fruta <span class="pink">in</span> [<span class="green">"maçã"</span>, <span class="green">"uva"</span>]:
-    <span class="blue">print</span>(fruta)</code></pre></div>
-            <div class="code-card"><div class="code-head"><span><i></i><i></i><i></i></span><small>while.py</small></div><pre><code><span class="purple">contador</span> = <span class="orange">0</span>
-<span class="pink">while</span> contador &lt; <span class="orange">3</span>:
-    <span class="blue">print</span>(contador)
-    contador += <span class="orange">1</span></code></pre></div>
-          </div>
-        </article>
-      </section>
+				<section class="lesson-section" id="parte-1-6" aria-labelledby="title-1-6">
+					<div class="section-heading"><span class="section-number">1.6</span><div><p class="eyebrow"><span></span> Mãos à obra</p><h2 id="title-1-6">Seu primeiro código Python</h2></div></div>
+					<p>Vamos pedir ao programa que mostre uma saudação. O código e o resultado aparecem em blocos separados:</p>
+					<CodeSample label="Olá, mundo!" code={'print("Olá, mundo!")'} output="Olá, mundo!" />
+					<dl class="explanation-list">
+						<div><dt><code>print()</code></dt><dd>Função embutida que exibe informações na saída do programa.</dd></div>
+						<div><dt>Parênteses <code>()</code></dt><dd>Indicam a chamada da função e delimitam o argumento — neste caso, a informação enviada para ela.</dd></div>
+						<div><dt><code>"Olá, mundo!"</code></dt><dd>Texto entre aspas, também chamado de <strong>string</strong>. Strings podem usar aspas simples ou duplas, desde que cada par seja fechado corretamente.</dd></div>
+						<div><dt>Execução</dt><dd>O interpretador processa a instrução; <code>print()</code> envia o texto para a saída, que neste exemplo é o terminal.</dd></div>
+					</dl>
+					<div class="flow-card" aria-label="Etapas de execução do código">
+						<span>Código-fonte</span><b aria-hidden="true">→</b><span>Interpretador</span><b aria-hidden="true">→</b><span>Saída no terminal</span>
+					</div>
+					<p>Você pode trocar a mensagem e executar novamente:</p>
+					<CodeSample label="Outra mensagem" code={'print("Estou aprendendo Python.")'} output="Estou aprendendo Python." />
+					<KeyCallout title="Você precisa saber">Em Python 3, <code>print()</code> é uma função: recebe uma informação e a exibe na saída.</KeyCallout>
+				</section>
 
-      <footer class="container sources">
-        <div><p class="eyebrow"><span></span> para continuar</p><h2>Aprender é praticar.</h2><p>Este conteúdo foi baseado na documentação oficial do Python. Consulte as fontes para aprofundar seus estudos.</p></div>
-        <div class="source-links"><a href="https://docs.python.org/3/tutorial/introduction.html#using-python-as-a-calculator" target="_blank" rel="noreferrer">Tipos e valores ↗</a><a href="https://docs.python.org/3/tutorial/controlflow.html#if-statements" target="_blank" rel="noreferrer">Condicionais ↗</a><a href="https://docs.python.org/3/tutorial/controlflow.html#for-statements" target="_blank" rel="noreferrer">Laços for ↗</a><a href="https://docs.python.org/3/reference/compound_stmts.html#while" target="_blank" rel="noreferrer">Laços while ↗</a></div>
-      </footer>
-    </main>
-  </body>
-</html>
+				<section class="lesson-section" id="parte-1-7" aria-labelledby="title-1-7">
+					<div class="section-heading"><span class="section-number">1.7</span><div><p class="eyebrow"><span></span> Preparação</p><h2 id="title-1-7">Como instalar e verificar o Python</h2></div></div>
+					<p>Baixe a versão estável atual de Python 3 pelo <a class="inline-link" href="https://www.python.org/downloads/" target="_blank" rel="noreferrer">site oficial</a>. A instalação varia um pouco conforme o sistema operacional:</p>
+					<div class="install-grid">
+						<article class="info-card"><h3>Windows</h3><p>Use o instalador oficial. Durante a instalação, a opção <strong>Add python.exe to PATH</strong> permite chamar o Python pelo terminal; o inicializador <code>py</code> também costuma estar disponível.</p></article>
+						<article class="info-card"><h3>macOS</h3><p>Use o instalador oficial ou um gerenciador de pacotes. Em muitos ambientes, o comando para iniciar Python 3 é <code>python3</code>.</p></article>
+						<article class="info-card"><h3>Linux</h3><p>Python 3 pode já estar disponível. Se precisar instalar, use o gerenciador de pacotes da distribuição ou consulte as instruções oficiais; <code>python3</code> é comum.</p></article>
+					</div>
+					<p>Abra o terminal ou prompt de comando e teste o comando correspondente à sua instalação:</p>
+					<CodeSample label="Conferir a versão disponível" code={'python --version\npython3 --version\npy --version'} language="bash" />
+					<p>Use <code>python --version</code> quando esse nome apontar para a instalação desejada; <code>python3 --version</code> é frequente em macOS e Linux; <code>py --version</code> é comum no Windows. Não é necessário que os três comandos funcionem no mesmo computador.</p>
+					<div class="troubleshooting">
+						<h3>Se o comando não for reconhecido</h3>
+						<ul>
+							<li>confira se a instalação terminou e reabra o terminal;</li>
+							<li>no Windows, verifique se Python foi adicionado ao <code>PATH</code>, a lista de pastas onde o sistema procura programas;</li>
+							<li>se houver várias versões, teste os comandos disponíveis e confirme qual delas está ativa.</li>
+						</ul>
+					</div>
+					<p>Para escrever código, você pode usar um editor ou ambiente de desenvolvimento integrado (IDE), como VS Code, IDLE ou PyCharm. Escolha o que funciona melhor para você; nenhum deles é obrigatório para começar.</p>
+				</section>
+
+				<section class="lesson-section" id="parte-1-8" aria-labelledby="title-1-8">
+					<div class="section-heading"><span class="section-number">1.8</span><div><p class="eyebrow"><span></span> Execução</p><h2 id="title-1-8">Como executar Python</h2></div></div>
+					<p>O <strong>terminal</strong> — uma interface de texto para conversar com o sistema operacional — aparece como Prompt de Comando ou PowerShell no Windows e como Terminal no macOS e Linux.</p>
+					<p>O comando inicial depende do sistema e da instalação. Quando um arquivo se chama <code>primeiro_programa.py</code>, você pode executá-lo assim:</p>
+					<CodeSample label="Executar um arquivo Python" code={'python primeiro_programa.py'} language="bash" />
+					<ol class="step-list">
+						<li>O terminal localiza e chama o interpretador indicado pelo comando.</li>
+						<li>O interpretador lê o arquivo e o compila para bytecode.</li>
+						<li>A máquina virtual executa esse bytecode; instruções como <code>print()</code> podem mostrar resultados no terminal.</li>
+					</ol>
+					<p>Se a sua instalação usa outro comando, substitua <code>python</code> por <code>python3</code> ou <code>py</code>. Alguns editores oferecem um botão de execução; eles também iniciam o interpretador, embora escondam parte da configuração do terminal.</p>
+					<p>Como curiosidade, é possível executar uma instrução curta sem criar arquivo:</p>
+					<CodeSample label="Executar uma linha diretamente" code={'python -c "print(\'Olá\')"'} language="bash" output="Olá" />
+					<KeyCallout title="Você precisa saber">Um editor não substitui Python: ele facilita escrever o código, mas um interpretador compatível ainda precisa executá-lo.</KeyCallout>
+				</section>
+
+				<section class="lesson-section" id="parte-1-9" aria-labelledby="title-1-9">
+					<div class="section-heading"><span class="section-number">1.9</span><div><p class="eyebrow"><span></span> Exploração</p><h2 id="title-1-9">Interpretador e REPL</h2></div></div>
+					<p>O <strong>interpretador</strong> é o programa que lê e executa código Python. Uma forma interativa de usá-lo é o <strong>REPL</strong>, sigla em inglês para <em>Read, Eval, Print, Loop</em>:</p>
+					<dl class="repl-steps">
+						<div><dt>Read</dt><dd>Lê o que você digitou.</dd></div>
+						<div><dt>Eval</dt><dd>Avalia — calcula ou executa — a entrada.</dd></div>
+						<div><dt>Print</dt><dd>Mostra o resultado quando há um valor a exibir.</dd></div>
+						<div><dt>Loop</dt><dd>Volta ao início e aguarda outra entrada.</dd></div>
+					</dl>
+					<p>Inicie com o comando disponível no seu sistema: <code>python</code>, <code>python3</code> ou <code>py</code>. O prompt <code>&gt;&gt;&gt;</code> indica que o REPL está pronto para receber uma instrução.</p>
+					<CodeSample label="Interação no REPL" language="text" code={'>>> 2 + 2\n4\n>>> print("Olá")\nOlá'} />
+					<p>No REPL, uma expressão como <code>2 + 2</code> mostra seu resultado automaticamente. Em um arquivo <code>.py</code>, a mesma expressão não é exibida sozinha: use <code>print()</code> quando quiser mostrá-la.</p>
+					<div class="split-grid">
+						<div class="info-card"><h3>No REPL</h3><CodeSample label="Resultado automático" language="text" code={'>>> 2 + 2\n4'} /></div>
+						<div class="info-card"><h3>Em um arquivo</h3><CodeSample label="Exibir resultado" code={'print(2 + 2)'} output="4" /></div>
+					</div>
+					<p>Use o REPL para experimentar instruções curtas. Para programas que deseja salvar, reutilizar ou compartilhar, prefira um arquivo.</p>
+					<p>Para sair, digite <code>exit()</code>. Também é possível usar <kbd>Ctrl</kbd>+<kbd>Z</kbd> e <kbd>Enter</kbd> no Windows ou <kbd>Ctrl</kbd>+<kbd>D</kbd> no macOS e Linux.</p>
+					<KeyCallout title="Você precisa saber">O REPL exibe automaticamente o resultado de expressões. Num arquivo, uma expressão isolada não aparece no terminal: use <code>print()</code>.</KeyCallout>
+				</section>
+
+				<section class="lesson-section" id="parte-1-10" aria-labelledby="title-1-10">
+					<div class="section-heading"><span class="section-number">1.10</span><div><p class="eyebrow"><span></span> Arquivos</p><h2 id="title-1-10">Arquivos .py</h2></div></div>
+					<p>Um arquivo com a extensão <code>.py</code> guarda código-fonte Python. Criar e executar um programa simples envolve estes passos:</p>
+					<ol class="step-list">
+						<li>Abra um editor de texto ou uma IDE.</li>
+						<li>Escreva <code>print("Olá, mundo!")</code>.</li>
+						<li>Salve o arquivo como <code>primeiro_programa.py</code>, usando UTF-8, uma codificação compatível com os caracteres usados em português.</li>
+						<li>No terminal, navegue até a pasta do arquivo e execute <code>python primeiro_programa.py</code> — ou o comando equivalente da sua instalação.</li>
+					</ol>
+					<div class="table-scroll" role="region" tabindex="0" aria-label="Comparação entre o REPL e um arquivo Python">
+						<table>
+							<thead><tr><th scope="col">Aspecto</th><th scope="col">REPL</th><th scope="col">Arquivo .py</th></tr></thead>
+							<tbody>
+								<tr><th scope="row">Como usar</th><td>Digitar no prompt e receber resposta na hora.</td><td>Salvar instruções e executar o arquivo.</td></tr>
+								<tr><th scope="row">Melhor para</th><td>Testar uma ideia ou explorar a linguagem.</td><td>Guardar, repetir e compartilhar um programa.</td></tr>
+								<tr><th scope="row">Expressão isolada</th><td>O valor é mostrado automaticamente.</td><td>Não é mostrado sem uma instrução como <code>print()</code>.</td></tr>
+							</tbody>
+						</table>
+					</div>
+					<div class="troubleshooting">
+						<h3>“Arquivo não encontrado”</h3>
+						<p>O terminal procura o arquivo na pasta atual. Use <code>cd</code> para mudar de pasta, <code>dir</code> no Windows ou <code>ls</code> no macOS e Linux para conferir seu conteúdo. Depois, execute o comando na pasta correta.</p>
+					</div>
+					<div class="troubleshooting">
+						<h3>Escolha um nome de arquivo claro</h3>
+						<p>Prefira nomes simples, sem espaços nem acentos. Evite nomes que coincidam com módulos da biblioteca, como <code>random.py</code>: esse arquivo pode esconder o módulo verdadeiro quando o programa tentar carregá-lo.</p>
+					</div>
+				</section>
+
+				<section class="lesson-section" id="parte-1-11" aria-labelledby="title-1-11">
+					<div class="section-heading"><span class="section-number">1.11</span><div><p class="eyebrow"><span></span> Legibilidade</p><h2 id="title-1-11">Comentários</h2></div></div>
+					<p>Um comentário começa com <code>#</code>. Python ignora o texto depois do símbolo até o fim da linha. Comentários podem explicar uma decisão, registrar um contexto ou desativar temporariamente uma instrução durante um teste.</p>
+					<CodeSample label="Comentário em uma linha e no fim da linha" code={'# Mostra uma saudação ao iniciar\nprint("Olá!")  # A saída aparece no terminal'} output="Olá!" />
+					<div class="split-grid">
+						<div class="info-card"><h3>Comentário que não ajuda</h3><CodeSample label="Evite explicar o óbvio" code={'# Mostra Olá\nprint("Olá")'} /></div>
+						<div class="info-card"><h3>Comentário com contexto</h3><CodeSample label="Explique a intenção" code={'# A saudação confirma que o programa iniciou.\nprint("Olá")'} /></div>
+					</div>
+					<p>Prefira explicar o motivo de uma escolha quando ele não for evidente. Um comentário que apenas repete a instrução pode ficar desatualizado e acrescentar pouco.</p>
+					<p>Você também pode comentar uma linha para o interpretador ignorá-la temporariamente. Uma <strong>docstring</strong> — texto de documentação escrito entre aspas triplas — é usada no início de módulos ou funções; veremos seu papel com mais detalhes ao estudar funções.</p>
+					<CodeSample label="Prévia de uma docstring" code={'"""Um módulo para saudar quem está aprendendo."""\nprint("Olá!")'} output="Olá!" />
+					<KeyCallout title="Você precisa saber">Use comentários para registrar contexto útil, não para narrar cada linha. Docstrings documentam módulos e funções e serão retomadas mais adiante.</KeyCallout>
+				</section>
+
+				<section class="lesson-section" id="parte-1-12" aria-labelledby="title-1-12">
+					<div class="section-heading"><span class="section-number">1.12</span><div><p class="eyebrow"><span></span> Mapa do caminho</p><h2 id="title-1-12">Primeiros conceitos fundamentais</h2></div></div>
+					<p>Estes nomes aparecem com frequência quando se aprende programação. Aqui são apenas uma prévia: cada ideia será aprofundada em partes futuras.</p>
+					<div class="concept-grid">
+						{concepts.map((concept) => (
+							<article class="concept-card">
+								<h3>{concept.title}</h3>
+								<p>{concept.text}</p>
+								<code>{concept.example}</code>
+							</article>
+						))}
+					</div>
+					<KeyCallout title="Prévia">Os exemplos são um mapa, não uma lição completa sobre variáveis, tipos, objetos ou funções. Por enquanto, concentre-se em ler <code>print()</code>, textos e contas simples.</KeyCallout>
+				</section>
+
+				<section class="lesson-section" id="parte-1-13" aria-labelledby="title-1-13">
+					<div class="section-heading"><span class="section-number">1.13</span><div><p class="eyebrow"><span></span> Leitura de código</p><h2 id="title-1-13">Como ler código Python</h2></div></div>
+					<p>Leia cada linha de cima para baixo. Identifique o que está entre parênteses, preveja o resultado e só então execute:</p>
+					<CodeSample label="Texto, número e expressão" code={'print("Daniel")\nprint(10)\nprint(10 + 5)'} output={'Daniel\n10\n15'} />
+					<p><code>"Daniel"</code> é texto, enquanto <code>10</code> é um número. Em <code>10 + 5</code>, Python calcula a expressão antes de passar o resultado para <code>print()</code>.</p>
+					<div class="split-grid">
+						<div class="info-card"><h3>Entre aspas: texto literal</h3><CodeSample label="Os símbolos também são texto" code={'print("10 + 5")'} output="10 + 5" /></div>
+						<div class="info-card"><h3>Sem aspas: operação</h3><CodeSample label="A conta é calculada" code={'print(10 + 5)'} output="15" /></div>
+					</div>
+					<p>Esta é uma prévia de variáveis: o nome à esquerda fica associado a um valor e pode ser usado depois. O tema será estudado em profundidade na próxima parte.</p>
+					<CodeSample label="Prévia: um nome associado a um valor" code={'nome = "Daniel"\nprint(nome)'} output="Daniel" />
+					<KeyCallout title="Prévia de variáveis" kind="preview">Variáveis serão estudadas em profundidade na próxima parte. Por enquanto, pense num nome que se refere a um valor; não é necessário usar variáveis nos exercícios desta parte.</KeyCallout>
+					<details class="answer">
+						<summary>Preveja a saída antes de abrir a resposta</summary>
+						<CodeSample label="Atividade de leitura" code={'print("Resultado:")\nprint(6 + 3)'} output={'Resultado:\n9'} />
+					</details>
+				</section>
+
+				<section class="lesson-section" id="parte-1-14" aria-labelledby="title-1-14">
+					<div class="section-heading"><span class="section-number">1.14</span><div><p class="eyebrow"><span></span> Comparação</p><h2 id="title-1-14">Python e outras linguagens</h2></div></div>
+					<p>As linguagens têm propósitos e ecossistemas diferentes. Esta tabela resume tendências gerais; implementações, ferramentas e usos variam dentro de cada linguagem.</p>
+					<div class="table-scroll" role="region" tabindex="0" aria-label="Comparação de Python, JavaScript, Java, C e C++">
+						<table>
+							<thead><tr><th scope="col">Linguagem</th><th scope="col">Sintaxe e tipagem</th><th scope="col">Execução, em geral</th><th scope="col">Usos comuns</th></tr></thead>
+							<tbody>
+								<tr><th scope="row">Python</th><td>Sintaxe concisa; tipagem dinâmica e forte.</td><td>CPython compila para bytecode executado por sua máquina virtual.</td><td>Automação, web, educação e dados.</td></tr>
+								<tr><th scope="row">JavaScript</th><td>Sintaxe com chaves; tipagem dinâmica e conversões em alguns contextos.</td><td>Engines executam o código e podem usar técnicas como compilação JIT.</td><td>Web no navegador e serviços no servidor.</td></tr>
+								<tr><th scope="row">Java</th><td>Sintaxe mais explícita; tipagem estática.</td><td>Compila para bytecode, executado pela Java Virtual Machine (JVM).</td><td>Serviços, aplicações empresariais e Android.</td></tr>
+								<tr><th scope="row">C</th><td>Sintaxe próxima à família C; tipagem estática.</td><td>Em geral, compila para código de máquina da plataforma.</td><td>Sistemas, bibliotecas e software de baixo nível.</td></tr>
+								<tr><th scope="row">C++</th><td>Sintaxe extensa; tipagem estática com recursos de alto nível.</td><td>Em geral, compila para código de máquina da plataforma.</td><td>Jogos, aplicações de alto desempenho e sistemas.</td></tr>
+							</tbody>
+						</table>
+					</div>
+					<p>“Estática” e “dinâmica” descrevem quando certos tipos são verificados; o caminho de execução depende da implementação. Não há uma única resposta para qual linguagem é mais rápida ou melhor para um projeto.</p>
+					<KeyCallout title="Uma escolha consciente">A escolha depende do problema, dos requisitos e da equipe — não de uma disputa entre linguagens.</KeyCallout>
+				</section>
+
+				<section class="lesson-section" id="parte-1-15" aria-labelledby="title-1-15">
+					<div class="section-heading"><span class="section-number">1.15</span><div><p class="eyebrow"><span></span> Equilíbrio</p><h2 id="title-1-15">Vantagens e limitações</h2></div></div>
+					<p>Conhecer os pontos fortes e as limitações de uma ferramenta ajuda a tomar decisões realistas.</p>
+					<div class="split-grid advantage-grid">
+						<article class="balance-card">
+							<h3>Pontos fortes</h3>
+							<ul><li>Sintaxe legível e aprendizagem gradual.</li><li>Boa produtividade para protótipos e automações.</li><li>Biblioteca padrão e ecossistema amplo.</li><li>Comunidade, documentação e aplicações variadas.</li><li>Integração com código e serviços de outras linguagens.</li></ul>
+						</article>
+						<article class="balance-card">
+							<h3>Pontos a considerar</h3>
+							<ul><li>Em tarefas muito intensivas em CPU, pode ser mais lenta que linguagens compiladas para código nativo.</li><li>O consumo de memória pode ser maior em alguns cenários.</li><li>Aplicativos mobile nativos e sistemas embarcados ou de baixo nível podem exigir outras ferramentas.</li><li>Projetos dependem da gestão de versões, ambientes e bibliotecas de terceiros.</li></ul>
+						</article>
+					</div>
+					<p>Parte do desempenho de bibliotecas científicas vem de componentes internos escritos em linguagens como C, C++ ou Rust. Você não precisa escolher uma ferramenta hoje: aprender os fundamentos ajuda a avaliar cada contexto.</p>
+					<KeyCallout title="Você precisa saber">Use Python quando suas características combinarem com o problema. Entender trade-offs é mais útil do que escolher uma linguagem por moda.</KeyCallout>
+				</section>
+
+				<section class="lesson-section" id="parte-1-16" aria-labelledby="title-1-16">
+					<div class="section-heading"><span class="section-number">1.16</span><div><p class="eyebrow"><span></span> Depuração</p><h2 id="title-1-16">Erros comuns de iniciantes</h2></div></div>
+					<p>Encontrar erros faz parte de programar. A mensagem pode apontar o tipo do problema e a linha que precisa ser investigada.</p>
+					<div class="error-list">
+						<article class="error-card"><h3>Aspas não fechadas</h3><p><strong>Sintoma:</strong> o texto começa, mas a string não termina com o mesmo tipo de aspas. Python informa <code>SyntaxError</code> (erro de sintaxe).</p><CodeSample label="String sem fechamento" code={'print("Olá)'} /><p><strong>Mensagem comum:</strong> <code>SyntaxError: unterminated string literal</code>; a redação pode variar entre versões.</p><p><strong>Correção:</strong> feche o texto com aspas correspondentes, por exemplo <code>print("Olá")</code>.</p></article>
+						<article class="error-card"><h3>Parênteses ausentes</h3><p><strong>Sintoma:</strong> uma chamada como <code>print</code> sem seus parênteses usa sintaxe inválida em Python 3 e resulta em <code>SyntaxError</code>.</p><CodeSample label="Sintaxe inválida em Python 3" code={'print "Olá"'} /><p><strong>Mensagem comum:</strong> <code>SyntaxError: Missing parentheses in call to 'print'</code>.</p><p><strong>Correção:</strong> use <code>print("Olá")</code>.</p></article>
+						<article class="error-card"><h3>Confundir <code>=</code> e <code>==</code></h3><p><strong>Sintoma:</strong> são símbolos com funções diferentes. <code>=</code> associa um valor a um nome; <code>==</code> compara valores. Comparações e variáveis serão ensinadas depois; não use isso nos exercícios desta parte.</p><CodeSample label="Prévia de uma comparação" code={'print(5 == 10)  # compara valores'} output="False" /></article>
+						<article class="error-card"><h3>Maiúsculas e minúsculas</h3><p>Python diferencia letras maiúsculas de minúsculas. <code>Print</code> não é a mesma função que <code>print</code>; usar o nome incorreto pode resultar em <code>NameError</code>.</p><CodeSample label="Nome de função incorreto" code={'Print("Olá")'} /><p><strong>Mensagem comum:</strong> <code>NameError: name 'Print' is not defined</code>.</p><p><strong>Correção:</strong> escreva o nome exatamente como definido: <code>print("Olá")</code>.</p></article>
+						<article class="error-card"><h3>Indentação incorreta</h3><p>Espaços à esquerda agrupam instruções em estruturas como condições e funções. Um bloco sem indentação válida causa <code>IndentationError</code>.</p><CodeSample label="Bloco sem indentação" code={'if True:\nprint("Olá")'} /><p><strong>Mensagem comum:</strong> <code>IndentationError: expected an indented block after 'if' statement</code>.</p><p><strong>Correção:</strong> coloque a instrução do bloco indentada. O tema de condições será visto depois.</p></article>
+						<article class="error-card"><h3>Aspas de tipos diferentes</h3><p>Se abrir a string com aspas duplas, feche com aspas duplas; se abrir com aspas simples, feche com aspas simples.</p><CodeSample label="Aspas que não combinam" code={'print("Olá\')'} /><p><strong>Mensagem comum:</strong> <code>SyntaxError: unterminated string literal</code>.</p><p><strong>Correção:</strong> <code>print("Olá")</code> ou <code>print('Olá')</code>.</p></article>
+						<article class="error-card"><h3>Executar na pasta errada</h3><p>Se o terminal não estiver na pasta do arquivo, o interpretador pode não encontrá-lo. Confira a pasta atual e use <code>cd</code> para navegar até o local correto.</p></article>
+						<article class="error-card"><h3>Dar ao arquivo um nome que conflita</h3><p>Um arquivo chamado como um módulo da biblioteca, por exemplo <code>random.py</code>, pode interferir quando o programa tenta carregar esse módulo. Escolha um nome descritivo que não coincida com bibliotecas.</p></article>
+						<article class="error-card"><h3>Tentar decorar tudo ou pular fundamentos</h3><p>Memorizar comandos sem entender seu efeito dificulta resolver problemas novos. Digite exemplos pequenos, modifique-os e retome os conceitos básicos quando necessário.</p></article>
+						<article class="error-card"><h3>Copiar código sem entender ou depender demais de IA</h3><p>Uma resposta gerada pode estar incompleta ou errada. Peça explicações e pistas, teste o código e confirme que você consegue explicar cada trecho antes de adotá-lo.</p></article>
+					</div>
+					<div class="troubleshooting">
+						<h3>Como ler um traceback</h3>
+						<p><strong>Traceback</strong> é o relatório que Python mostra quando uma execução falha. Leia a parte final para identificar o tipo e a mensagem do erro; em seguida, confira o arquivo e a linha indicados. Se houver várias chamadas, percorra a sequência para entender como o programa chegou ao ponto da falha.</p>
+					</div>
+					<KeyCallout title="Uma estratégia útil" kind="note">Leia a mensagem, localize o trecho indicado e faça uma alteração por vez. Erros são informações para depurar, não uma avaliação da sua capacidade.</KeyCallout>
+				</section>
+
+				<section class="lesson-section" id="parte-1-17" aria-labelledby="title-1-17">
+					<div class="section-heading"><span class="section-number">1.17</span><div><p class="eyebrow"><span></span> Método</p><h2 id="title-1-17">Como estudar Python</h2></div></div>
+					<p>Combine leitura, prática e projetos pequenos. Repetir o processo com regularidade costuma ser mais sustentável do que tentar aprender tudo numa única maratona.</p>
+					<div class="study-flow" aria-label="Fluxo sugerido de estudo">
+						<span>Ler</span><b aria-hidden="true">→</b><span>Digitar</span><b aria-hidden="true">→</b><span>Modificar</span><b aria-hidden="true">→</b><span>Quebrar</span><b aria-hidden="true">→</b><span>Corrigir</span><b aria-hidden="true">→</b><span>Explicar</span>
+					</div>
+					<ul class="feature-list">
+						<li><strong>Entenda os fundamentos</strong><span>Aprenda um conceito de cada vez e observe exemplos curtos.</span></li>
+						<li><strong>Pratique ativamente</strong><span>Digite o exemplo em vez de apenas lê-lo; depois, altere uma parte e compare o resultado.</span></li>
+						<li><strong>Leia código e mensagens de erro</strong><span>Preveja saídas, execute e use os erros para investigar o comportamento do programa.</span></li>
+						<li><strong>Construa projetos pequenos</strong><span>Combine ideias já estudadas num resultado que você consiga explicar.</span></li>
+					</ul>
+					<div class="split-grid">
+						<div class="info-card"><h3>IA como apoio</h3><p>Peça: “Explique por que este exemplo produz essa saída e me dê uma pista para resolver uma variação.”</p></div>
+						<div class="info-card"><h3>Evite terceirizar a aprendizagem</h3><p>Em vez de pedir uma solução pronta para copiar, tente primeiro; depois, compare alternativas e peça que expliquem cada linha.</p></div>
+					</div>
+					<KeyCallout title="Você precisa saber">Entenda o código antes de aceitá-lo. Leia, digite, modifique, teste, corrija e explique a solução com suas próprias palavras.</KeyCallout>
+				</section>
+
+				<section class="lesson-section practice-section" id="pratique" aria-labelledby="title-pratique">
+					<div class="section-heading"><span class="section-number">✳</span><div><p class="eyebrow"><span></span> Consolidação</p><h2 id="title-pratique">Pratique</h2></div></div>
+					<p>Resolva primeiro sem abrir as soluções. Os exercícios obrigatórios usam apenas textos, números, contas simples, comentários e <code>print()</code> — não exigem variáveis.</p>
+					<div class="exercise-list">
+						{exercises.map((exercise, index) => (
+							<article class="exercise-card">
+								<div class="exercise-title"><span>{String(index + 1).padStart(2, '0')}</span><h3>{exercise.title}</h3><small>{exercise.level}</small></div>
+								<p>{exercise.prompt}</p>
+								<details class="hint"><summary>Ver dica</summary><p>{exercise.hint}</p></details>
+								<details class="answer"><summary>Ver uma solução possível</summary><CodeSample label={`Solução do exercício ${index + 1}`} code={exercise.solution} output={exercise.output} /></details>
+							</article>
+						))}
+					</div>
+				</section>
+
+				<section class="lesson-section challenge-section" id="desafio" aria-labelledby="title-desafio">
+					<div class="section-heading"><span class="section-number">★</span><div><p class="eyebrow"><span></span> Desafio</p><h2 id="title-desafio">Meu primeiro programa</h2></div></div>
+					<p>Crie um arquivo chamado <code>apresentacao.py</code> e escreva um programa curto para apresentar uma ideia ou um interesse seu. Use apenas conteúdos vistos até aqui.</p>
+					<div class="challenge-requirements">
+						<h3>Requisitos</h3>
+						<ul><li>mostrar pelo menos três linhas com <code>print()</code>;</li><li>incluir um texto e o resultado de uma operação matemática simples;</li><li>acrescentar um comentário que explique uma escolha;</li><li>salvar e executar o arquivo pelo terminal.</li></ul>
+					</div>
+					<div class="self-check">
+						<h3>Checklist de autoavaliação</h3>
+						<ul><li>As aspas e os parênteses estão fechados?</li><li>O programa foi salvo com a extensão <code>.py</code>?</li><li>Consigo explicar o que cada instrução faz?</li><li>Comparei a saída real com a que eu esperava?</li></ul>
+					</div>
+					<details class="answer">
+						<summary>Ver uma possível solução</summary>
+						<CodeSample label="Uma apresentação possível" code={'# Apresentação inicial\nprint("Olá! Estou aprendendo Python.")\nprint("Gosto de criar projetos.")\nprint("Meu primeiro cálculo:")\nprint(4 + 6)'} output={'Olá! Estou aprendendo Python.\nGosto de criar projetos.\nMeu primeiro cálculo:\n10'} />
+						<p>Esta é apenas uma possibilidade. Você pode escolher outras mensagens e outra operação.</p>
+					</details>
+				</section>
+
+				<section class="lesson-section learned-section" id="aprendeu" aria-labelledby="title-aprendeu">
+					<div class="section-heading"><span class="section-number">✓</span><div><p class="eyebrow"><span></span> Revisão</p><h2 id="title-aprendeu">O que você aprendeu</h2></div></div>
+					<ul class="checklist">
+						<li>O que é Python, seu contexto histórico e algumas áreas em que é utilizado.</li>
+						<li>Características da linguagem e diferenças gerais em relação a outras tecnologias.</li>
+						<li>Como verificar uma instalação e escolher o comando de execução disponível.</li>
+						<li>O papel do interpretador, do REPL e dos arquivos <code>.py</code>.</li>
+						<li>Como exibir mensagens com <code>print()</code>, usar contas simples e escrever comentários.</li>
+						<li>Como ler exemplos, reconhecer conceitos que serão aprofundados e investigar erros comuns.</li>
+						<li>Como estruturar uma sessão de estudo e avaliar respostas de ferramentas de IA.</li>
+					</ul>
+				</section>
+
+				<section class="next-section" id="proxima-parte" aria-labelledby="title-next">
+					<p class="eyebrow"><span></span> Próxima parte</p>
+					<h2 id="title-next">Vamos aprofundar os fundamentos.</h2>
+					<p>A próxima etapa da trilha aprofundará variáveis e tipos de dados e será anunciada quando estiver disponível. Há uma página complementar com conteúdo já publicado sobre tipos primitivos, condicionais e laços; ela não substitui essa próxima parte.</p>
+					<a class="next-link" href="/linguagens/python/fundamentos">Abrir o conteúdo complementar já publicado <span aria-hidden="true">↗</span></a>
+				</section>
+			</article>
+
+			<section class="course-sources" aria-labelledby="sources-title">
+				<h2 id="sources-title">Fontes para continuar</h2>
+				<ul>
+					<li><a href="https://www.python.org/doc/essays/foreword/" target="_blank" rel="noreferrer">Guido van Rossum sobre as origens do Python</a></li>
+					<li><a href="https://python-history.blogspot.com/2009/01/brief-timeline-of-python.html" target="_blank" rel="noreferrer">Linha do tempo histórica do Python</a></li>
+					<li><a href="https://docs.python.org/3/whatsnew/2.0.html" target="_blank" rel="noreferrer">Notas oficiais do Python 2.0</a></li>
+					<li><a href="https://docs.python.org/3/whatsnew/3.0.html" target="_blank" rel="noreferrer">Notas oficiais do Python 3.0</a></li>
+					<li><a href="https://www.python.org/downloads/release/python-2718/" target="_blank" rel="noreferrer">Python 2.7.18: fim do suporte</a></li>
+					<li><a href="https://docs.python.org/3/faq/general.html" target="_blank" rel="noreferrer">FAQ oficial: visão geral da linguagem</a></li>
+					<li><a href="https://docs.python.org/3/tutorial/" target="_blank" rel="noreferrer">Tutorial oficial do Python</a></li>
+					<li><a href="https://docs.python.org/3/using/index.html" target="_blank" rel="noreferrer">Documentação: instalação e uso</a></li>
+					<li><a href="https://www.python.org/psf/" target="_blank" rel="noreferrer">Python Software Foundation</a></li>
+				</ul>
+			</section>
+			</div>
+		</div>
+	</div>
+</Layout>
 
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Source+Code+Pro:wght@400;500;600&display=swap');
-  :global(*) { box-sizing: border-box; } :global(body) { margin: 0; min-width: 320px; background: radial-gradient(ellipse 55% 28% at 85% 3%, rgb(91 61 255 / 27%), transparent 72%), radial-gradient(ellipse 48% 25% at 8% 40%, rgb(54 38 176 / 18%), transparent 72%), #070a18; color: #d8d8ea; font-family: 'Poppins', sans-serif; } :global(a) { color: inherit; text-decoration: none; } :global(::selection) { color: #070a18; background: #c084fc; }
-  .page { min-height: 100vh; padding: 30px 0 70px; } .container { width: min(1000px, calc(100% - 48px)); margin-inline: auto; } .header { display: flex; justify-content: flex-end; align-items: center; } .brand { display: inline-flex; align-items: center; gap: 10px; color: #fff; font-size: 20px; font-weight: 700; letter-spacing: -.6px; } .brand span:last-child span { color: #c084fc; } .brand-mark { display: grid; width: 34px; height: 34px; place-items: center; border: 1px solid #a855f7; border-radius: 10px; color: #fff; font-family: monospace; font-size: 12px; box-shadow: 0 0 22px rgb(168 85 247 / 35%); } .back-link { color: #9a9bb0; font-size: 12px; } .back-link:hover, .source-links a:hover { color: #c084fc; }
-  .hero { position: relative; padding: 100px 0 72px; } .hero-copy { max-width: 680px; } .eyebrow { display: flex; align-items: center; gap: 9px; margin: 0 0 13px; color: #c084fc; font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; } .eyebrow span { width: 22px; height: 2px; background: linear-gradient(90deg, #ff4fa3, #9b32ff); } h1 { margin: 0; color: #fff; font-size: clamp(42px, 8vw, 76px); font-weight: 500; letter-spacing: -4px; line-height: 1.08; } h1 strong { color: #c084fc; font-weight: 700; } .intro { max-width: 550px; margin: 24px 0 0; color: #9a9bb0; font-size: 15px; line-height: 1.8; } .python-badge { position: absolute; right: 4%; top: 110px; display: flex; width: 140px; height: 140px; flex-direction: column; align-items: center; justify-content: center; border: 1px solid rgb(34 197 94 / 40%); border-radius: 40px; background: linear-gradient(145deg, rgb(34 197 94 / 18%), rgb(192 132 252 / 10%)); box-shadow: 0 0 55px rgb(34 197 94 / 12%); transform: rotate(9deg); } .python-badge span { color: #4ade80; font-family: 'Source Code Pro', monospace; font-size: 42px; font-weight: 600; } .python-badge small { color: #9a9bb0; font-size: 10px; letter-spacing: 3px; }
-  .topic-nav { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 78px; } .topic-nav a { display: flex; align-items: center; gap: 13px; padding: 17px 18px; border: 1px solid rgb(255 255 255 / 8%); border-radius: 12px; background: rgb(255 255 255 / 3%); color: #d8d8ea; font-size: 12px; transition: .2s ease; } .topic-nav a:hover { border-color: #a855f7; transform: translateY(-2px); } .topic-nav span, .number { color: #c084fc; font-family: 'Source Code Pro', monospace; font-weight: 600; }
-  .lesson { max-width: 850px; } .lesson-block { margin-bottom: 88px; scroll-margin-top: 24px; } .block-heading { display: flex; align-items: center; gap: 22px; margin-bottom: 19px; } .number { font-size: 38px; opacity: .45; } .block-heading .eyebrow { margin-bottom: 5px; } h2 { margin: 0; color: #fff; font-size: clamp(28px, 4vw, 39px); letter-spacing: -1.5px; } .lead { max-width: 650px; margin: 0 0 24px; color: #a5a6b7; font-size: 14px; line-height: 1.8; } .code-columns { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; } .code-card { overflow: hidden; border: 1px solid rgb(255 255 255 / 9%); border-radius: 13px; background: #0c1022; } .code-head { display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid rgb(255 255 255 / 7%); padding: 12px 15px; } .code-head span { display: flex; gap: 5px; } .code-head i { display: block; width: 7px; height: 7px; border-radius: 50%; background: #5f6174; } .code-head i:first-child { background: #ff5f57; } .code-head i:nth-child(2) { background: #febc2e; } .code-head small { color: #696a80; font: 11px 'Source Code Pro', monospace; } pre { overflow-x: auto; margin: 0; padding: 21px; color: #e1e1ed; font: 13px/1.85 'Source Code Pro', monospace; } code { font-family: inherit; } .purple { color: #c084fc; } .green { color: #4ade80; } .orange { color: #fb923c; } .blue { color: #67e8f9; } .pink { color: #f472b6; } .comment { color: #62647a; } .tip { display: flex; gap: 17px; align-items: baseline; margin-top: 12px; padding: 15px 18px; border-left: 2px solid #a855f7; background: rgb(168 85 247 / 7%); font-size: 12px; } .tip strong { color: #c084fc; white-space: nowrap; } .tip span { color: #9a9bb0; line-height: 1.7; } .tip b { color: #fff; font-family: monospace; }
-  .sources { display: flex; align-items: end; justify-content: space-between; gap: 50px; border-top: 1px solid rgb(255 255 255 / 9%); padding-top: 45px; } .sources h2 { font-size: 30px; } .sources p:not(.eyebrow) { max-width: 430px; margin: 10px 0 0; color: #88899d; font-size: 12px; line-height: 1.7; } .source-links { display: grid; gap: 10px; min-width: 190px; } .source-links a { color: #9a9bb0; font-size: 12px; transition: color .2s; }
-  :global(:focus-visible) { outline: 3px solid #c084fc; outline-offset: 3px; } @media (max-width: 700px) { .container { width: min(100% - 32px, 1000px); } .header { align-items: start; } .back-link { padding-top: 8px; } .hero { padding: 78px 0 55px; } .python-badge { top: 55px; right: 0; width: 78px; height: 78px; border-radius: 22px; } .python-badge span { font-size: 25px; } .python-badge small { font-size: 7px; } .topic-nav { grid-template-columns: 1fr; margin-bottom: 58px; } .lesson-block { margin-bottom: 65px; } .code-columns, .sources { grid-template-columns: 1fr; display: grid; gap: 25px; } .sources { gap: 30px; } .tip { align-items: start; flex-direction: column; gap: 5px; } }
-</style>
+	.python-page {
+		padding-bottom: clamp(48px, 8vw, 88px);
+	}
 
-<style is:global>
-  :focus-visible { outline: 3px solid #c084fc; outline-offset: 3px; }
+	:global(html body) {
+		min-width: 0;
+	}
+
+	.container {
+		width: 100%;
+		min-width: 0;
+		margin: 0;
+	}
+
+	.python-course-layout {
+		display: grid;
+		grid-template-columns: minmax(215px, 245px) minmax(0, 1fr);
+		align-items: start;
+		gap: clamp(20px, 3vw, 38px);
+		width: min(1320px, calc(100% - (var(--space-page) * 2)));
+		margin-inline: auto;
+	}
+
+	.course-hero {
+		padding: clamp(28px, 5vw, 56px) 0 28px;
+	}
+
+	.back-link,
+	.inline-link,
+	.course-meta a,
+	.next-link,
+	.course-sources a {
+		color: var(--color-accent);
+		text-decoration: underline;
+		text-decoration-color: color-mix(in srgb, var(--color-accent) 48%, transparent);
+		text-underline-offset: 4px;
+		transition: color 0.2s ease, text-decoration-color 0.2s ease;
+	}
+
+	.back-link {
+		display: inline-block;
+		margin-bottom: 36px;
+		color: var(--color-muted);
+		font-size: 0.85rem;
+	}
+
+	.back-link:hover,
+	.inline-link:hover,
+	.course-meta a:hover,
+	.next-link:hover,
+	.course-sources a:hover {
+		color: var(--color-accent-pink);
+		text-decoration-color: currentColor;
+	}
+
+	.eyebrow {
+		display: flex;
+		align-items: center;
+		gap: 9px;
+		margin: 0 0 10px;
+		color: var(--color-accent);
+		font-size: 0.72rem;
+		font-weight: 700;
+		letter-spacing: 0.13em;
+		text-transform: uppercase;
+	}
+
+	.eyebrow > span {
+		width: 18px;
+		height: 2px;
+		border-radius: 2px;
+		background: var(--gradient-accent);
+	}
+
+	h1,
+	h2,
+	h3,
+	p {
+		overflow-wrap: anywhere;
+	}
+
+	h1 {
+		margin: 0;
+		color: var(--color-text);
+		font-size: clamp(2.5rem, 7vw, 5rem);
+		font-weight: 800;
+		line-height: 1.08;
+		letter-spacing: -0.045em;
+	}
+
+	h1 span {
+		background: var(--gradient-accent);
+		background-clip: text;
+		-webkit-background-clip: text;
+		color: transparent;
+	}
+
+	.hero-lead {
+		max-width: 48rem;
+		margin: 20px 0;
+		color: var(--color-body);
+		font-size: clamp(1rem, 2vw, 1.18rem);
+		line-height: 1.8;
+	}
+
+	.course-meta {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 12px 26px;
+		color: var(--color-muted);
+		font-size: 0.83rem;
+	}
+
+	.course-meta i {
+		color: var(--color-accent);
+		font-style: normal;
+	}
+
+	.objectives,
+	.toc,
+	.next-section {
+		margin-top: 28px;
+		padding: clamp(20px, 3vw, 30px);
+		border: 1px solid color-mix(in srgb, var(--color-accent) 22%, transparent);
+		border-radius: 18px;
+		background: linear-gradient(145deg, color-mix(in srgb, var(--color-accent) 8%, transparent), rgb(255 255 255 / 2%));
+		box-shadow: 0 14px 34px rgb(0 0 0 / 14%), inset 0 1px 0 rgb(255 255 255 / 5%);
+	}
+
+	.objectives h2,
+	.toc h2 {
+		margin: 0;
+		color: var(--color-text);
+		font-size: clamp(1.05rem, 2.4vw, 1.35rem);
+	}
+
+	.objectives ul,
+	.feature-list,
+	.balance-card ul,
+	.challenge-requirements ul,
+	.self-check ul,
+	.checklist {
+		display: grid;
+		gap: 10px;
+		margin: 14px 0 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	.objectives li,
+	.checklist li {
+		position: relative;
+		padding-left: 24px;
+		color: var(--color-body);
+	}
+
+	.objectives li::before,
+	.checklist li::before {
+		position: absolute;
+		left: 0;
+		color: var(--color-accent-pink);
+		content: '✓';
+	}
+
+	.toc {
+		margin-top: 20px;
+	}
+
+	.toc-heading {
+		margin-bottom: 16px;
+	}
+
+	.toc-heading .eyebrow {
+		margin-bottom: 6px;
+	}
+
+	.toc ol {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: 7px 14px;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	.toc a {
+		display: flex;
+		align-items: baseline;
+		gap: 9px;
+		min-width: 0;
+		padding: 5px 0;
+		color: var(--color-body);
+		font-size: 0.79rem;
+		line-height: 1.45;
+		transition: color 0.2s ease, transform 0.2s ease;
+	}
+
+	.toc a:hover {
+		color: var(--color-accent-pink);
+		transform: translateX(2px);
+	}
+
+	.toc a span {
+		flex: 0 0 auto;
+		color: var(--color-accent);
+		font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+		font-size: 0.7rem;
+	}
+
+	.lesson {
+		max-width: 880px;
+		margin: 0 auto;
+	}
+
+	.lesson-section {
+		margin-top: clamp(54px, 8vw, 88px);
+		scroll-margin-top: 24px;
+	}
+
+	.section-heading {
+		display: flex;
+		align-items: flex-start;
+		gap: 18px;
+		margin-bottom: 20px;
+	}
+
+	.section-number {
+		padding-top: 3px;
+		color: color-mix(in srgb, var(--color-accent) 65%, transparent);
+		font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+		font-size: clamp(1.1rem, 2.8vw, 1.5rem);
+		font-weight: 700;
+	}
+
+	.section-heading .eyebrow {
+		margin-bottom: 4px;
+		font-size: 0.65rem;
+	}
+
+	.section-heading h2 {
+		margin: 0;
+		color: var(--color-text);
+		font-size: clamp(1.55rem, 4vw, 2.35rem);
+		font-weight: 700;
+		line-height: 1.2;
+		letter-spacing: -0.03em;
+	}
+
+	.lesson-section > p,
+	.trait-card > p,
+	.error-card > p,
+	.exercise-card > p,
+	.next-section > p:not(.eyebrow) {
+		color: var(--color-body);
+		font-size: 0.94rem;
+		line-height: 1.8;
+	}
+
+	.lesson-section > p {
+		margin: 0 0 16px;
+	}
+
+	.lesson code,
+	.course-meta code,
+	.objectives code,
+	.next-section code {
+		color: var(--color-accent);
+		font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+		font-size: 0.94em;
+	}
+
+	.split-grid,
+	.install-grid,
+	.trait-grid,
+	.area-grid,
+	.concept-grid {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 14px;
+		margin: 20px 0;
+	}
+
+	.info-card,
+	.trait-card,
+	.area-card,
+	.concept-card,
+	.balance-card,
+	.error-card,
+	.exercise-card,
+	.challenge-requirements,
+	.self-check {
+		min-width: 0;
+		padding: clamp(17px, 2.6vw, 23px);
+		border: 1px solid color-mix(in srgb, var(--color-accent) 18%, transparent);
+		border-radius: 15px;
+		background: linear-gradient(155deg, color-mix(in srgb, var(--color-accent) 7%, transparent), rgb(255 255 255 / 2%));
+		box-shadow: 0 10px 24px rgb(0 0 0 / 10%);
+	}
+
+	.info-card h3,
+	.trait-card h3,
+	.area-card h3,
+	.concept-card h3,
+	.balance-card h3,
+	.error-card h3,
+	.exercise-card h3,
+	.challenge-requirements h3,
+	.self-check h3,
+	.troubleshooting h3 {
+		margin: 0 0 9px;
+		color: var(--color-text);
+		font-size: 1rem;
+		font-weight: 700;
+		line-height: 1.4;
+	}
+
+	.info-card > p,
+	.area-card > p,
+	.concept-card > p,
+	.exercise-card > p {
+		margin: 0;
+		color: var(--color-body);
+		font-size: 0.86rem;
+		line-height: 1.7;
+	}
+
+	.info-card .sample {
+		margin-top: 12px;
+	}
+
+	.timeline {
+		position: relative;
+		display: grid;
+		gap: 0;
+		margin: 26px 0 0 8px;
+		padding: 0 0 0 27px;
+		list-style: none;
+	}
+
+	.timeline::before {
+		position: absolute;
+		top: 6px;
+		bottom: 10px;
+		left: 4px;
+		width: 1px;
+		content: '';
+		background: linear-gradient(var(--color-accent-pink), color-mix(in srgb, var(--color-accent) 25%, transparent));
+	}
+
+	.timeline li {
+		position: relative;
+		padding: 0 0 22px;
+	}
+
+	.timeline li::before {
+		position: absolute;
+		top: 5px;
+		left: -27px;
+		width: 9px;
+		height: 9px;
+		border: 2px solid var(--color-accent-pink);
+		border-radius: 50%;
+		background: var(--color-background);
+		content: '';
+	}
+
+	.timeline li > span {
+		color: var(--color-accent);
+		font-size: 0.84rem;
+		font-weight: 700;
+	}
+
+	.timeline p {
+		margin: 4px 0 0;
+		color: var(--color-body);
+		font-size: 0.89rem;
+		line-height: 1.7;
+	}
+
+	.feature-list {
+		gap: 0;
+		margin: 20px 0;
+	}
+
+	.feature-list li {
+		display: grid;
+		grid-template-columns: minmax(130px, 0.38fr) minmax(0, 1fr);
+		gap: 14px;
+		padding: 14px 0;
+		border-bottom: 1px solid rgb(255 255 255 / 7%);
+		font-size: 0.88rem;
+		line-height: 1.65;
+	}
+
+	.feature-list li strong {
+		color: var(--color-accent);
+	}
+
+	.feature-list li span {
+		color: var(--color-body);
+	}
+
+	.area-grid {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+
+	.area-card {
+		position: relative;
+		padding-top: 26px;
+		transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
+	}
+
+	.area-card:hover {
+		transform: translateY(-3px);
+		border-color: color-mix(in srgb, var(--color-accent-pink) 48%, transparent);
+		box-shadow: 0 16px 30px rgb(0 0 0 / 16%);
+	}
+
+	.area-index {
+		display: inline-block;
+		margin-bottom: 12px;
+		color: var(--color-accent-pink);
+		font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+		font-size: 0.72rem;
+	}
+
+	.area-tag {
+		display: inline-flex;
+		margin-top: 14px;
+		padding: 5px 9px;
+		border: 1px solid color-mix(in srgb, var(--color-accent) 22%, transparent);
+		border-radius: 999px;
+		color: var(--color-accent);
+		font-size: 0.67rem;
+		line-height: 1.4;
+	}
+
+	.trait-grid {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+
+	.trait-card > p {
+		margin: 0 0 12px;
+		font-size: 0.85rem;
+	}
+
+	.trait-card > p:last-child {
+		margin-bottom: 0;
+	}
+
+	.preview-badge {
+		display: inline-block;
+		margin-left: 4px;
+		padding: 3px 7px;
+		border: 1px solid color-mix(in srgb, var(--color-accent-pink) 35%, transparent);
+		border-radius: 999px;
+		color: var(--color-accent-pink);
+		font-size: 0.62rem;
+		font-weight: 600;
+		vertical-align: middle;
+	}
+
+	.sample-note {
+		margin-top: 10px !important;
+		color: var(--color-muted) !important;
+		font-size: 0.78rem !important;
+	}
+
+	.explanation-list {
+		display: grid;
+		gap: 12px;
+		margin: 20px 0;
+	}
+
+	.explanation-list > div {
+		padding: 12px 15px;
+		border-left: 2px solid var(--color-accent);
+		background: color-mix(in srgb, var(--color-accent) 5%, transparent);
+	}
+
+	.explanation-list dt {
+		margin-bottom: 3px;
+		color: var(--color-accent);
+		font-weight: 700;
+	}
+
+	.explanation-list dd {
+		margin: 0;
+		color: var(--color-body);
+		font-size: 0.86rem;
+		line-height: 1.65;
+	}
+
+	.flow-card,
+	.study-flow {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: center;
+		gap: 10px;
+		margin: 20px 0;
+		padding: 17px;
+		border: 1px solid color-mix(in srgb, var(--color-accent) 20%, transparent);
+		border-radius: 14px;
+		background: color-mix(in srgb, var(--color-surface) 80%, transparent);
+	}
+
+	.flow-card span,
+	.study-flow span {
+		padding: 7px 11px;
+		border-radius: 9px;
+		background: color-mix(in srgb, var(--color-accent) 10%, transparent);
+		color: var(--color-body);
+		font-size: 0.78rem;
+		font-weight: 600;
+	}
+
+	.flow-card b,
+	.study-flow b {
+		color: var(--color-accent-pink);
+	}
+
+	.install-grid {
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+	}
+
+	.install-grid .info-card {
+		padding: 18px;
+	}
+
+	.troubleshooting {
+		margin: 17px 0;
+		padding: 17px 20px;
+		border: 1px solid color-mix(in srgb, var(--color-accent-pink) 20%, transparent);
+		border-radius: 13px;
+		background: color-mix(in srgb, var(--color-accent-pink) 5%, transparent);
+	}
+
+	.troubleshooting h3 {
+		color: var(--color-accent-pink);
+	}
+
+	.troubleshooting p,
+	.troubleshooting li {
+		margin: 0;
+		color: var(--color-body);
+		font-size: 0.85rem;
+		line-height: 1.7;
+	}
+
+	.troubleshooting ul {
+		display: grid;
+		gap: 7px;
+		margin: 8px 0 0;
+		padding-left: 20px;
+	}
+
+	.repl-steps {
+		display: grid;
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+		gap: 10px;
+		margin: 18px 0;
+	}
+
+	.repl-steps > div {
+		padding: 14px;
+		border: 1px solid color-mix(in srgb, var(--color-accent) 18%, transparent);
+		border-radius: 12px;
+		background: color-mix(in srgb, var(--color-accent) 5%, transparent);
+	}
+
+	.repl-steps dt {
+		color: var(--color-accent);
+		font-weight: 700;
+	}
+
+	.repl-steps dd {
+		margin: 5px 0 0;
+		color: var(--color-body);
+		font-size: 0.76rem;
+		line-height: 1.55;
+	}
+
+	kbd {
+		padding: 2px 6px;
+		border: 1px solid rgb(255 255 255 / 15%);
+		border-radius: 5px;
+		background: var(--color-surface);
+		color: var(--color-body);
+		font: 0.8em ui-monospace, SFMono-Regular, Consolas, monospace;
+	}
+
+	.table-scroll {
+		max-width: 100%;
+		overflow-x: auto;
+		margin: 20px 0;
+		border: 1px solid color-mix(in srgb, var(--color-accent) 20%, transparent);
+		border-radius: 14px;
+		background: color-mix(in srgb, var(--color-surface) 80%, transparent);
+	}
+
+	table {
+		width: 100%;
+		min-width: 620px;
+		border-collapse: collapse;
+		font-size: 0.79rem;
+		line-height: 1.6;
+	}
+
+	th,
+	td {
+		padding: 12px 14px;
+		border-bottom: 1px solid rgb(255 255 255 / 7%);
+		text-align: left;
+		vertical-align: top;
+	}
+
+	thead th {
+		background: color-mix(in srgb, var(--color-accent) 10%, transparent);
+		color: var(--color-accent);
+		font-weight: 700;
+	}
+
+	tbody th {
+		color: var(--color-text);
+		font-weight: 600;
+		white-space: nowrap;
+	}
+
+	td {
+		color: var(--color-body);
+	}
+
+	tbody tr:last-child th,
+	tbody tr:last-child td {
+		border-bottom: 0;
+	}
+
+	.step-list {
+		display: grid;
+		gap: 10px;
+		margin: 18px 0;
+		padding-left: 24px;
+		color: var(--color-body);
+		font-size: 0.88rem;
+		line-height: 1.7;
+	}
+
+	.concept-grid {
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+	}
+
+	.concept-card h3 {
+		color: var(--color-accent);
+	}
+
+	.concept-card > code {
+		display: block;
+		margin-top: 12px;
+		color: var(--color-accent-pink);
+		font-size: 0.76rem;
+		line-height: 1.55;
+		overflow-wrap: anywhere;
+	}
+
+	.answer,
+	.hint {
+		margin-top: 12px;
+		border: 1px solid color-mix(in srgb, var(--color-accent) 22%, transparent);
+		border-radius: 12px;
+		background: color-mix(in srgb, var(--color-accent) 5%, transparent);
+	}
+
+	.answer summary,
+	.hint summary {
+		padding: 12px 15px;
+		color: var(--color-accent);
+		cursor: pointer;
+		font-size: 0.84rem;
+		font-weight: 600;
+		list-style-position: inside;
+	}
+
+	.answer[open] summary,
+	.hint[open] summary {
+		border-bottom: 1px solid rgb(255 255 255 / 8%);
+	}
+
+	.answer > .sample {
+		margin: 12px;
+		width: calc(100% - 24px);
+	}
+
+	.answer > p,
+	.hint > p {
+		margin: 12px 15px 15px;
+		color: var(--color-body);
+		font-size: 0.82rem;
+		line-height: 1.65;
+	}
+
+	.balance-card h3 {
+		color: var(--color-accent);
+	}
+
+	.balance-card ul,
+	.challenge-requirements ul,
+	.self-check ul {
+		gap: 8px;
+		margin-top: 10px;
+		padding-left: 18px;
+		list-style: disc;
+		color: var(--color-body);
+		font-size: 0.85rem;
+		line-height: 1.65;
+	}
+
+	.error-list,
+	.exercise-list {
+		display: grid;
+		gap: 13px;
+	}
+
+	.error-card h3 {
+		color: var(--color-accent-pink);
+	}
+
+	.error-card > p {
+		margin: 9px 0;
+		font-size: 0.84rem;
+	}
+
+	.error-card > p:last-child {
+		margin-bottom: 0;
+	}
+
+	.exercise-title {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+		margin-bottom: 8px;
+	}
+
+	.exercise-title > span {
+		color: var(--color-accent);
+		font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+		font-size: 0.75rem;
+	}
+
+	.exercise-title h3 {
+		flex: 1;
+		margin: 0;
+	}
+
+	.exercise-title small {
+		padding: 3px 8px;
+		border: 1px solid color-mix(in srgb, var(--color-accent-pink) 22%, transparent);
+		border-radius: 999px;
+		color: var(--color-accent-pink);
+		font-size: 0.65rem;
+		white-space: nowrap;
+	}
+
+	.challenge-requirements,
+	.self-check {
+		margin: 16px 0;
+	}
+
+	.challenge-requirements h3,
+	.self-check h3 {
+		color: var(--color-accent);
+	}
+
+	.checklist {
+		margin-top: 20px;
+		gap: 12px;
+	}
+
+	.next-section {
+		margin-top: 70px;
+		scroll-margin-top: 24px;
+	}
+
+	.next-section h2 {
+		margin: 0;
+		color: var(--color-text);
+		font-size: clamp(1.6rem, 4vw, 2.2rem);
+		line-height: 1.2;
+	}
+
+	.next-section > p:not(.eyebrow) {
+		max-width: 50rem;
+		margin: 12px 0 18px;
+	}
+
+	.next-link {
+		display: inline-flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 7px;
+		font-size: 0.88rem;
+		font-weight: 600;
+	}
+
+	.course-sources {
+		display: grid;
+		grid-template-columns: 0.8fr 1.2fr;
+		gap: 28px;
+		margin-top: 58px;
+		padding-top: 25px;
+		border-top: 1px solid rgb(255 255 255 / 9%);
+	}
+
+	.course-sources h2 {
+		margin: 0;
+		color: var(--color-text);
+		font-size: 1.05rem;
+	}
+
+	.course-sources ul {
+		display: grid;
+		gap: 9px;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		font-size: 0.8rem;
+	}
+
+	@media (max-width: 1000px) {
+		.python-course-layout {
+			grid-template-columns: minmax(0, 1fr);
+		}
+	}
+
+	@media (max-width: 850px) {
+		.toc ol {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+
+		.install-grid {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+
+		.install-grid .info-card:last-child {
+			grid-column: 1 / -1;
+		}
+
+		.repl-steps {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+	}
+
+	@media (max-width: 600px) {
+		.python-course-layout {
+			width: calc(100% - 32px);
+		}
+
+		.back-link {
+			margin-bottom: 26px;
+		}
+
+		.course-meta {
+			align-items: flex-start;
+			flex-direction: column;
+			gap: 8px;
+		}
+
+		.toc ol,
+		.split-grid,
+		.install-grid,
+		.trait-grid,
+		.area-grid,
+		.concept-grid,
+		.course-sources {
+			grid-template-columns: 1fr;
+		}
+
+		.install-grid .info-card:last-child {
+			grid-column: auto;
+		}
+
+		.feature-list li {
+			grid-template-columns: 1fr;
+			gap: 3px;
+		}
+
+		.section-heading {
+			gap: 11px;
+		}
+
+		.section-number {
+			font-size: 1rem;
+		}
+
+		.repl-steps {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+
+		.flow-card,
+		.study-flow {
+			gap: 7px;
+			padding: 12px;
+		}
+
+		.flow-card span,
+		.study-flow span {
+			font-size: 0.7rem;
+		}
+
+		.exercise-title {
+			flex-wrap: wrap;
+		}
+
+		.exercise-title h3 {
+			flex-basis: calc(100% - 40px);
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.back-link,
+		.inline-link,
+		.course-meta a,
+		.next-link,
+		.course-sources a,
+		.toc a,
+		.area-card {
+			transition: none;
+		}
+
+		.toc a:hover,
+		.area-card:hover {
+			transform: none;
+		}
+	}
 </style>

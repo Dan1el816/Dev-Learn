@@ -1,0 +1,556 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Contributors from '../components/Contributors.astro';
+
+const principles = [
+	{
+		number: '01',
+		title: 'Aprenda com clareza',
+		text: 'Conteúdos organizados para ajudar você a entender os fundamentos e avançar no seu ritmo.',
+		icon: 'M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5z M4 5.5v15 M8 7h8 M8 11h7',
+	},
+	{
+		number: '02',
+		title: 'Pratique construindo',
+		text: 'Projetos e desafios aproximam o aprendizado dos problemas que você encontra no desenvolvimento.',
+		icon: 'M8 6 3 12l5 6 M16 6l5 6-5 6 M14 4l-4 16',
+	},
+	{
+		number: '03',
+		title: 'Evolua em comunidade',
+		text: 'Compartilhe experiências, tire dúvidas e descubra novas possibilidades junto com outras pessoas.',
+		icon: 'M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2 M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8z M20 8v6 M23 11h-6',
+	},
+];
+---
+
+<Layout title="Sobre | Dev Learn">
+	<Navbar />
+	<section class="about-page" aria-labelledby="about-title">
+		<div class="container">
+			<div class="about-hero">
+				<div class="about-copy">
+					<p class="eyebrow"><span></span> Sobre o Dev Learn</p>
+					<h1 id="about-title">Tecnologia se aprende <span>fazendo.</span></h1>
+					<p class="intro">
+						O Dev Learn é uma plataforma aberta para quem quer aprender programação e crescer na área de tecnologia.
+						Reunimos conteúdos, prática e comunidade para tornar essa jornada mais clara, acessível e colaborativa.
+					</p>
+					<a class="primary-link" href="/linguagens">
+						Explore os conteúdos
+						<svg viewBox="0 0 24 24" aria-hidden="true">
+							<path d="M5 12h14m-6-6 6 6-6 6" />
+						</svg>
+					</a>
+				</div>
+
+				<div class="code-card" aria-label="Aprenda, pratique e evolua com o Dev Learn">
+					<div class="code-top">
+						<div class="window-dots" aria-hidden="true"><i></i><i></i><i></i></div>
+						<span>dev-learn.js</span>
+					</div>
+					<div class="code-body" aria-hidden="true">
+						<p><span class="line-number">01</span><span class="code-purple">const</span> jornada = {'{'}</p>
+						<p><span class="line-number">02</span>&nbsp;&nbsp;aprender: <span class="code-pink">"no seu ritmo"</span>,</p>
+						<p><span class="line-number">03</span>&nbsp;&nbsp;praticar: <span class="code-pink">"com projetos"</span>,</p>
+						<p><span class="line-number">04</span>&nbsp;&nbsp;evoluir: <span class="code-pink">"em comunidade"</span></p>
+						<p><span class="line-number">05</span>{'}'};</p>
+						<p class="code-comment"><span class="line-number">06</span>// seu próximo passo começa aqui</p>
+					</div>
+					<div class="code-glow" aria-hidden="true"></div>
+				</div>
+			</div>
+
+			<div class="about-divider" aria-hidden="true"><span></span></div>
+
+			<section class="principles" aria-labelledby="principles-title">
+				<div class="section-heading">
+					<p class="eyebrow"><span></span> Nossa proposta</p>
+					<h2 id="principles-title">Menos barreiras. Mais possibilidades.</h2>
+					<p>
+						Começar ou avançar em tecnologia pode ser desafiador. O Dev Learn conecta conhecimento e prática
+						para ajudar estudantes e pessoas desenvolvedoras a dar o próximo passo.
+					</p>
+				</div>
+
+				<div class="principle-grid">
+					{principles.map((principle) => (
+						<article class="principle-card">
+							<div class="card-topline">
+								<span class="principle-icon" aria-hidden="true">
+									<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+										<path d={principle.icon} />
+									</svg>
+								</span>
+								<span class="principle-number">{principle.number}</span>
+							</div>
+							<h3>{principle.title}</h3>
+							<p>{principle.text}</p>
+						</article>
+					))}
+				</div>
+			</section>
+
+			<aside class="about-note">
+				<div class="note-mark" aria-hidden="true">&lt;/&gt;</div>
+				<div>
+					<p class="note-label">Feito para quem aprende fazendo</p>
+					<h2>Seu caminho em tecnologia não precisa ser solitário.</h2>
+				</div>
+				<a class="secondary-link" href="/">Conheça a plataforma</a>
+			</aside>
+		</div>
+	</section>
+	<Contributors title="Quem está por trás do Dev Learn" />
+</Layout>
+
+<style>
+	.about-page {
+		padding: clamp(28px, 5vw, 64px) 0 24px;
+	}
+
+	.about-hero {
+		display: grid;
+		grid-template-columns: minmax(0, 1.05fr) minmax(300px, 0.95fr);
+		align-items: center;
+		gap: clamp(36px, 7vw, 88px);
+		min-height: 420px;
+	}
+
+	.about-copy {
+		min-width: 0;
+	}
+
+	.eyebrow {
+		display: inline-flex;
+		align-items: center;
+		gap: 10px;
+		margin: 0 0 18px;
+		color: #d9c7ff;
+		font-size: 0.78rem;
+		font-weight: 700;
+		letter-spacing: 0.13em;
+		text-transform: uppercase;
+	}
+
+	.eyebrow > span {
+		width: 8px;
+		height: 8px;
+		border-radius: 50%;
+		background: #ff4fa3;
+		box-shadow: 0 0 14px rgb(255 79 163 / 72%);
+	}
+
+	.about-copy h1 {
+		max-width: 13ch;
+		margin: 0;
+		color: #fff;
+		font-size: clamp(2.6rem, 5.5vw, 4.5rem);
+		font-weight: 800;
+		line-height: 1.08;
+		letter-spacing: -0.045em;
+	}
+
+	.about-copy h1 span {
+		background: linear-gradient(90deg, #c084fc, #ff75b7);
+		background-clip: text;
+		-webkit-background-clip: text;
+		color: transparent;
+	}
+
+	.intro {
+		max-width: 40rem;
+		margin: 22px 0 28px;
+		color: #c8c9dc;
+		font-size: clamp(1rem, 1.5vw, 1.08rem);
+		line-height: 1.8;
+	}
+
+	.primary-link,
+	.secondary-link {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		gap: 10px;
+		min-height: 48px;
+		padding: 11px 20px;
+		border: 1px solid rgb(255 117 183 / 42%);
+		border-radius: 999px;
+		background: linear-gradient(90deg, #e6376c, #8b3ce0);
+		color: #fff;
+		font-size: 0.92rem;
+		font-weight: 600;
+		box-shadow: 0 8px 24px rgb(193 59 255 / 25%);
+		transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+	}
+
+	.primary-link svg {
+		width: 18px;
+		height: 18px;
+		fill: none;
+		stroke: currentColor;
+		stroke-linecap: round;
+		stroke-linejoin: round;
+		stroke-width: 1.8;
+		transition: transform 0.22s ease;
+	}
+
+	.primary-link:hover,
+	.secondary-link:hover {
+		border-color: #ffb3d6;
+		box-shadow: 0 12px 28px rgb(255 79 163 / 30%);
+		transform: translateY(-2px);
+	}
+
+	.primary-link:hover svg {
+		transform: translateX(3px);
+	}
+
+	.primary-link:focus-visible,
+	.secondary-link:focus-visible {
+		outline: 3px solid rgb(255 117 183 / 65%);
+		outline-offset: 4px;
+	}
+
+	.code-card {
+		position: relative;
+		isolation: isolate;
+		min-width: 0;
+		overflow: hidden;
+		border: 1px solid rgb(192 132 252 / 30%);
+		border-radius: 20px;
+		background: linear-gradient(145deg, rgb(20 22 55 / 96%), rgb(10 13 34 / 96%));
+		box-shadow: 0 26px 70px rgb(2 4 22 / 38%), inset 0 1px 0 rgb(255 255 255 / 8%);
+	}
+
+	.code-glow {
+		position: absolute;
+		right: -110px;
+		bottom: -165px;
+		z-index: -1;
+		width: 290px;
+		height: 290px;
+		border-radius: 50%;
+		background: rgb(139 60 224 / 28%);
+		filter: blur(65px);
+		pointer-events: none;
+	}
+
+	.code-top {
+		display: flex;
+		align-items: center;
+		gap: 16px;
+		min-height: 52px;
+		padding: 0 20px;
+		border-bottom: 1px solid rgb(255 255 255 / 8%);
+		color: #9395b2;
+		font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+		font-size: 0.76rem;
+	}
+
+	.window-dots {
+		display: flex;
+		gap: 6px;
+	}
+
+	.window-dots i {
+		width: 8px;
+		height: 8px;
+		border-radius: 50%;
+		background: #ff75b7;
+	}
+
+	.window-dots i:nth-child(2) {
+		background: #c084fc;
+	}
+
+	.window-dots i:nth-child(3) {
+		background: #5b8cff;
+	}
+
+	.code-body {
+		position: relative;
+		padding: 25px clamp(14px, 3vw, 30px) 30px;
+		color: #e6e4f3;
+		font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+		font-size: clamp(0.69rem, 1.45vw, 0.88rem);
+		line-height: 2.1;
+		white-space: nowrap;
+	}
+
+	.code-body p {
+		margin: 0;
+	}
+
+	.line-number {
+		display: inline-block;
+		width: 34px;
+		color: #646783;
+		user-select: none;
+	}
+
+	.code-purple {
+		color: #c084fc;
+	}
+
+	.code-pink {
+		color: #ff75b7;
+	}
+
+	.code-comment {
+		color: #8587a5;
+	}
+
+	.about-divider {
+		display: flex;
+		align-items: center;
+		gap: 18px;
+		margin: clamp(42px, 7vw, 76px) 0;
+	}
+
+	.about-divider::before,
+	.about-divider::after {
+		height: 1px;
+		flex: 1;
+		content: '';
+		background: linear-gradient(90deg, transparent, rgb(192 132 252 / 28%));
+	}
+
+	.about-divider::after {
+		transform: rotate(180deg);
+	}
+
+	.about-divider span {
+		width: 7px;
+		height: 7px;
+		border-radius: 50%;
+		background: #ff4fa3;
+		box-shadow: 0 0 14px rgb(255 79 163 / 60%);
+	}
+
+	.principles {
+		display: flex;
+		flex-direction: column;
+		gap: 34px;
+	}
+
+	.section-heading {
+		max-width: 44rem;
+	}
+
+	.section-heading .eyebrow {
+		margin-bottom: 12px;
+	}
+
+	.section-heading h2 {
+		margin: 0;
+		color: #fff;
+		font-size: clamp(1.75rem, 3.5vw, 2.65rem);
+		font-weight: 700;
+		line-height: 1.2;
+		letter-spacing: -0.035em;
+	}
+
+	.section-heading > p:last-child {
+		max-width: 40rem;
+		margin: 14px 0 0;
+		color: #b7b9c9;
+		font-size: 0.98rem;
+		line-height: 1.75;
+	}
+
+	.principle-grid {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: 18px;
+	}
+
+	.principle-card {
+		min-width: 0;
+		padding: 24px;
+		border: 1px solid rgb(139 92 246 / 22%);
+		border-radius: 18px;
+		background: linear-gradient(155deg, rgb(139 92 246 / 11%), rgb(255 117 183 / 3%));
+		box-shadow: 0 10px 30px rgb(17 24 39 / 18%);
+		transition: transform 0.24s ease, border-color 0.24s ease, box-shadow 0.24s ease;
+	}
+
+	.principle-card:hover {
+		border-color: rgb(255 117 183 / 50%);
+		box-shadow: 0 18px 36px rgb(168 85 247 / 17%);
+		transform: translateY(-4px);
+	}
+
+	.card-topline {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		margin-bottom: 22px;
+	}
+
+	.principle-icon {
+		display: grid;
+		place-items: center;
+		width: 46px;
+		height: 46px;
+		border-radius: 14px;
+		background: linear-gradient(135deg, #9b32ff, #ff3f91);
+		color: #fff;
+		box-shadow: 0 8px 22px rgb(171 85 255 / 27%);
+	}
+
+	.principle-icon svg {
+		width: 22px;
+		height: 22px;
+	}
+
+	.principle-number {
+		color: rgb(192 132 252 / 70%);
+		font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+		font-size: 0.78rem;
+	}
+
+	.principle-card h3 {
+		margin: 0 0 9px;
+		color: #fff;
+		font-size: 1.05rem;
+		font-weight: 700;
+	}
+
+	.principle-card > p {
+		margin: 0;
+		color: #aeb0c6;
+		font-size: 0.9rem;
+		line-height: 1.7;
+	}
+
+	.about-note {
+		display: flex;
+		align-items: center;
+		gap: 22px;
+		margin-top: clamp(44px, 7vw, 72px);
+		padding: 26px clamp(20px, 4vw, 36px);
+		border: 1px solid rgb(192 132 252 / 26%);
+		border-radius: 18px;
+		background:
+			radial-gradient(circle at 90% 0%, rgb(255 79 163 / 13%), transparent 34%),
+			linear-gradient(120deg, rgb(35 27 78 / 86%), rgb(15 18 47 / 92%));
+		box-shadow: inset 0 1px 0 rgb(255 255 255 / 7%);
+	}
+
+	.note-mark {
+		display: grid;
+		place-items: center;
+		width: 56px;
+		height: 56px;
+		flex: 0 0 auto;
+		border: 1px solid rgb(255 117 183 / 30%);
+		border-radius: 16px;
+		background: rgb(10 12 39 / 42%);
+		color: #ff75b7;
+		font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+		font-size: 1.1rem;
+		font-weight: 700;
+	}
+
+	.about-note > div:nth-child(2) {
+		min-width: 0;
+		flex: 1;
+	}
+
+	.note-label {
+		margin: 0 0 4px;
+		color: #d9c7ff;
+		font-size: 0.73rem;
+		font-weight: 700;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+	}
+
+	.about-note h2 {
+		margin: 0;
+		color: #fff;
+		font-size: clamp(1.05rem, 2.2vw, 1.45rem);
+		font-weight: 600;
+		line-height: 1.4;
+	}
+
+	.secondary-link {
+		flex: 0 0 auto;
+		border-color: rgb(192 132 252 / 30%);
+		background: rgb(255 255 255 / 5%);
+		box-shadow: none;
+	}
+
+	@media (max-width: 800px) {
+		.about-hero {
+			grid-template-columns: minmax(0, 1fr) minmax(250px, 0.9fr);
+			gap: 28px;
+		}
+
+		.principle-grid {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+
+		.principle-card:last-child {
+			grid-column: 1 / -1;
+		}
+	}
+
+	@media (max-width: 620px) {
+		.about-page {
+			padding-top: 18px;
+		}
+
+		.about-hero {
+			grid-template-columns: 1fr;
+			gap: 34px;
+		}
+
+		.about-copy h1 {
+			max-width: 12ch;
+		}
+
+		.code-body {
+			font-size: clamp(0.68rem, 2.7vw, 0.84rem);
+		}
+
+		.principle-grid {
+			grid-template-columns: 1fr;
+		}
+
+		.principle-card:last-child {
+			grid-column: auto;
+		}
+
+		.about-note {
+			align-items: flex-start;
+			flex-wrap: wrap;
+			gap: 16px;
+		}
+
+		.about-note > div:nth-child(2) {
+			flex-basis: calc(100% - 74px);
+		}
+
+		.secondary-link {
+			width: 100%;
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.primary-link,
+		.primary-link svg,
+		.secondary-link,
+		.principle-card {
+			transition: none;
+		}
+
+		.principle-card:hover,
+		.primary-link:hover,
+		.secondary-link:hover {
+			transform: none;
+		}
+	}
+</style>

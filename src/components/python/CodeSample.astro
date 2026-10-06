@@ -1,0 +1,87 @@
+---
+interface Props {
+	label: string;
+	code: string;
+	language?: 'python' | 'bash' | 'text';
+	output?: string;
+}
+
+const { label, code, language = 'python', output } = Astro.props;
+---
+
+<section class="sample" aria-label={`Exemplo: ${label}`}>
+	<div class="sample-pane">
+		<div class="sample-heading">
+			<span>{language}</span>
+			<span>{label}</span>
+		</div>
+		<pre><code>{code}</code></pre>
+	</div>
+	{output != null && (
+		<div class="output-pane">
+			<div class="output-heading">Saída</div>
+			<pre><code>{output}</code></pre>
+		</div>
+	)}
+</section>
+
+<style>
+	.sample {
+		min-width: 0;
+		overflow: hidden;
+		border: 1px solid color-mix(in srgb, var(--color-accent) 24%, transparent);
+		border-radius: 14px;
+		background: color-mix(in srgb, var(--color-surface) 88%, var(--color-background));
+		box-shadow: inset 0 1px 0 rgb(255 255 255 / 4%);
+	}
+
+	.sample-pane + .output-pane {
+		border-top: 1px solid rgb(255 255 255 / 8%);
+	}
+
+	.sample-heading,
+	.output-heading {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		min-height: 38px;
+		padding: 8px 14px;
+		border-bottom: 1px solid rgb(255 255 255 / 7%);
+		color: var(--color-muted);
+		font-size: 0.7rem;
+		font-weight: 600;
+		letter-spacing: 0.04em;
+	}
+
+	.sample-heading span:first-child {
+		color: var(--color-accent);
+		text-transform: uppercase;
+	}
+
+	.output-heading {
+		justify-content: flex-start;
+		color: var(--color-accent-pink);
+	}
+
+	pre {
+		max-width: 100%;
+		overflow-x: auto;
+		margin: 0;
+		padding: 15px 16px;
+		color: var(--color-body);
+		font: 0.82rem/1.8 ui-monospace, SFMono-Regular, Consolas, monospace;
+		tab-size: 4;
+		white-space: pre;
+	}
+
+	code {
+		font: inherit;
+	}
+
+	@media (max-width: 520px) {
+		pre {
+			font-size: 0.74rem;
+			padding-inline: 12px;
+		}
+	}
+</style>
