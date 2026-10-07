@@ -24,6 +24,24 @@ const projects = [
 		className: 'project-calculus',
 	},
 ];
+
+const diferenciais = [
+	{
+		titulo: 'Focamos na prática.',
+		texto: 'A gente sabe que ninguém aprende apenas lendo o conteúdo né? Então aprenda fazendo: cada conteúdo foi pensado para levar você da teoria à aplicação. Projetos pensados em como você pode absorver o conteúdo da melhor forma enquanto constrói o projeto.',
+		video: '/Videos/coding_main.mp4',
+	},
+	{
+		titulo: 'Sugerimos projetos reais.',
+		texto: 'Essa é a parte divertida! Depois de toda a teoria te damos sugestões de projetos que irão desenvolver suas habilidades e formarão um portfólio de verdade.',
+		video: '/Videos/coding_main2.mp4',
+	},
+	{
+		titulo: 'O conteúdo é conectado.',
+		texto: 'Se você é fã de outros conteúdos ou matérias escolares que não têm nada a ver com programação, aqui vai uma novidade pra você: relacionamos diferentes áreas do conhecimento nos nossos conteúdos de programação porque estudos em ciência cognitiva mostram que a aprendizagem intercalada e a retomada de conceitos em novos contextos está relacionada a uma compreensão mais duradoura.',
+		video: null,
+	},
+];
 ---
 
 <section class="featured-projects">
@@ -61,7 +79,7 @@ const projects = [
 
 		<div class="project-cta">
 			<div class="cta-copy">
-				<h3>Pronto para transformar aprendizado em prática?</h3>
+				<h3>Recomendações de projetos em cada Trilha e conteúdo</h3>
 			</div>
 			<a class="cta-button" href="/conteudos">
 				Explorar conteúdos
@@ -71,10 +89,6 @@ const projects = [
 			</a>
 		</div>
 
-		<blockquote class="learning-quote">
-			<p>"Só se aprende fazendo, pois, mesmo que penses que sabes, só terás certeza fazendo."</p>
-			<cite>Aristóteles</cite>
-		</blockquote>
 
 		<div class="differentials">
 			<div class="differentials-heading">
@@ -84,9 +98,27 @@ const projects = [
 			<div class="differentials-carousel" aria-label="Nossos diferenciais" aria-roledescription="carousel">
 				<div class="differentials-viewport" tabindex="0">
 					<div class="differentials-copy">
-						<p role="group" aria-roledescription="slide" aria-label="1 de 3"><strong>Focamos na prática.</strong> A gente sabe que ninguém aprende apenas lendo o conteúdo né? Então Aprenda fazendo: cada conteúdo foi pensado para levar você da teoria à aplicação. Projetos pensado em como você pode absorver o conteúdo da melhor forma enquanto constrói o projeto</p>
-						<p role="group" aria-roledescription="slide" aria-label="2 de 3"><strong>Sugerimos Projetos reais.</strong> Essa a parte divertida! Depois de toda a teoria te damos sugestões de projetos que irão desenvolver suas habilidades e formarão um portfólio de verdade.</p>
-						<p role="group" aria-roledescription="slide" aria-label="3 de 3"><strong>O Conteúdo é conectado.</strong> Se você é fã de outros conteúdos ou matérias escolares que não tem nada haver com programação, aqui vai uma novidade pra você: Relacionamos diferentes áreas do conhecimento nos nossos conteúdos de programação porque estudos em ciência cognitiva mostram que a aprendizagem intercalada e a retomada de conceitos em novos contextos está relacionada a uma compreensão mais duradoura.</p>
+						{diferenciais.map((item, index) => (
+							<div
+								class={`differential-slide ${item.video ? '' : 'no-video'}`}
+								role="group"
+								aria-roledescription="slide"
+								aria-label={`${index + 1} de ${diferenciais.length}`}
+							>
+								{item.video && (
+									<video class="differential-bg" autoplay loop muted playsinline preload="metadata" aria-hidden="true">
+										<source src={item.video} type="video/mp4" />
+									</video>
+								)}
+								<div class="differential-overlay" aria-hidden="true"></div>
+								<div class="differential-text">
+									<span class="differential-count">
+										{String(index + 1).padStart(2, '0')} / {String(diferenciais.length).padStart(2, '0')}
+									</span>
+									<p><strong>{item.titulo}</strong> {item.texto}</p>
+								</div>
+							</div>
+						))}
 					</div>
 				</div>
 				<div class="differentials-controls">
@@ -122,18 +154,18 @@ const projects = [
 </section>
 
 <script>
-	const carousels = document.querySelectorAll<HTMLElement>('.differentials-carousel');
+	const carousels = document.querySelectorAll('.differentials-carousel');
 
 	carousels.forEach((carousel) => {
-		const viewport = carousel.querySelector<HTMLElement>('.differentials-viewport');
-		const track = carousel.querySelector<HTMLElement>('.differentials-copy');
-		const slides = Array.from(carousel.querySelectorAll<HTMLElement>('[role="group"]'));
-		const indicators = Array.from(carousel.querySelectorAll<HTMLButtonElement>('[data-carousel-slide]'));
-		const previous = carousel.querySelector<HTMLButtonElement>('[data-carousel-previous]');
-		const next = carousel.querySelector<HTMLButtonElement>('[data-carousel-next]');
+		const viewport = carousel.querySelector('.differentials-viewport');
+		const track = carousel.querySelector('.differentials-copy');
+		const slides = Array.from(carousel.querySelectorAll('[role="group"]'));
+		const indicators = Array.from(carousel.querySelectorAll('[data-carousel-slide]'));
+		const previous = carousel.querySelector('[data-carousel-previous]');
+		const next = carousel.querySelector('[data-carousel-next]');
 		let currentSlide = 0;
 		let touchStartX = 0;
-		let autoplayTimer: ReturnType<typeof setTimeout> | undefined;
+		let autoplayTimer;
 		let isHovered = false;
 		let isFocused = false;
 		let isInteracting = false;
@@ -141,7 +173,20 @@ const projects = [
 
 		if (!viewport || !track || !previous || !next || slides.length === 0) return;
 
-		const showSlide = (index: number) => {
+		const playVisibleVideo = () => {
+			slides.forEach((slide, slideIndex) => {
+				const video = slide.querySelector('video');
+				if (!video) return;
+				if (slideIndex === currentSlide) {
+					video.currentTime = 0;
+					video.play().catch(() => {});
+				} else {
+					video.pause();
+				}
+			});
+		};
+
+		const showSlide = (index) => {
 			currentSlide = (index + slides.length) % slides.length;
 			track.style.transform = `translateX(-${currentSlide * 100}%)`;
 			indicators.forEach((indicator, indicatorIndex) => {
@@ -150,6 +195,7 @@ const projects = [
 				if (isActive) indicator.setAttribute('aria-current', 'true');
 				else indicator.removeAttribute('aria-current');
 			});
+			playVisibleVideo();
 		};
 
 		const canAutoplay = () => !document.hidden && !prefersReducedMotion.matches && !isHovered && !isFocused && !isInteracting;
@@ -212,7 +258,7 @@ const projects = [
 			updateAutoplay();
 		});
 		carousel.addEventListener('focusout', (event) => {
-			if (!carousel.contains(event.relatedTarget as Node | null)) {
+			if (!carousel.contains(event.relatedTarget)) {
 				isFocused = false;
 				updateAutoplay();
 			}
@@ -236,6 +282,8 @@ const projects = [
 		}, { passive: true });
 		document.addEventListener('visibilitychange', updateAutoplay);
 		prefersReducedMotion.addEventListener('change', updateAutoplay);
+
+		playVisibleVideo();
 		scheduleAutoplay();
 	});
 </script>
@@ -427,14 +475,14 @@ const projects = [
 	}
 
 	.project-cta {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 28px;
-    margin-top: 34px;
-    padding: 28px 32px;
-    border-radius: 10px;
-}
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 28px;
+		margin-top: 34px;
+		padding: 28px 32px;
+		border-radius: 10px;
+	}
 
 	.cta-copy {
 		max-width: 42rem;
@@ -553,6 +601,14 @@ const projects = [
 		font-size: 1.05rem;
 	}
 
+	/* ===== Carrossel largo com vídeo de fundo ===== */
+	.differentials-carousel {
+		position: relative;
+		width: min(1240px, 94vw);
+		margin-left: 50%;
+		transform: translateX(-50%);
+	}
+
 	.differentials-copy {
 		display: flex;
 		width: 100%;
@@ -560,40 +616,115 @@ const projects = [
 	}
 
 	.differentials-viewport {
-		max-width: 58rem;
-		margin-inline: auto;
 		overflow: hidden;
-		border: 1px solid rgb(192 132 252 / 18%);
-		border-radius: 12px;
-		background: linear-gradient(145deg, rgb(26 25 67 / 68%), rgb(15 20 50 / 54%));
-		box-shadow: inset 0 1px 0 rgb(255 255 255 / 7%);
+		border: 1px solid rgb(192 132 252 / 22%);
+		border-radius: 24px;
+		background: #0b0f24;
+		box-shadow: 0 30px 60px rgb(3 5 25 / 45%), inset 0 1px 0 rgb(255 255 255 / 8%);
 		outline: none;
 	}
 
 	.differentials-viewport:focus-visible {
-		box-shadow: 0 0 0 3px rgb(255 79 163 / 24%), inset 0 1px 0 rgb(255 255 255 / 7%);
+		box-shadow: 0 0 0 3px rgb(255 79 163 / 40%), 0 30px 60px rgb(3 5 25 / 45%);
 	}
 
-	.differentials-copy p {
+	.differential-slide {
+		position: relative;
+		display: flex;
 		box-sizing: border-box;
 		flex: 0 0 100%;
-		max-width: none;
-		min-height: 190px;
-		margin: 0;
-		padding: 28px 30px;
-		border: 0;
-		color: #bfc0d7;
-		font-size: clamp(1.08rem, 1.6vw, 1.24rem);
-		line-height: 1.75;
+		align-items: flex-end;
+		min-height: clamp(420px, 56vw, 560px);
+		padding: 40px 48px 96px;
+		overflow: hidden;
 	}
 
+	/* vídeo de fundo */
+	.differential-bg {
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		transform: scale(1.04);
+	}
+
+	/* fallback sem vídeo */
+	.differential-slide.no-video {
+		background:
+			radial-gradient(circle at 20% 30%, rgb(255 79 163 / 35%), transparent 45%),
+			radial-gradient(circle at 80% 70%, rgb(53 183 255 / 30%), transparent 45%),
+			linear-gradient(135deg, #1a1943, #0f1432);
+		background-size: 140% 140%;
+		animation: bg-drift 10s ease-in-out infinite alternate;
+	}
+
+	/* escurece o vídeo para o texto ficar legível */
+	.differential-overlay {
+		position: absolute;
+		inset: 0;
+		background:
+			linear-gradient(to top, rgb(8 12 36 / 92%) 0%, rgb(8 12 36 / 55%) 45%, rgb(8 12 36 / 15%) 100%),
+			linear-gradient(90deg, rgb(139 60 224 / 22%), transparent 60%);
+	}
+
+	/* card de vidro com o texto */
+	.differential-text {
+		position: relative;
+		z-index: 1;
+		max-width: 42rem;
+		padding: 26px 30px;
+		border: 1px solid rgb(255 255 255 / 14%);
+		border-radius: 18px;
+		background: rgb(15 20 50 / 48%);
+		backdrop-filter: blur(14px);
+		-webkit-backdrop-filter: blur(14px);
+		box-shadow: 0 18px 40px rgb(3 5 25 / 35%);
+	}
+
+	.differential-count {
+		display: inline-block;
+		margin-bottom: 10px;
+		color: #ff75b7;
+		font-size: 0.78rem;
+		font-weight: 700;
+		letter-spacing: 0.16em;
+	}
+
+	.differential-text p {
+		margin: 0;
+		color: #e4e4f2;
+		font-size: clamp(1rem, 1.4vw, 1.15rem);
+		line-height: 1.7;
+	}
+
+	.differential-text strong {
+		display: block;
+		margin-bottom: 6px;
+		background: linear-gradient(100deg, #ffffff, #ff75b7);
+		background-clip: text;
+		-webkit-background-clip: text;
+		color: transparent;
+		font-size: clamp(1.5rem, 2.6vw, 2.1rem);
+		font-weight: 800;
+		line-height: 1.15;
+	}
+
+	/* controles sobrepostos ao vídeo */
 	.differentials-controls {
+		position: absolute;
+		right: 32px;
+		bottom: 26px;
+		left: 32px;
+		z-index: 2;
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
-		max-width: 58rem;
-		margin-top: 18px;
-		margin-inline: auto;
+		pointer-events: none;
+	}
+
+	.differentials-controls > * {
+		pointer-events: auto;
 	}
 
 	.carousel-button,
@@ -610,6 +741,8 @@ const projects = [
 		width: 40px;
 		height: 40px;
 		border-radius: 50%;
+		backdrop-filter: blur(8px);
+		-webkit-backdrop-filter: blur(8px);
 		transition: background 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
 	}
 
@@ -658,15 +791,13 @@ const projects = [
 		outline-offset: 3px;
 	}
 
-	.differentials-copy strong {
-		background: linear-gradient(100deg, #ffffff, #ff75b7);
-		background-clip: text;
-		-webkit-background-clip: text;
-		color: transparent;
-		font-size: 1.08em;
-		font-weight: 800;
+	@keyframes bg-drift {
+		to {
+			background-position: 100% 100%;
+		}
 	}
 
+	/* ===== Sobre ===== */
 	.about-cta {
 		position: relative;
 		display: grid;
@@ -793,6 +924,23 @@ const projects = [
 		}
 	}
 
+	@media (max-width: 640px) {
+		.differential-slide {
+			min-height: 480px;
+			padding: 20px 16px 84px;
+		}
+
+		.differential-text {
+			padding: 18px;
+		}
+
+		.differentials-controls {
+			right: 16px;
+			bottom: 18px;
+			left: 16px;
+		}
+	}
+
 	@media (max-width: 520px) {
 		.project-card {
 			display: block;
@@ -819,11 +967,6 @@ const projects = [
 			padding-top: 28px;
 		}
 
-		.differentials-copy p {
-			min-height: 230px;
-			padding: 22px 20px;
-		}
-
 		.about-cta {
 			grid-template-columns: 1fr;
 			gap: 24px;
@@ -844,14 +987,12 @@ const projects = [
 			transition: none;
 		}
 
-		.about-cta-visual {
+		.differential-slide.no-video {
 			animation: none;
 		}
 
-		.about-cta-visual img {
-			animation: none;
-		}
-
+		.about-cta-visual,
+		.about-cta-visual img,
 		.about-cta-arrow {
 			animation: none;
 		}

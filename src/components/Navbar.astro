@@ -6,6 +6,7 @@ const links = [
 	{ label: 'Sobre', href: '/sobre' },
 	{ label: 'Contato', href: '/contato' },
 ];
+const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
 ---
 
 <header class="site-header">
@@ -32,8 +33,12 @@ const links = [
 		</button>
 
 		<div class="nav-links" id="nav-links">
-			{links.map((link, index) => (
-				<a class:list={{ active: index === 0 }} href={link.href}>{link.label}</a>
+			{links.map((link) => (
+				<a
+					class:list={{ active: currentPath === link.href }}
+					aria-current={currentPath === link.href ? 'page' : undefined}
+					href={link.href}
+				>{link.label}</a>
 			))}
 			<a class="action-link" href="/contato">Saber mais</a>
 		</div>
@@ -90,7 +95,6 @@ const links = [
 		display: flex;
 		align-items: center;
 		gap: 32px;
-		margin-right: -16px;
 	}
 
 	.nav-links a {
@@ -212,7 +216,7 @@ const links = [
 		border-radius: 2px;
 	}
 
-	@media (max-width: 700px) {
+	@media (max-width: 900px) {
 		.site-header {
 			padding: 14px 16px;
 		}
