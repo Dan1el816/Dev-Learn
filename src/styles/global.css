@@ -27,6 +27,26 @@ html {
 	font-family: var(--font-body);
 	color: var(--color-body);
 	background: var(--color-background);
+	scrollbar-color: rgb(192 132 252 / 52%) #090c1b;
+	scrollbar-width: thin;
+}
+
+html::-webkit-scrollbar {
+	width: 12px;
+}
+
+html::-webkit-scrollbar-track {
+	background: #090c1b;
+}
+
+html::-webkit-scrollbar-thumb {
+	border: 3px solid #090c1b;
+	border-radius: 999px;
+	background: linear-gradient(180deg, #c084fc, #8b3ce0);
+}
+
+html::-webkit-scrollbar-thumb:hover {
+	background: linear-gradient(180deg, #d8a9ff, #a855f7);
 }
 
 body {
