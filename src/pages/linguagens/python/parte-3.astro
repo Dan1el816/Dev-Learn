@@ -1,0 +1,841 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import Navbar from '../../../components/Navbar.astro';
+import CodeSample from '../../../components/python/CodeSample.astro';
+import KeyCallout from '../../../components/python/KeyCallout.astro';
+import PythonCourseNavigation from '../../../components/python/PythonCourseNavigation.astro';
+
+const sections = [
+	{ id: 'parte-3-1', title: 'O que são operadores?' },
+	{ id: 'parte-3-2', title: 'O que são expressões?' },
+	{ id: 'parte-3-3', title: 'Operadores aritméticos' },
+	{ id: 'parte-3-4', title: 'Divisão /' },
+	{ id: 'parte-3-5', title: 'Divisão inteira // ' },
+	{ id: 'parte-3-6', title: 'Resto da divisão %' },
+	{ id: 'parte-3-7', title: 'Potência **' },
+	{ id: 'parte-3-8', title: 'Precedência' },
+	{ id: 'parte-3-9', title: 'Associatividade' },
+	{ id: 'parte-3-10', title: 'Atribuição composta' },
+	{ id: 'parte-3-11', title: 'Comparações' },
+	{ id: 'parte-3-12', title: 'Comparação de strings' },
+	{ id: 'parte-3-13', title: 'Comparações encadeadas' },
+	{ id: 'parte-3-14', title: 'Booleanos' },
+	{ id: 'parte-3-15', title: 'Operador and' },
+	{ id: 'parte-3-16', title: 'Operador or' },
+	{ id: 'parte-3-17', title: 'Operador not' },
+	{ id: 'parte-3-18', title: 'Tabela verdade' },
+	{ id: 'parte-3-19', title: 'Curto-circuito' },
+	{ id: 'parte-3-20', title: 'Truthy e Falsy' },
+	{ id: 'parte-3-21', title: 'Conversão para bool()' },
+	{ id: 'parte-3-22', title: 'Identidade' },
+	{ id: 'parte-3-23', title: 'Associação' },
+	{ id: 'parte-3-24', title: 'Combinações' },
+	{ id: 'parte-3-25', title: 'Interpretação de expressões' },
+	{ id: 'parte-3-26', title: 'Erros comuns' },
+];
+
+const arithmetic = [
+	{ expression: '10 + 3', meaning: 'Adição', result: '13' },
+	{ expression: '10 - 3', meaning: 'Subtração', result: '7' },
+	{ expression: '10 * 3', meaning: 'Multiplicação', result: '30' },
+	{ expression: '10 / 3', meaning: 'Divisão comum', result: '3.3333333333333335' },
+	{ expression: '10 // 3', meaning: 'Divisão inteira', result: '3' },
+	{ expression: '10 % 3', meaning: 'Resto da divisão', result: '1' },
+	{ expression: '10 ** 3', meaning: 'Potência', result: '1000' },
+];
+---
+
+<Layout title="Parte 3 — Operadores, expressões e lógica | Dev Learn">
+	<div class="part-page">
+		<Navbar />
+		<div class="python-course-layout">
+			<PythonCourseNavigation />
+			<div class="container">
+			<header class="course-hero">
+				<nav class="course-nav" aria-label="Navegação da trilha Python">
+					<a href="/linguagens/python/parte-2">← Parte 2: Fundamentos</a>
+					<a href="/linguagens">Todas as linguagens</a>
+				</nav>
+				<p class="eyebrow"><span></span> Trilha de Python · Parte 3</p>
+				<h1>Operadores, expressões e <span>lógica</span></h1>
+				<p class="hero-lead">
+					Na Parte 2 você aprendeu a guardar valores e transformar informações. Agora vamos entender como
+					Python combina esses valores para produzir resultados, comparar informações e representar regras.
+				</p>
+				<div class="course-meta">
+					<span><i aria-hidden="true">✓</i> Pré-requisito: Parte 2</span>
+					<span>Foco: operadores, comparações e raciocínio lógico</span>
+				</div>
+				<div class="objectives">
+					<h2>Ao final desta parte, você será capaz de:</h2>
+					<ul>
+						<li>reconhecer operadores e operandos em uma expressão;</li>
+						<li>usar aritmética, comparação e lógica em Python;</li>
+						<li>entender precedência e associatividade;</li>
+						<li>ler e prever resultados de expressões mais complexas.</li>
+					</ul>
+				</div>
+			</header>
+
+			<nav class="toc" aria-label="Índice da Parte 3">
+				<div class="toc-heading">
+					<p class="eyebrow"><span></span> Roteiro de estudo</p>
+					<h2>Conteúdo desta parte</h2>
+				</div>
+				<ol>
+					{sections.map((section, index) => (
+						<li>
+							<a href={`#${section.id}`}>
+								<span>{String(index + 1).padStart(2, '0')}</span>
+								{section.title}
+							</a>
+						</li>
+					))}
+				</ol>
+			</nav>
+
+			<article class="lesson" aria-label="Parte 3 — Operadores, expressões e lógica">
+				<section class="lesson-section" id="parte-3-1" aria-labelledby="title-3-1">
+					<div class="section-heading"><span class="section-number">3.1</span><div><p class="eyebrow"><span></span> Conceito</p><h2 id="title-3-1">O que são operadores?</h2></div></div>
+					<p>Uma operação começa com um <strong>operador</strong>. O operador informa ao Python o tipo de cálculo ou comparação que deve ser feito. Os valores que ele combina são chamados <strong>operandos</strong>.</p>
+					<CodeSample label="Uma operação simples" code={'10 + 5'} output="15" />
+					<p>A leitura é simples: <code>10</code> e <code>5</code> são operandos, <code>+</code> é o operador e o resultado da operação é <code>15</code>.</p>
+					<div class="value-grid">
+						<div class="value-card"><h3>Operador</h3><p>O símbolo que diz “faça algo com esses valores”.</p></div>
+						<div class="value-card"><h3>Operando</h3><p>O valor sobre o qual a operação atua.</p></div>
+						<div class="value-card"><h3>Resultado</h3><p>O valor produzido pela operação, quando ela pode ser avaliada.</p></div>
+					</div>
+					<KeyCallout title="Ideia-chave">Não existe apenas um operador em Python. O mesmo valor pode participar de contas, comparações e combinações lógicas.</KeyCallout>
+				</section>
+
+				<section class="lesson-section" id="parte-3-2" aria-labelledby="title-3-2">
+					<div class="section-heading"><span class="section-number">3.2</span><div><p class="eyebrow"><span></span> Expressão</p><h2 id="title-3-2">O que são expressões?</h2></div></div>
+					<p>Uma <strong>expressão</strong> é qualquer trecho de código que pode ser avaliado para produzir um valor. Ela pode conter números, variáveis, operadores e até chamadas de funções.</p>
+					<CodeSample label="Expressões" code={'10 + 5\nidade >= 18\n"Python" == "python"\n10 * 2 + 5'} output={'15\nFalse\nFalse\n25'} />
+					<p>Uma expressão não precisa ser apenas uma conta. Comparações e combinações lógicas também são expressões, porque também geram um valor: <code>True</code> ou <code>False</code>.</p>
+					<KeyCallout title="Dica">Quando você vê uma expressão no código, pense: “qual valor ela produz?” Isso ajuda a entender o raciocínio do programa.</KeyCallout>
+				</section>
+
+				<section class="lesson-section" id="parte-3-3" aria-labelledby="title-3-3">
+					<div class="section-heading"><span class="section-number">3.3</span><div><p class="eyebrow"><span></span> Operações</p><h2 id="title-3-3">Operadores aritméticos</h2></div></div>
+					<p>Os operadores aritméticos servem para fazer cálculo numérico. Eles são essenciais para processar valores e criar expressões. Veja os principais:</p>
+					<div class="table-scroll" role="region" tabindex="0" aria-label="Tabela de operadores aritméticos">
+						<table>
+							<thead><tr><th scope="col">Operador</th><th scope="col">Nome</th><th scope="col">Exemplo</th><th scope="col">Resultado</th></tr></thead>
+							<tbody>
+								{arithmetic.map((item) => (
+									<tr><th scope="row"><code>{item.expression}</code></th><td>{item.meaning}</td><td><code>{item.expression}</code></td><td><code>{item.result}</code></td></tr>
+								))}
+							</tbody>
+						</table>
+					</div>
+					<p>Cada um desses operadores tem um papel diferente. O operador correto depende do tipo de cálculo que você quer fazer.</p>
+				</section>
+
+				<section class="lesson-section" id="parte-3-4" aria-labelledby="title-3-4">
+					<div class="section-heading"><span class="section-number">3.4</span><div><p class="eyebrow"><span></span> Divisão</p><h2 id="title-3-4">Divisão <code>/</code></h2></div></div>
+					<p>O operador <code>/</code> faz uma divisão comum. O resultado sempre é um número de ponto flutuante, mesmo quando a divisão parece inteira.</p>
+					<CodeSample label="Divisão comum" code={'print(10 / 2)\nprint(7 / 2)'} output={'5.0\n3.5'} />
+					<p>Isso acontece porque a divisão em Python produz um valor <code>float</code>. Então, <code>10 / 2</code> não produz <code>5</code> como inteiro; produz <code>5.0</code>.</p>
+					<KeyCallout title="Observação">Sempre que você usa <code>/</code>, pense em “resultado decimal”, mesmo que o valor final pareça um número inteiro.</KeyCallout>
+				</section>
+
+				<section class="lesson-section" id="parte-3-5" aria-labelledby="title-3-5">
+					<div class="section-heading"><span class="section-number">3.5</span><div><p class="eyebrow"><span></span> Divisão</p><h2 id="title-3-5">Divisão inteira <code>//</code></h2></div></div>
+					<p>Quando queremos a parte inteira da divisão, usamos <code>//</code>. Esse operador descarta a parte decimal do quociente.</p>
+					<CodeSample label="Divisão inteira" code={'print(7 / 2)\nprint(7 // 2)\nprint(-7 // 2)'} output={'3.5\n3\n-4'} />
+					<p>Observe a diferença: <code>7 / 2</code> resulta em <code>3.5</code>, enquanto <code>7 // 2</code> resulta em <code>3</code>. Com valores negativos, o comportamento pode parecer menos intuitivo, mas a ideia continua sendo “parte inteira do quociente”.</p>
+					<KeyCallout title="Lembrete"><code>/</code> produz decimal; <code>//</code> produz inteiro.</KeyCallout>
+				</section>
+
+				<section class="lesson-section" id="parte-3-6" aria-labelledby="title-3-6">
+					<div class="section-heading"><span class="section-number">3.6</span><div><p class="eyebrow"><span></span> Resto</p><h2 id="title-3-6">Resto da divisão <code>%</code></h2></div></div>
+					<p>O operador <code>%</code> retorna o resto da divisão entre dois números. A expressão <code>a % b</code> responde à pergunta: “qual sobra depois de dividir <code>a</code> por <code>b</code>?”</p>
+					<CodeSample label="Resto da divisão" code={'print(10 % 3)\nprint(10 % 2)\nprint(9 % 3)'} output={'1\n0\n0'} />
+					<p>Esse operador é muito útil para verificar divisibilidade. Se o resto for zero, o número é divisível pelo divisor.</p>
+					<CodeSample label="Verificando divisibilidade" code={'print(12 % 3 == 0)\nprint(11 % 2 == 0)'} output={'True\nFalse'} />
+				</section>
+
+				<section class="lesson-section" id="parte-3-7" aria-labelledby="title-3-7">
+					<div class="section-heading"><span class="section-number">3.7</span><div><p class="eyebrow"><span></span> Potência</p><h2 id="title-3-7">Potência <code>**</code></h2></div></div>
+					<p>O operador <code>**</code> calcula a potência. Em outras palavras, ele multiplica um número por ele mesmo uma quantidade de vezes.</p>
+					<CodeSample label="Potência" code={'print(2 ** 3)\nprint(10 ** 2)\nprint(3 ** 4)'} output={'8\n100\n81'} />
+					<p>Podemos ler <code>2 ** 3</code> como “dois elevado à terceira potência”. Esse operador aparece em cálculos de áreas, volumes, juros e muitas outras situações.</p>
+				</section>
+
+				<section class="lesson-section" id="parte-3-8" aria-labelledby="title-3-8">
+					<div class="section-heading"><span class="section-number">3.8</span><div><p class="eyebrow"><span></span> Ordem</p><h2 id="title-3-8">Precedência de operadores</h2></div></div>
+					<p>Python resolve expressões seguindo uma ordem de avaliação. Não é aleatório: ele avalia alguns operadores antes de outros. Isso é o que chamamos de <strong>precedência</strong>.</p>
+					<CodeSample label="Multiplicação antes da adição" code={'print(2 + 3 * 4)'} output="14" />
+					<p>Primeiro, Python calcula <code>3 * 4</code>, que resulta em <code>12</code>. Depois soma <code>2</code> e obtém <code>14</code>.</p>
+					<CodeSample label="Parênteses mudam a ordem" code={'print((2 + 3) * 4)'} output="20" />
+					<p>Os parênteses forçam uma análise diferente: primeiro <code>2 + 3</code>, depois multiplicação por <code>4</code>. Isso mostra por que escrever uma expressão clara é importante.</p>
+					<KeyCallout title="Regra geral">Quando houver dúvida, use parênteses para deixar a intenção explícita. Isso deixa o código mais legível e evita erros de interpretação.</KeyCallout>
+				</section>
+
+				<section class="lesson-section" id="parte-3-9" aria-labelledby="title-3-9">
+					<div class="section-heading"><span class="section-number">3.9</span><div><p class="eyebrow"><span></span> Ordem</p><h2 id="title-3-9">Associatividade</h2></div></div>
+					<p>Além da precedência, alguns operadores são avaliados em uma ordem específica quando aparecem em sequência. Em muitos casos, a avaliação é da esquerda para a direita.</p>
+					<CodeSample label="Esquerda para a direita" code={'print(10 - 3 - 2)'} output="5" />
+					<p>Python lê primeiro <code>10 - 3</code>, depois subtrai <code>2</code> do resultado. Isso é um caso de associatividade e mostra que a ordem de avaliação importa.</p>
+					<CodeSample label="Com potência a regra é diferente" code={'print(2 ** 3 ** 2)'} output="512" />
+					<p>Em certas operações a associatividade pode ser diferente da esquerda para a direita. Por isso, para evitar dúvidas, parênteses ajudam bastante.</p>
+				</section>
+
+				<section class="lesson-section" id="parte-3-10" aria-labelledby="title-3-10">
+					<div class="section-heading"><span class="section-number">3.10</span><div><p class="eyebrow"><span></span> Atribuição</p><h2 id="title-3-10">Operadores de atribuição</h2></div></div>
+					<p>Na Parte 2, você viu o operador <code>=</code>. Ele atribui um valor a uma variável. Além dele, Python oferece formas abreviadas de atualizar o valor atual.</p>
+					<CodeSample label="Atribuição simples" code={'contador = 10\ncontador = contador + 1\nprint(contador)'} output="11" />
+					<p>O modo abreviado é mais legível em muitos casos:</p>
+					<CodeSample label="Atribuição composta" code={'contador = 10\ncontador += 1\ncontador *= 2\nprint(contador)'} output="22" />
+					<ul class="checklist">
+						<li><code>+=</code> soma e atribui;</li>
+						<li><code>-=</code> subtrai e atribui;</li>
+						<li><code>*=</code> multiplica e atribui;</li>
+						<li><code>/=</code> divide e atribui.</li>
+					</ul>
+					<p>Essas formas são convenientes e evidenciam a ideia de “atualizar o valor atual”.</p>
+				</section>
+
+				<section class="lesson-section" id="parte-3-11" aria-labelledby="title-3-11">
+					<div class="section-heading"><span class="section-number">3.11</span><div><p class="eyebrow"><span></span> Comparação</p><h2 id="title-3-11">Operadores de comparação</h2></div></div>
+					<p>Comparações perguntam se uma relação entre valores é verdadeira ou falsa. O resultado sempre será um booleano: <code>True</code> ou <code>False</code>.</p>
+					<div class="table-scroll" role="region" tabindex="0" aria-label="Tabela de operadores de comparação">
+						<table>
+							<thead><tr><th scope="col">Operador</th><th scope="col">Significado</th><th scope="col">Exemplo</th><th scope="col">Resultado</th></tr></thead>
+							<tbody>
+								<tr><th scope="row"><code>==</code></th><td>igual a</td><td><code>10 == 10</code></td><td><code>True</code></td></tr>
+								<tr><th scope="row"><code>!=</code></th><td>diferente de</td><td><code>10 != 3</code></td><td><code>True</code></td></tr>
+								<tr><th scope="row"><code>&gt;</code></th><td>maior que</td><td><code>10 &gt; 5</code></td><td><code>True</code></td></tr>
+								<tr><th scope="row"><code>&lt;</code></th><td>menor que</td><td><code>10 &lt; 5</code></td><td><code>False</code></td></tr>
+								<tr><th scope="row"><code>&gt;=</code></th><td>maior ou igual</td><td><code>10 &gt;= 10</code></td><td><code>True</code></td></tr>
+								<tr><th scope="row"><code>&lt;=</code></th><td>menor ou igual</td><td><code>3 &lt;= 10</code></td><td><code>True</code></td></tr>
+							</tbody>
+						</table>
+					</div>
+					<CodeSample label="Comparações com variáveis" code={'idade = 20\nprint(idade >= 18)\nprint(idade == 21)'} output={'True\nFalse'} />
+				</section>
+
+				<section class="lesson-section" id="parte-3-12" aria-labelledby="title-3-12">
+					<div class="section-heading"><span class="section-number">3.12</span><div><p class="eyebrow"><span></span> Texto</p><h2 id="title-3-12">Comparação de strings</h2></div></div>
+					<p>Strings também podem ser comparadas. O Python compara os caracteres de acordo com a ordem da tabela de caracteres e a diferença entre letras maiúsculas e minúsculas.</p>
+					<CodeSample label="Comparando textos" code={'print("Python" == "Python")\nprint("Python" == "python")\nprint("ab" < "ba")'} output={'True\nFalse\nTrue'} />
+					<p>Observe que <code>"Python" == "python"</code> resulta em <code>False</code>. Em Python, letras maiúsculas e minúsculas são tratadas de forma diferente. Esse detalhe costuma causar confusão em programas que comparam nomes ou textos de usuário.</p>
+					<KeyCallout title="Atenção">Compare textos com cuidado: o caso importa. Se você quer lidar com entrada do usuário, pode converter o texto para minúsculas ou maiúsculas antes de comparar.</KeyCallout>
+				</section>
+
+				<section class="lesson-section" id="parte-3-13" aria-labelledby="title-3-13">
+					<div class="section-heading"><span class="section-number">3.13</span><div><p class="eyebrow"><span></span> Comparação</p><h2 id="title-3-13">Comparações encadeadas</h2></div></div>
+					<p>Python permite escrever uma comparação que reúne mais de uma regra em uma única expressão:</p>
+					<CodeSample label="Faixa de idade" code={'idade = 25\nprint(18 <= idade <= 60)'} output="True" />
+					<p>Essa expressão equivale a dizer: “idade é maior ou igual a 18 e menor ou igual a 60”. Em vez de escrever duas comparações separadas, o Python aceita a sintaxe encadeada.</p>
+					<CodeSample label="Versão usando and" code={'idade = 25\nprint(idade >= 18 and idade <= 60)'} output="True" />
+					<p>As duas formas expressam a mesma ideia. O encadeamento é muitas vezes mais legível; o uso de <code>and</code> deixa a lógica explícita também.</p>
+				</section>
+
+				<section class="lesson-section" id="parte-3-14" aria-labelledby="title-3-14">
+					<div class="section-heading"><span class="section-number">3.14</span><div><p class="eyebrow"><span></span> Lógica</p><h2 id="title-3-14">Booleanos</h2></div></div>
+					<p>Booleanos são valores lógicos: <code>True</code> e <code>False</code>. Eles aparecem sempre que uma expressão realiza uma pergunta como “é maior que?”, “é igual a?” ou “é verdade que ...?”</p>
+					<CodeSample label="Valores booleanos" code={'print(10 > 5)\nprint(10 == 5)\nresultado = 5 < 7\nprint(resultado)'} output={'True\nFalse\nTrue'} />
+					<p>O interessante é que o resultado de uma comparação pode ser usado como informação em outra expressão. Isso é o núcleo da lógica que torna programas dinâmicos.</p>
+				</section>
+
+				<section class="lesson-section" id="parte-3-15" aria-labelledby="title-3-15">
+					<div class="section-heading"><span class="section-number">3.15</span><div><p class="eyebrow"><span></span> Combinação</p><h2 id="title-3-15">Operador <code>and</code></h2></div></div>
+					<p>O operador <code>and</code> exige que as duas condições sejam verdadeiras para que o resultado seja <code>True</code>.</p>
+					<CodeSample label="and" code={'idade = 20\npossui_documento = True\nprint(idade >= 18 and possui_documento)\nprint(idade >= 18 and False)'} output={'True\nFalse'} />
+					<p>Em linguagem natural: “idade maior ou igual a 18 e documento válido” só é verdade quando as duas condições são verdadeiras.</p>
+					<KeyCallout title="Leitura lógica">Se você vê <code>and</code>, pense em “as duas coisas precisam ser verdadeiras ao mesmo tempo”.</KeyCallout>
+				</section>
+
+				<section class="lesson-section" id="parte-3-16" aria-labelledby="title-3-16">
+					<div class="section-heading"><span class="section-number">3.16</span><div><p class="eyebrow"><span></span> Combinação</p><h2 id="title-3-16">Operador <code>or</code></h2></div></div>
+					<p>O operador <code>or</code> é mais permissivo: basta que pelo menos uma das condições seja verdadeira para que o resultado final seja <code>True</code>.</p>
+					<CodeSample label="or" code={'dia = "sábado"\nprint(dia == "sábado" or dia == "domingo")\nprint(dia == "segunda" or dia == "terça")'} output={'True\nFalse'} />
+					<p>Em linguagem natural: “é sábado ou domingo” é verdadeiro se pelo menos um desses valores for verdadeiro. Essa lógica é muito utilizada em validações e regras de negócio.</p>
+				</section>
+
+				<section class="lesson-section" id="parte-3-17" aria-labelledby="title-3-17">
+					<div class="section-heading"><span class="section-number">3.17</span><div><p class="eyebrow"><span></span> Negação</p><h2 id="title-3-17">Operador <code>not</code></h2></div></div>
+					<p><code>not</code> inverte o valor lógico. Se a expressão for verdadeira, a negação a torna falsa, e vice-versa.</p>
+					<CodeSample label="Negação" code={'print(not True)\nprint(not False)\nprint(not (10 > 5))'} output={'False\nTrue\nFalse'} />
+					<p>Essa operação é útil para conferir condições contrárias, como “não é maior que 18”, “não está vazio” e “não foi encontrado”.</p>
+				</section>
+
+				<section class="lesson-section" id="parte-3-18" aria-labelledby="title-3-18">
+					<div class="section-heading"><span class="section-number">3.18</span><div><p class="eyebrow"><span></span> Tabela</p><h2 id="title-3-18">Tabela verdade</h2></div></div>
+					<p>Uma tabela verdade ajuda a visualizar o comportamento dos operadores lógicos sem decorar regras arbitrárias.</p>
+					<div class="table-scroll" role="region" tabindex="0" aria-label="Tabela verdade dos operadores lógicos">
+						<table>
+							<thead><tr><th scope="col">A</th><th scope="col">B</th><th scope="col">A and B</th><th scope="col">A or B</th><th scope="col">not A</th></tr></thead>
+							<tbody>
+								<tr><td><code>True</code></td><td><code>True</code></td><td><code>True</code></td><td><code>True</code></td><td><code>False</code></td></tr>
+								<tr><td><code>True</code></td><td><code>False</code></td><td><code>False</code></td><td><code>True</code></td><td><code>False</code></td></tr>
+								<tr><td><code>False</code></td><td><code>True</code></td><td><code>False</code></td><td><code>True</code></td><td><code>True</code></td></tr>
+								<tr><td><code>False</code></td><td><code>False</code></td><td><code>False</code></td><td><code>False</code></td><td><code>True</code></td></tr>
+							</tbody>
+						</table>
+					</div>
+					<p>Com essa visão, o aluno consegue prever o resultado de expressões antes mesmo de executá-las. Isso acelera a leitura e o raciocínio de programas.</p>
+				</section>
+
+				<section class="lesson-section" id="parte-3-19" aria-labelledby="title-3-19">
+					<div class="section-heading"><span class="section-number">3.19</span><div><p class="eyebrow"><span></span> Avaliação</p><h2 id="title-3-19">Curto-circuito</h2></div></div>
+					<p>Python pode aproveitar a lógica de <code>and</code> e <code>or</code> para evitar avaliar partes desnecessárias de uma expressão. Esse comportamento é conhecido como <strong>curto-circuito</strong>.</p>
+					<CodeSample label="Curto-circuito" code={'print(False and (1 / 0))\nprint(True or (1 / 0))'} output={'False\nTrue'} />
+					<p>Na primeira expressão, como a primeira parte já é <code>False</code>, Python não precisa avaliar <code>1 / 0</code>. Na segunda, a primeira parte já é <code>True</code>, então a outra parte não precisa ser calculada.</p>
+					<KeyCallout title="Por que isso importa?">Isso ajuda a escrever expressões mais eficientes e a evitar erros quando o restante da condição seria inválido.</KeyCallout>
+				</section>
+
+				<section class="lesson-section" id="parte-3-20" aria-labelledby="title-3-20">
+					<div class="section-heading"><span class="section-number">3.20</span><div><p class="eyebrow"><span></span> Verdadeiro</p><h2 id="title-3-20">Truthy e Falsy</h2></div></div>
+					<p>Em Python, alguns valores são considerados verdadeiros e outros, falsos, em contextos booleanos. Isso é chamado de valores <strong>truthy</strong> e <strong>falsy</strong>.</p>
+					<CodeSample label="Valores verdadeiros e falsos" code={'print(bool(0))\nprint(bool(1))\nprint(bool(""))\nprint(bool("Python"))\nprint(bool([]))'} output={'False\nTrue\nFalse\nTrue\nFalse'} />
+					<p>Um valor como <code>0</code> e uma string vazia são falsos; um valor como <code>1</code> e uma string com conteúdo são verdadeiros. Isso será muito importante em decisões e validações mais adiante.</p>
+				</section>
+
+				<section class="lesson-section" id="parte-3-21" aria-labelledby="title-3-21">
+					<div class="section-heading"><span class="section-number">3.21</span><div><p class="eyebrow"><span></span> Conversão</p><h2 id="title-3-21">Conversão para <code>bool()</code></h2></div></div>
+					<p>A função <code>bool()</code> converte um valor para o tipo booleano correspondente.</p>
+					<CodeSample label="Converting values to bool" code={'print(bool(0))\nprint(bool(10))\nprint(bool(""))\nprint(bool("Olá"))\nprint(bool(None))'} output={'False\nTrue\nFalse\nTrue\nFalse'} />
+					<p>Observe que <code>bool("False")</code> resultaria em <code>True</code>, porque a string não é vazia. Ou seja, o conteúdo do texto não é avaliado como uma palavra lógica; o que importa é se o valor é vazio ou não.</p>
+				</section>
+
+				<section class="lesson-section" id="parte-3-22" aria-labelledby="title-3-22">
+					<div class="section-heading"><span class="section-number">3.22</span><div><p class="eyebrow"><span></span> Identidade</p><h2 id="title-3-22">Operadores de identidade</h2></div></div>
+					<p>Os operadores <code>is</code> e <code>is not</code> verificam se dois valores são o mesmo objeto, ou se uma referência aponta para o mesmo lugar na memória.</p>
+					<CodeSample label="Identidade" code={'valor = None\nprint(valor is None)\nprint(valor is not None)\nprint(10 is 10)'} output={'True\nFalse\nTrue'} />
+					<p>Essa diferença é importante: <code>==</code> compara valores; <code>is</code> compara identidade. Para comparação de conteúdo simples, geralmente usamos <code>==</code>.</p>
+					<KeyCallout title="Regra prática">Use <code>==</code> para comparar valores. Use <code>is</code> para verificar um valor especial como <code>None</code>.</KeyCallout>
+				</section>
+
+				<section class="lesson-section" id="parte-3-23" aria-labelledby="title-3-23">
+					<div class="section-heading"><span class="section-number">3.23</span><div><p class="eyebrow"><span></span> Associação</p><h2 id="title-3-23">Operadores de associação</h2></div></div>
+					<p>Os operadores <code>in</code> e <code>not in</code> verificam se um valor aparece dentro de outro.</p>
+					<CodeSample label="Verificando presença" code={'texto = "python"\nprint("py" in texto)\nprint("java" in texto)\nprint("x" not in texto)'} output={'True\nFalse\nTrue'} />
+					<p>Esses operadores deixam a lógica mais legível quando você quer verificar se um texto, trecho ou elemento está presente. Esse comportamento é útil em validações, busca e filtros.</p>
+				</section>
+
+				<section class="lesson-section" id="parte-3-24" aria-labelledby="title-3-24">
+					<div class="section-heading"><span class="section-number">3.24</span><div><p class="eyebrow"><span></span> Combinação</p><h2 id="title-3-24">Combinação de operadores</h2></div></div>
+					<p>Agora a lógica começa a aparecer de forma mais realista. A ideia é combinar comparações e operadores booleanos para representar regras.</p>
+					<CodeSample label="Regra de faixa etária" code={'idade = 25\nprint(idade >= 18 and idade <= 60)\nprint(idade < 18 or idade > 60)'} output={'True\nFalse'} />
+					<p>Uma expressão complexa pode ser lida em partes: primeiro se a idade é maior ou igual a 18, depois se é menor ou igual a 60. O resultado combina essas duas perguntas.</p>
+					<CodeSample label="Verificando nome e idade" code={'nome = "Daniel"\nidade = 19\nprint(nome == "Daniel" and idade >= 18)'} output="True" />
+				</section>
+
+				<section class="lesson-section" id="parte-3-25" aria-labelledby="title-3-25">
+					<div class="section-heading"><span class="section-number">3.25</span><div><p class="eyebrow"><span></span> Raciocínio</p><h2 id="title-3-25">Como interpretar uma expressão</h2></div></div>
+					<p>Uma expressão pode parecer simples, mas é importante aprender a lê-la em etapas. Essa habilidade é o que permite prever o resultado antes de executar o programa.</p>
+					<CodeSample label="Desmontando uma expressão" code={'idade = 22\npossui_documento = True\nresultado = idade >= 18 and possui_documento and idade <= 60\nprint(resultado)'} output="True" />
+					<ol class="step-list">
+						<li><code>idade >= 18</code> resulta em <code>True</code>.</li>
+						<li><code>possui_documento</code> já vale <code>True</code>.</li>
+						<li><code>idade <= 60</code> também resulta em <code>True</code>.</li>
+						<li>O operador <code>and</code> conecta todas as partes e o resultado final fica <code>True</code>.</li>
+					</ol>
+					<p>Isso é chamado de raciocínio de expressão. O aluno deve entender que cada parte produz um valor booleano e que o operador lógico define a regra final.</p>
+				</section>
+
+				<section class="lesson-section" id="parte-3-26" aria-labelledby="title-3-26">
+					<div class="section-heading"><span class="section-number">3.26</span><div><p class="eyebrow"><span></span> Erros</p><h2 id="title-3-26">Erros comuns</h2></div></div>
+					<p>Alguns erros aparecem com frequência quando o aluno começa a trabalhar com expressões. O mais comum é confundir atribuição e comparação.</p>
+					<CodeSample label="Atribuição vs comparação" code={'idade = 18\nprint(idade == 18)\nprint(idade = 18)'} />
+					<p>O primeiro exemplo é válido: ele compara se a idade é igual a 18. O segundo não é válido em Python, porque <code>=</code> não serve para testar igualdade dentro de uma expressão de comparação.</p>
+					<div class="split-grid">
+						<div class="info-card"><h3>Erro comum: <code>/</code> e <code>//</code></h3><p>Usar <code>//</code> quando você quer um resultado decimal ou usar <code>/</code> quando quer a parte inteira da divisão.</p></div>
+						<div class="info-card"><h3>Erro comum: <code>==</code> e <code>is</code></h3><p><code>==</code> compara valores. <code>is</code> verifica identidade. Não são a mesma coisa.</p></div>
+					</div>
+					<p>Há também erros de precedência e excesso de complexidade. Quando a expressão se torna difícil de ler, use parênteses para decompor a lógica e facilitar a correção.</p>
+				</section>
+
+				<section class="lesson-section" id="parte-3-27" aria-labelledby="title-3-27">
+					<div class="section-heading"><span class="section-number">3.27</span><div><p class="eyebrow"><span></span> Aplicação</p><h2 id="title-3-27">Problemas do mundo real</h2></div></div>
+					<p>Agora que você conhece operadores e expressões, pode começar a representar regras do mundo real com código.</p>
+					<CodeSample label="Verificar maioridade" code={'idade = 20\nprint(idade >= 18)'} output="True" />
+					<CodeSample label="Verificar faixa etária" code={'idade = 25\nprint(18 <= idade <= 60)'} output="True" />
+					<CodeSample label="Validar nome e senha" code={'nome = "Daniel"\nsenha = "1234"\nprint(nome == "Daniel" and senha == "1234")'} output="True" />
+					<CodeSample label="Checar presença de texto" code={'email = "aluno@devlearn.com"\nprint("@" in email)'} output="True" />
+					<p>Esses exemplos mostram como expressões podem transformar regras de negócio em código legível e direto.</p>
+				</section>
+
+				<section class="lesson-section" id="parte-3-28" aria-labelledby="title-3-28">
+					<div class="section-heading"><span class="section-number">3.28</span><div><p class="eyebrow"><span></span> Projeto</p><h2 id="title-3-28">Mini projeto: sistema de análise de entrada</h2></div></div>
+					<p>Crie um pequeno programa que receba dados do usuário e produza resultados booleanos a partir de regras simples.</p>
+					<CodeSample
+						label="analise_de_acesso.py"
+						code={"nome = input(\"Seu nome: \")\nidade = int(input(\"Sua idade: \"))\nemail = input(\"Seu e-mail: \")\npossui_credencial = idade >= 18 and \"@\" in email\nprint(f\"Nome: {nome}\")\nprint(f\"Maior de idade: {idade >= 18}\")\nprint(f\"Tem e-mail válido: {'@' in email}\")\nprint(f\"Pode entrar no sistema: {possui_credencial}\")"}
+						output={'Seu nome: Daniel\nSua idade: 19\nSeu e-mail: daniel@devlearn.com\nNome: Daniel\nMaior de idade: True\nTem e-mail válido: True\nPode entrar no sistema: True'}
+					/>
+					<p>Esse projeto usa apenas conceitos já vistos: entrada, conversão, comparação, operadores lógicos e f-strings.</p>
+					<details class="exercise">
+						<summary>Desafio final: personalize o programa</summary>
+						<p>Crie uma regra adicional com <code>or</code> e <code>not</code>. Por exemplo: “um usuário pode acessar se for maior de idade ou se tiver permissões especiais”.</p>
+					</details>
+				</section>
+
+				<section class="review-section" id="revisao" aria-labelledby="title-review">
+					<p class="eyebrow"><span></span> Revisão</p>
+					<h2 id="title-review">O que você aprendeu</h2>
+					<ul class="checklist">
+						<li>entendeu o papel de operadores e operandos;</li>
+						<li>aprendeu a formar e interpretar expressões;</li>
+						<li>trabalhou com operadores aritméticos, de atribuição e de comparação;</li>
+						<li>usou <code>and</code>, <code>or</code> e <code>not</code> para construir lógica;</li>
+						<li>entendeu precedência, associatividade e curto-circuito;</li>
+						<li>aprendeu a distinguir <code>==</code>, <code>is</code>, <code>in</code> e o uso de booleanos.</li>
+					</ul>
+				</section>
+
+				<section class="next-section" id="proxima-parte" aria-labelledby="title-next">
+					<p class="eyebrow"><span></span> Continuação</p>
+					<h2 id="title-next">A próxima parte começa a decidir</h2>
+					<p>Com os operadores e as expressões dominados, você já está pronto para entender como um programa toma decisões com base em regras. A próxima etapa vai transformar esse raciocínio em instruções que mudam o fluxo do programa.</p>
+				</section>
+			</article>
+		</div>
+	</div>
+	</div>
+</Layout>
+
+<style>
+	.container {
+		width: 100%;
+		min-width: 0;
+		margin: 0;
+	}
+
+	.python-course-layout {
+		display: grid;
+		grid-template-columns: minmax(215px, 245px) minmax(0, 1fr);
+		align-items: start;
+		gap: clamp(20px, 3vw, 38px);
+		width: min(1320px, calc(100% - (var(--space-page) * 2)));
+		margin-inline: auto;
+	}
+
+	.course-hero {
+		padding: clamp(28px, 5vw, 56px) 0 28px;
+	}
+
+	.course-nav {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-between;
+		gap: 10px 20px;
+		margin-bottom: 36px;
+	}
+
+	.course-nav a,
+	.next-link,
+	.course-sources a {
+		color: var(--color-accent);
+		text-decoration: underline;
+		text-decoration-color: color-mix(in srgb, var(--color-accent) 48%, transparent);
+		text-underline-offset: 4px;
+		transition: color 0.2s ease, text-decoration-color 0.2s ease;
+	}
+
+	.course-nav a {
+		color: var(--color-muted);
+		font-size: 0.83rem;
+	}
+
+	.course-nav a:hover,
+	.next-link:hover,
+	.course-sources a:hover {
+		color: var(--color-accent-pink);
+		text-decoration-color: currentColor;
+	}
+
+	.eyebrow {
+		display: flex;
+		align-items: center;
+		gap: 9px;
+		margin: 0 0 10px;
+		color: var(--color-accent);
+		font-size: 0.72rem;
+		font-weight: 700;
+		letter-spacing: 0.13em;
+		text-transform: uppercase;
+	}
+
+	.eyebrow > span {
+		width: 18px;
+		height: 2px;
+		border-radius: 2px;
+		background: var(--gradient-accent);
+	}
+
+	h1,
+	h2,
+	h3,
+	p {
+		overflow-wrap: anywhere;
+	}
+
+	h1 {
+		margin: 0;
+		color: var(--color-text);
+		font-size: clamp(2.35rem, 7vw, 4.8rem);
+		font-weight: 800;
+		line-height: 1.08;
+		letter-spacing: -0.045em;
+	}
+
+	h1 span {
+		background: var(--gradient-accent);
+		background-clip: text;
+		-webkit-background-clip: text;
+		color: transparent;
+	}
+
+	.hero-lead {
+		max-width: 48rem;
+		margin: 20px 0;
+		color: var(--color-body);
+		font-size: clamp(1rem, 2vw, 1.15rem);
+		line-height: 1.8;
+	}
+
+	.course-meta {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 10px 24px;
+		color: var(--color-muted);
+		font-size: 0.82rem;
+	}
+
+	.course-meta i {
+		color: var(--color-accent);
+		font-style: normal;
+	}
+
+	.objectives,
+	.toc,
+	.next-section {
+		margin-top: 26px;
+		padding: clamp(19px, 3vw, 29px);
+		border: 1px solid color-mix(in srgb, var(--color-accent) 22%, transparent);
+		border-radius: 17px;
+		background: linear-gradient(145deg, color-mix(in srgb, var(--color-accent) 8%, transparent), rgb(255 255 255 / 2%));
+		box-shadow: 0 14px 34px rgb(0 0 0 / 14%), inset 0 1px 0 rgb(255 255 255 / 5%);
+	}
+
+	.objectives h2,
+	.toc h2 {
+		margin: 0;
+		color: var(--color-text);
+		font-size: clamp(1.05rem, 2.4vw, 1.35rem);
+	}
+
+	.objectives ul,
+	.checklist {
+		display: grid;
+		gap: 9px;
+		margin: 14px 0 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	.objectives li,
+	.checklist li {
+		position: relative;
+		padding-left: 23px;
+		color: var(--color-body);
+		font-size: 0.87rem;
+		line-height: 1.65;
+	}
+
+	.objectives li::before,
+	.checklist li::before {
+		position: absolute;
+		left: 0;
+		color: var(--color-accent-pink);
+		content: '✓';
+	}
+
+	.toc {
+		margin-top: 20px;
+	}
+
+	.toc-heading {
+		margin-bottom: 13px;
+	}
+
+	.toc-heading .eyebrow {
+		margin-bottom: 5px;
+	}
+
+	.toc ol {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: 5px 14px;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	.toc a {
+		display: flex;
+		align-items: baseline;
+		gap: 8px;
+		min-width: 0;
+		padding: 5px 0;
+		color: var(--color-body);
+		font-size: 0.76rem;
+		line-height: 1.45;
+		transition: color 0.2s ease, transform 0.2s ease;
+	}
+
+	.toc a:hover {
+		color: var(--color-accent-pink);
+		transform: translateX(2px);
+	}
+
+	.toc a span {
+		flex: 0 0 auto;
+		color: var(--color-accent);
+		font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+		font-size: 0.68rem;
+	}
+
+	.lesson {
+		max-width: 880px;
+		margin-inline: auto;
+	}
+
+	.lesson-section {
+		min-width: 0;
+		margin-top: clamp(52px, 8vw, 82px);
+		scroll-margin-top: 24px;
+	}
+
+	.section-heading {
+		display: flex;
+		align-items: flex-start;
+		gap: 16px;
+		margin-bottom: 18px;
+	}
+
+	.section-number {
+		padding-top: 3px;
+		color: color-mix(in srgb, var(--color-accent) 65%, transparent);
+		font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+		font-size: clamp(1.05rem, 2.8vw, 1.45rem);
+		font-weight: 700;
+	}
+
+	.section-heading .eyebrow {
+		margin-bottom: 4px;
+		font-size: 0.65rem;
+	}
+
+	.section-heading h2,
+	.review-section h2,
+	.next-section h2 {
+		margin: 0;
+		color: var(--color-text);
+		font-size: clamp(1.5rem, 4vw, 2.25rem);
+		font-weight: 700;
+		line-height: 1.2;
+		letter-spacing: -0.03em;
+	}
+
+	.lesson-section > p,
+	.info-card > p,
+	.value-card > p,
+	.type-card > p,
+	.conversion-card > p,
+	.logic-card > p,
+	.exercise > p,
+	.project-card > p,
+	.line-notes li,
+	.next-section > p:not(.eyebrow) {
+		color: var(--color-body);
+		font-size: 0.91rem;
+		line-height: 1.8;
+	}
+
+	.lesson-section > p {
+		margin: 0 0 15px;
+	}
+
+	.lesson-section code,
+	.course-sources code {
+		color: var(--color-accent);
+		font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+		font-size: 0.94em;
+	}
+
+	.value-grid,
+	.type-grid,
+	.conversion-grid,
+	.logic-grid,
+	.split-grid {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 13px;
+		margin: 19px 0;
+	}
+
+	.value-card,
+	.type-card,
+	.conversion-card,
+	.logic-card,
+	.info-card,
+	.project-card,
+	.line-notes {
+		min-width: 0;
+		padding: clamp(16px, 2.6vw, 22px);
+		border: 1px solid color-mix(in srgb, var(--color-accent) 18%, transparent);
+		border-radius: 14px;
+		background: linear-gradient(155deg, color-mix(in srgb, var(--color-accent) 7%, transparent), rgb(255 255 255 / 2%));
+		box-shadow: 0 10px 24px rgb(0 0 0 / 10%);
+	}
+
+	.value-card h3,
+	.type-card h3,
+	.conversion-card h3,
+	.logic-card h3,
+	.info-card h3,
+	.project-card h3,
+	.line-notes h3,
+	.mini-practice strong {
+		margin: 0 0 8px;
+		color: var(--color-accent);
+		font-size: 0.98rem;
+		font-weight: 700;
+		line-height: 1.4;
+	}
+
+	.value-card > p,
+	.type-card > p,
+	.conversion-card > p,
+	.logic-card > p,
+	.info-card > p {
+		margin: 0;
+		font-size: 0.84rem;
+		line-height: 1.7;
+	}
+
+	.type-grid {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+
+	.type-card .sample,
+	.conversion-card .sample,
+	.logic-card .sample,
+	.info-card .sample {
+		margin-top: 10px;
+	}
+
+	.type-card:last-child {
+		grid-column: 1 / -1;
+	}
+
+	.explanation-list {
+		display: grid;
+		gap: 10px;
+		margin: 17px 0;
+	}
+
+	.explanation-list > div {
+		padding: 11px 14px;
+		border-left: 2px solid var(--color-accent);
+		background: color-mix(in srgb, var(--color-accent) 5%, transparent);
+	}
+
+	.explanation-list dt {
+		margin-bottom: 3px;
+		color: var(--color-accent);
+		font-weight: 700;
+	}
+
+	.explanation-list dd {
+		margin: 0;
+		color: var(--color-body);
+		font-size: 0.85rem;
+		line-height: 1.65;
+	}
+
+	.table-scroll {
+		max-width: 100%;
+		overflow-x: auto;
+		margin: 18px 0;
+		border: 1px solid color-mix(in srgb, var(--color-accent) 20%, transparent);
+		border-radius: 13px;
+		background: color-mix(in srgb, var(--color-surface) 80%, transparent);
+	}
+
+	table {
+		width: 100%;
+		min-width: 560px;
+		border-collapse: collapse;
+		font-size: 0.79rem;
+		line-height: 1.6;
+	}
+
+	th,
+	td {
+		padding: 11px 13px;
+		border-bottom: 1px solid rgb(255 255 255 / 7%);
+		text-align: left;
+		vertical-align: top;
+	}
+
+	thead th {
+		background: color-mix(in srgb, var(--color-accent) 10%, transparent);
+		color: var(--color-accent);
+		font-weight: 700;
+	}
+
+	tbody th {
+		color: var(--color-text);
+		font-weight: 600;
+		white-space: nowrap;
+	}
+
+	td {
+		color: var(--color-body);
+	}
+
+	.step-list {
+		display: grid;
+		gap: 9px;
+		margin: 16px 0;
+		padding-left: 18px;
+		color: var(--color-body);
+		font-size: 0.9rem;
+		line-height: 1.7;
+	}
+
+	.review-section {
+		margin-top: 56px;
+	}
+
+	@media (max-width: 960px) {
+		.python-course-layout {
+			grid-template-columns: 1fr;
+		}
+
+		.toc ol {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+	}
+
+	@media (max-width: 560px) {
+		.toc ol,
+		.value-grid,
+		.type-grid,
+		.conversion-grid,
+		.logic-grid,
+		.split-grid {
+			grid-template-columns: 1fr;
+		}
+
+		.course-nav {
+			justify-content: flex-start;
+		}
+	}
+</style>
