@@ -3,7 +3,7 @@ const parts = [
 	{ number: 1, title: 'Introdução ao Python', href: '/linguagens/python' },
 	{ number: 2, title: 'Fundamentos da linguagem', href: '/linguagens/python/parte-2' },
 	{ number: 3, title: 'Operadores, expressões e lógica', href: '/linguagens/python/parte-3' },
-	{ number: 4, title: 'Estruturas condicionais', href: null },
+	{ number: 4, title: 'Estruturas condicionais', href: '/linguagens/python/parte-4' },
 	{ number: 5, title: 'Estruturas de repetição', href: null },
 	{ number: 6, title: 'Estruturas de dados', href: null },
 	{ number: 7, title: 'Funções', href: null },
@@ -30,7 +30,6 @@ const currentPart = parts.find((part) => part.href === currentPath);
 	<details class="course-index" open>
 		<summary>
 			<span class="summary-copy">
-				<span class="eyebrow">Curso</span>
 				<span class="summary-title">Python</span>
 			</span>
 			<span class="summary-current">
@@ -43,9 +42,8 @@ const currentPart = parts.find((part) => part.href === currentPath);
 
 		<div class="index-content">
 			<div class="index-heading">
-				<p class="eyebrow">Trilha de aprendizado</p>
 				<h2>Mapa do curso</h2>
-				<p>As próximas partes serão disponibilizadas em breve.</p>
+				<p>Novas partes serão publicadas em breve.</p>
 			</div>
 
 			<nav aria-label="Partes do curso de Python">
@@ -127,17 +125,7 @@ const currentPart = parts.find((part) => part.href === currentPath);
 
 	.summary-copy {
 		display: grid;
-		gap: 1px;
 		margin-right: auto;
-	}
-
-	.eyebrow {
-		margin: 0;
-		color: var(--color-muted);
-		font-size: 0.72rem;
-		font-weight: 600;
-		letter-spacing: 0.12em;
-		text-transform: uppercase;
 	}
 
 	.summary-title {
@@ -185,7 +173,7 @@ const currentPart = parts.find((part) => part.href === currentPath);
 	}
 
 	.index-heading h2 {
-		margin: 4px 0;
+		margin: 0 0 4px;
 		color: var(--color-text);
 		font-size: 1.15rem;
 		line-height: 1.4;

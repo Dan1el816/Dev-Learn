@@ -64,7 +64,6 @@ const arithmetic = [
 				</p>
 				<div class="course-meta">
 					<span><i aria-hidden="true">✓</i> Pré-requisito: Parte 2</span>
-					<span>Foco: operadores, comparações e raciocínio lógico</span>
 				</div>
 				<div class="objectives">
 					<h2>Ao final desta parte, você será capaz de:</h2>
@@ -79,8 +78,7 @@ const arithmetic = [
 
 			<nav class="toc" aria-label="Índice da Parte 3">
 				<div class="toc-heading">
-					<p class="eyebrow"><span></span> Roteiro de estudo</p>
-					<h2>Conteúdo desta parte</h2>
+					<h2>Conteúdo</h2>
 				</div>
 				<ol>
 					{sections.map((section, index) => (
@@ -96,7 +94,7 @@ const arithmetic = [
 
 			<article class="lesson" aria-label="Parte 3 — Operadores, expressões e lógica">
 				<section class="lesson-section" id="parte-3-1" aria-labelledby="title-3-1">
-					<div class="section-heading"><span class="section-number">3.1</span><div><p class="eyebrow"><span></span> Conceito</p><h2 id="title-3-1">O que são operadores?</h2></div></div>
+					<div class="section-heading"><span class="section-number">3.1</span><div><h2 id="title-3-1">O que são operadores?</h2></div></div>
 					<p>Uma operação começa com um <strong>operador</strong>. O operador informa ao Python o tipo de cálculo ou comparação que deve ser feito. Os valores que ele combina são chamados <strong>operandos</strong>.</p>
 					<CodeSample label="Uma operação simples" code={'10 + 5'} output="15" />
 					<p>A leitura é simples: <code>10</code> e <code>5</code> são operandos, <code>+</code> é o operador e o resultado da operação é <code>15</code>.</p>
@@ -109,7 +107,7 @@ const arithmetic = [
 				</section>
 
 				<section class="lesson-section" id="parte-3-2" aria-labelledby="title-3-2">
-					<div class="section-heading"><span class="section-number">3.2</span><div><p class="eyebrow"><span></span> Expressão</p><h2 id="title-3-2">O que são expressões?</h2></div></div>
+					<div class="section-heading"><span class="section-number">3.2</span><div><h2 id="title-3-2">O que são expressões?</h2></div></div>
 					<p>Uma <strong>expressão</strong> é qualquer trecho de código que pode ser avaliado para produzir um valor. Ela pode conter números, variáveis, operadores e até chamadas de funções.</p>
 					<CodeSample label="Expressões" code={'10 + 5\nidade >= 18\n"Python" == "python"\n10 * 2 + 5'} output={'15\nFalse\nFalse\n25'} />
 					<p>Uma expressão não precisa ser apenas uma conta. Comparações e combinações lógicas também são expressões, porque também geram um valor: <code>True</code> ou <code>False</code>.</p>
@@ -117,7 +115,7 @@ const arithmetic = [
 				</section>
 
 				<section class="lesson-section" id="parte-3-3" aria-labelledby="title-3-3">
-					<div class="section-heading"><span class="section-number">3.3</span><div><p class="eyebrow"><span></span> Operações</p><h2 id="title-3-3">Operadores aritméticos</h2></div></div>
+					<div class="section-heading"><span class="section-number">3.3</span><div><h2 id="title-3-3">Operadores aritméticos</h2></div></div>
 					<p>Os operadores aritméticos servem para fazer cálculo numérico. Eles são essenciais para processar valores e criar expressões. Veja os principais:</p>
 					<div class="table-scroll" role="region" tabindex="0" aria-label="Tabela de operadores aritméticos">
 						<table>
@@ -133,7 +131,7 @@ const arithmetic = [
 				</section>
 
 				<section class="lesson-section" id="parte-3-4" aria-labelledby="title-3-4">
-					<div class="section-heading"><span class="section-number">3.4</span><div><p class="eyebrow"><span></span> Divisão</p><h2 id="title-3-4">Divisão <code>/</code></h2></div></div>
+					<div class="section-heading"><span class="section-number">3.4</span><div><h2 id="title-3-4">Divisão <code>/</code></h2></div></div>
 					<p>O operador <code>/</code> faz uma divisão comum. O resultado sempre é um número de ponto flutuante, mesmo quando a divisão parece inteira.</p>
 					<CodeSample label="Divisão comum" code={'print(10 / 2)\nprint(7 / 2)'} output={'5.0\n3.5'} />
 					<p>Isso acontece porque a divisão em Python produz um valor <code>float</code>. Então, <code>10 / 2</code> não produz <code>5</code> como inteiro; produz <code>5.0</code>.</p>
@@ -141,7 +139,7 @@ const arithmetic = [
 				</section>
 
 				<section class="lesson-section" id="parte-3-5" aria-labelledby="title-3-5">
-					<div class="section-heading"><span class="section-number">3.5</span><div><p class="eyebrow"><span></span> Divisão</p><h2 id="title-3-5">Divisão inteira <code>//</code></h2></div></div>
+					<div class="section-heading"><span class="section-number">3.5</span><div><h2 id="title-3-5">Divisão inteira <code>//</code></h2></div></div>
 					<p>Quando queremos a parte inteira da divisão, usamos <code>//</code>. Esse operador descarta a parte decimal do quociente.</p>
 					<CodeSample label="Divisão inteira" code={'print(7 / 2)\nprint(7 // 2)\nprint(-7 // 2)'} output={'3.5\n3\n-4'} />
 					<p>Observe a diferença: <code>7 / 2</code> resulta em <code>3.5</code>, enquanto <code>7 // 2</code> resulta em <code>3</code>. Com valores negativos, o comportamento pode parecer menos intuitivo, mas a ideia continua sendo “parte inteira do quociente”.</p>
@@ -149,7 +147,7 @@ const arithmetic = [
 				</section>
 
 				<section class="lesson-section" id="parte-3-6" aria-labelledby="title-3-6">
-					<div class="section-heading"><span class="section-number">3.6</span><div><p class="eyebrow"><span></span> Resto</p><h2 id="title-3-6">Resto da divisão <code>%</code></h2></div></div>
+					<div class="section-heading"><span class="section-number">3.6</span><div><h2 id="title-3-6">Resto da divisão <code>%</code></h2></div></div>
 					<p>O operador <code>%</code> retorna o resto da divisão entre dois números. A expressão <code>a % b</code> responde à pergunta: “qual sobra depois de dividir <code>a</code> por <code>b</code>?”</p>
 					<CodeSample label="Resto da divisão" code={'print(10 % 3)\nprint(10 % 2)\nprint(9 % 3)'} output={'1\n0\n0'} />
 					<p>Esse operador é muito útil para verificar divisibilidade. Se o resto for zero, o número é divisível pelo divisor.</p>
@@ -157,14 +155,14 @@ const arithmetic = [
 				</section>
 
 				<section class="lesson-section" id="parte-3-7" aria-labelledby="title-3-7">
-					<div class="section-heading"><span class="section-number">3.7</span><div><p class="eyebrow"><span></span> Potência</p><h2 id="title-3-7">Potência <code>**</code></h2></div></div>
+					<div class="section-heading"><span class="section-number">3.7</span><div><h2 id="title-3-7">Potência <code>**</code></h2></div></div>
 					<p>O operador <code>**</code> calcula a potência. Em outras palavras, ele multiplica um número por ele mesmo uma quantidade de vezes.</p>
 					<CodeSample label="Potência" code={'print(2 ** 3)\nprint(10 ** 2)\nprint(3 ** 4)'} output={'8\n100\n81'} />
 					<p>Podemos ler <code>2 ** 3</code> como “dois elevado à terceira potência”. Esse operador aparece em cálculos de áreas, volumes, juros e muitas outras situações.</p>
 				</section>
 
 				<section class="lesson-section" id="parte-3-8" aria-labelledby="title-3-8">
-					<div class="section-heading"><span class="section-number">3.8</span><div><p class="eyebrow"><span></span> Ordem</p><h2 id="title-3-8">Precedência de operadores</h2></div></div>
+					<div class="section-heading"><span class="section-number">3.8</span><div><h2 id="title-3-8">Precedência de operadores</h2></div></div>
 					<p>Python resolve expressões seguindo uma ordem de avaliação. Não é aleatório: ele avalia alguns operadores antes de outros. Isso é o que chamamos de <strong>precedência</strong>.</p>
 					<CodeSample label="Multiplicação antes da adição" code={'print(2 + 3 * 4)'} output="14" />
 					<p>Primeiro, Python calcula <code>3 * 4</code>, que resulta em <code>12</code>. Depois soma <code>2</code> e obtém <code>14</code>.</p>
@@ -174,7 +172,7 @@ const arithmetic = [
 				</section>
 
 				<section class="lesson-section" id="parte-3-9" aria-labelledby="title-3-9">
-					<div class="section-heading"><span class="section-number">3.9</span><div><p class="eyebrow"><span></span> Ordem</p><h2 id="title-3-9">Associatividade</h2></div></div>
+					<div class="section-heading"><span class="section-number">3.9</span><div><h2 id="title-3-9">Associatividade</h2></div></div>
 					<p>Além da precedência, alguns operadores são avaliados em uma ordem específica quando aparecem em sequência. Em muitos casos, a avaliação é da esquerda para a direita.</p>
 					<CodeSample label="Esquerda para a direita" code={'print(10 - 3 - 2)'} output="5" />
 					<p>Python lê primeiro <code>10 - 3</code>, depois subtrai <code>2</code> do resultado. Isso é um caso de associatividade e mostra que a ordem de avaliação importa.</p>
@@ -183,7 +181,7 @@ const arithmetic = [
 				</section>
 
 				<section class="lesson-section" id="parte-3-10" aria-labelledby="title-3-10">
-					<div class="section-heading"><span class="section-number">3.10</span><div><p class="eyebrow"><span></span> Atribuição</p><h2 id="title-3-10">Operadores de atribuição</h2></div></div>
+					<div class="section-heading"><span class="section-number">3.10</span><div><h2 id="title-3-10">Operadores de atribuição</h2></div></div>
 					<p>Na Parte 2, você viu o operador <code>=</code>. Ele atribui um valor a uma variável. Além dele, Python oferece formas abreviadas de atualizar o valor atual.</p>
 					<CodeSample label="Atribuição simples" code={'contador = 10\ncontador = contador + 1\nprint(contador)'} output="11" />
 					<p>O modo abreviado é mais legível em muitos casos:</p>
@@ -198,7 +196,7 @@ const arithmetic = [
 				</section>
 
 				<section class="lesson-section" id="parte-3-11" aria-labelledby="title-3-11">
-					<div class="section-heading"><span class="section-number">3.11</span><div><p class="eyebrow"><span></span> Comparação</p><h2 id="title-3-11">Operadores de comparação</h2></div></div>
+					<div class="section-heading"><span class="section-number">3.11</span><div><h2 id="title-3-11">Operadores de comparação</h2></div></div>
 					<p>Comparações perguntam se uma relação entre valores é verdadeira ou falsa. O resultado sempre será um booleano: <code>True</code> ou <code>False</code>.</p>
 					<div class="table-scroll" role="region" tabindex="0" aria-label="Tabela de operadores de comparação">
 						<table>
@@ -217,7 +215,7 @@ const arithmetic = [
 				</section>
 
 				<section class="lesson-section" id="parte-3-12" aria-labelledby="title-3-12">
-					<div class="section-heading"><span class="section-number">3.12</span><div><p class="eyebrow"><span></span> Texto</p><h2 id="title-3-12">Comparação de strings</h2></div></div>
+					<div class="section-heading"><span class="section-number">3.12</span><div><h2 id="title-3-12">Comparação de strings</h2></div></div>
 					<p>Strings também podem ser comparadas. O Python compara os caracteres de acordo com a ordem da tabela de caracteres e a diferença entre letras maiúsculas e minúsculas.</p>
 					<CodeSample label="Comparando textos" code={'print("Python" == "Python")\nprint("Python" == "python")\nprint("ab" < "ba")'} output={'True\nFalse\nTrue'} />
 					<p>Observe que <code>"Python" == "python"</code> resulta em <code>False</code>. Em Python, letras maiúsculas e minúsculas são tratadas de forma diferente. Esse detalhe costuma causar confusão em programas que comparam nomes ou textos de usuário.</p>
@@ -225,7 +223,7 @@ const arithmetic = [
 				</section>
 
 				<section class="lesson-section" id="parte-3-13" aria-labelledby="title-3-13">
-					<div class="section-heading"><span class="section-number">3.13</span><div><p class="eyebrow"><span></span> Comparação</p><h2 id="title-3-13">Comparações encadeadas</h2></div></div>
+					<div class="section-heading"><span class="section-number">3.13</span><div><h2 id="title-3-13">Comparações encadeadas</h2></div></div>
 					<p>Python permite escrever uma comparação que reúne mais de uma regra em uma única expressão:</p>
 					<CodeSample label="Faixa de idade" code={'idade = 25\nprint(18 <= idade <= 60)'} output="True" />
 					<p>Essa expressão equivale a dizer: “idade é maior ou igual a 18 e menor ou igual a 60”. Em vez de escrever duas comparações separadas, o Python aceita a sintaxe encadeada.</p>
@@ -234,14 +232,14 @@ const arithmetic = [
 				</section>
 
 				<section class="lesson-section" id="parte-3-14" aria-labelledby="title-3-14">
-					<div class="section-heading"><span class="section-number">3.14</span><div><p class="eyebrow"><span></span> Lógica</p><h2 id="title-3-14">Booleanos</h2></div></div>
+					<div class="section-heading"><span class="section-number">3.14</span><div><h2 id="title-3-14">Booleanos</h2></div></div>
 					<p>Booleanos são valores lógicos: <code>True</code> e <code>False</code>. Eles aparecem sempre que uma expressão realiza uma pergunta como “é maior que?”, “é igual a?” ou “é verdade que ...?”</p>
 					<CodeSample label="Valores booleanos" code={'print(10 > 5)\nprint(10 == 5)\nresultado = 5 < 7\nprint(resultado)'} output={'True\nFalse\nTrue'} />
 					<p>O interessante é que o resultado de uma comparação pode ser usado como informação em outra expressão. Isso é o núcleo da lógica que torna programas dinâmicos.</p>
 				</section>
 
 				<section class="lesson-section" id="parte-3-15" aria-labelledby="title-3-15">
-					<div class="section-heading"><span class="section-number">3.15</span><div><p class="eyebrow"><span></span> Combinação</p><h2 id="title-3-15">Operador <code>and</code></h2></div></div>
+					<div class="section-heading"><span class="section-number">3.15</span><div><h2 id="title-3-15">Operador <code>and</code></h2></div></div>
 					<p>O operador <code>and</code> exige que as duas condições sejam verdadeiras para que o resultado seja <code>True</code>.</p>
 					<CodeSample label="and" code={'idade = 20\npossui_documento = True\nprint(idade >= 18 and possui_documento)\nprint(idade >= 18 and False)'} output={'True\nFalse'} />
 					<p>Em linguagem natural: “idade maior ou igual a 18 e documento válido” só é verdade quando as duas condições são verdadeiras.</p>
@@ -249,21 +247,21 @@ const arithmetic = [
 				</section>
 
 				<section class="lesson-section" id="parte-3-16" aria-labelledby="title-3-16">
-					<div class="section-heading"><span class="section-number">3.16</span><div><p class="eyebrow"><span></span> Combinação</p><h2 id="title-3-16">Operador <code>or</code></h2></div></div>
+					<div class="section-heading"><span class="section-number">3.16</span><div><h2 id="title-3-16">Operador <code>or</code></h2></div></div>
 					<p>O operador <code>or</code> é mais permissivo: basta que pelo menos uma das condições seja verdadeira para que o resultado final seja <code>True</code>.</p>
 					<CodeSample label="or" code={'dia = "sábado"\nprint(dia == "sábado" or dia == "domingo")\nprint(dia == "segunda" or dia == "terça")'} output={'True\nFalse'} />
 					<p>Em linguagem natural: “é sábado ou domingo” é verdadeiro se pelo menos um desses valores for verdadeiro. Essa lógica é muito utilizada em validações e regras de negócio.</p>
 				</section>
 
 				<section class="lesson-section" id="parte-3-17" aria-labelledby="title-3-17">
-					<div class="section-heading"><span class="section-number">3.17</span><div><p class="eyebrow"><span></span> Negação</p><h2 id="title-3-17">Operador <code>not</code></h2></div></div>
+					<div class="section-heading"><span class="section-number">3.17</span><div><h2 id="title-3-17">Operador <code>not</code></h2></div></div>
 					<p><code>not</code> inverte o valor lógico. Se a expressão for verdadeira, a negação a torna falsa, e vice-versa.</p>
 					<CodeSample label="Negação" code={'print(not True)\nprint(not False)\nprint(not (10 > 5))'} output={'False\nTrue\nFalse'} />
 					<p>Essa operação é útil para conferir condições contrárias, como “não é maior que 18”, “não está vazio” e “não foi encontrado”.</p>
 				</section>
 
 				<section class="lesson-section" id="parte-3-18" aria-labelledby="title-3-18">
-					<div class="section-heading"><span class="section-number">3.18</span><div><p class="eyebrow"><span></span> Tabela</p><h2 id="title-3-18">Tabela verdade</h2></div></div>
+					<div class="section-heading"><span class="section-number">3.18</span><div><h2 id="title-3-18">Tabela verdade</h2></div></div>
 					<p>Uma tabela verdade ajuda a visualizar o comportamento dos operadores lógicos sem decorar regras arbitrárias.</p>
 					<div class="table-scroll" role="region" tabindex="0" aria-label="Tabela verdade dos operadores lógicos">
 						<table>
@@ -280,7 +278,7 @@ const arithmetic = [
 				</section>
 
 				<section class="lesson-section" id="parte-3-19" aria-labelledby="title-3-19">
-					<div class="section-heading"><span class="section-number">3.19</span><div><p class="eyebrow"><span></span> Avaliação</p><h2 id="title-3-19">Curto-circuito</h2></div></div>
+					<div class="section-heading"><span class="section-number">3.19</span><div><h2 id="title-3-19">Curto-circuito</h2></div></div>
 					<p>Python pode aproveitar a lógica de <code>and</code> e <code>or</code> para evitar avaliar partes desnecessárias de uma expressão. Esse comportamento é conhecido como <strong>curto-circuito</strong>.</p>
 					<CodeSample label="Curto-circuito" code={'print(False and (1 / 0))\nprint(True or (1 / 0))'} output={'False\nTrue'} />
 					<p>Na primeira expressão, como a primeira parte já é <code>False</code>, Python não precisa avaliar <code>1 / 0</code>. Na segunda, a primeira parte já é <code>True</code>, então a outra parte não precisa ser calculada.</p>
@@ -288,21 +286,21 @@ const arithmetic = [
 				</section>
 
 				<section class="lesson-section" id="parte-3-20" aria-labelledby="title-3-20">
-					<div class="section-heading"><span class="section-number">3.20</span><div><p class="eyebrow"><span></span> Verdadeiro</p><h2 id="title-3-20">Truthy e Falsy</h2></div></div>
+					<div class="section-heading"><span class="section-number">3.20</span><div><h2 id="title-3-20">Truthy e Falsy</h2></div></div>
 					<p>Em Python, alguns valores são considerados verdadeiros e outros, falsos, em contextos booleanos. Isso é chamado de valores <strong>truthy</strong> e <strong>falsy</strong>.</p>
 					<CodeSample label="Valores verdadeiros e falsos" code={'print(bool(0))\nprint(bool(1))\nprint(bool(""))\nprint(bool("Python"))\nprint(bool([]))'} output={'False\nTrue\nFalse\nTrue\nFalse'} />
 					<p>Um valor como <code>0</code> e uma string vazia são falsos; um valor como <code>1</code> e uma string com conteúdo são verdadeiros. Isso será muito importante em decisões e validações mais adiante.</p>
 				</section>
 
 				<section class="lesson-section" id="parte-3-21" aria-labelledby="title-3-21">
-					<div class="section-heading"><span class="section-number">3.21</span><div><p class="eyebrow"><span></span> Conversão</p><h2 id="title-3-21">Conversão para <code>bool()</code></h2></div></div>
+					<div class="section-heading"><span class="section-number">3.21</span><div><h2 id="title-3-21">Conversão para <code>bool()</code></h2></div></div>
 					<p>A função <code>bool()</code> converte um valor para o tipo booleano correspondente.</p>
 					<CodeSample label="Converting values to bool" code={'print(bool(0))\nprint(bool(10))\nprint(bool(""))\nprint(bool("Olá"))\nprint(bool(None))'} output={'False\nTrue\nFalse\nTrue\nFalse'} />
 					<p>Observe que <code>bool("False")</code> resultaria em <code>True</code>, porque a string não é vazia. Ou seja, o conteúdo do texto não é avaliado como uma palavra lógica; o que importa é se o valor é vazio ou não.</p>
 				</section>
 
 				<section class="lesson-section" id="parte-3-22" aria-labelledby="title-3-22">
-					<div class="section-heading"><span class="section-number">3.22</span><div><p class="eyebrow"><span></span> Identidade</p><h2 id="title-3-22">Operadores de identidade</h2></div></div>
+					<div class="section-heading"><span class="section-number">3.22</span><div><h2 id="title-3-22">Operadores de identidade</h2></div></div>
 					<p>Os operadores <code>is</code> e <code>is not</code> verificam se dois valores são o mesmo objeto, ou se uma referência aponta para o mesmo lugar na memória.</p>
 					<CodeSample label="Identidade" code={'valor = None\nprint(valor is None)\nprint(valor is not None)\nprint(10 is 10)'} output={'True\nFalse\nTrue'} />
 					<p>Essa diferença é importante: <code>==</code> compara valores; <code>is</code> compara identidade. Para comparação de conteúdo simples, geralmente usamos <code>==</code>.</p>
@@ -310,14 +308,14 @@ const arithmetic = [
 				</section>
 
 				<section class="lesson-section" id="parte-3-23" aria-labelledby="title-3-23">
-					<div class="section-heading"><span class="section-number">3.23</span><div><p class="eyebrow"><span></span> Associação</p><h2 id="title-3-23">Operadores de associação</h2></div></div>
+					<div class="section-heading"><span class="section-number">3.23</span><div><h2 id="title-3-23">Operadores de associação</h2></div></div>
 					<p>Os operadores <code>in</code> e <code>not in</code> verificam se um valor aparece dentro de outro.</p>
 					<CodeSample label="Verificando presença" code={'texto = "python"\nprint("py" in texto)\nprint("java" in texto)\nprint("x" not in texto)'} output={'True\nFalse\nTrue'} />
 					<p>Esses operadores deixam a lógica mais legível quando você quer verificar se um texto, trecho ou elemento está presente. Esse comportamento é útil em validações, busca e filtros.</p>
 				</section>
 
 				<section class="lesson-section" id="parte-3-24" aria-labelledby="title-3-24">
-					<div class="section-heading"><span class="section-number">3.24</span><div><p class="eyebrow"><span></span> Combinação</p><h2 id="title-3-24">Combinação de operadores</h2></div></div>
+					<div class="section-heading"><span class="section-number">3.24</span><div><h2 id="title-3-24">Combinação de operadores</h2></div></div>
 					<p>Agora a lógica começa a aparecer de forma mais realista. A ideia é combinar comparações e operadores booleanos para representar regras.</p>
 					<CodeSample label="Regra de faixa etária" code={'idade = 25\nprint(idade >= 18 and idade <= 60)\nprint(idade < 18 or idade > 60)'} output={'True\nFalse'} />
 					<p>Uma expressão complexa pode ser lida em partes: primeiro se a idade é maior ou igual a 18, depois se é menor ou igual a 60. O resultado combina essas duas perguntas.</p>
@@ -325,7 +323,7 @@ const arithmetic = [
 				</section>
 
 				<section class="lesson-section" id="parte-3-25" aria-labelledby="title-3-25">
-					<div class="section-heading"><span class="section-number">3.25</span><div><p class="eyebrow"><span></span> Raciocínio</p><h2 id="title-3-25">Como interpretar uma expressão</h2></div></div>
+					<div class="section-heading"><span class="section-number">3.25</span><div><h2 id="title-3-25">Como interpretar uma expressão</h2></div></div>
 					<p>Uma expressão pode parecer simples, mas é importante aprender a lê-la em etapas. Essa habilidade é o que permite prever o resultado antes de executar o programa.</p>
 					<CodeSample label="Desmontando uma expressão" code={'idade = 22\npossui_documento = True\nresultado = idade >= 18 and possui_documento and idade <= 60\nprint(resultado)'} output="True" />
 					<ol class="step-list">
@@ -338,7 +336,7 @@ const arithmetic = [
 				</section>
 
 				<section class="lesson-section" id="parte-3-26" aria-labelledby="title-3-26">
-					<div class="section-heading"><span class="section-number">3.26</span><div><p class="eyebrow"><span></span> Erros</p><h2 id="title-3-26">Erros comuns</h2></div></div>
+					<div class="section-heading"><span class="section-number">3.26</span><div><h2 id="title-3-26">Erros comuns</h2></div></div>
 					<p>Alguns erros aparecem com frequência quando o aluno começa a trabalhar com expressões. O mais comum é confundir atribuição e comparação.</p>
 					<CodeSample label="Atribuição vs comparação" code={'idade = 18\nprint(idade == 18)\nprint(idade = 18)'} />
 					<p>O primeiro exemplo é válido: ele compara se a idade é igual a 18. O segundo não é válido em Python, porque <code>=</code> não serve para testar igualdade dentro de uma expressão de comparação.</p>
@@ -350,7 +348,7 @@ const arithmetic = [
 				</section>
 
 				<section class="lesson-section" id="parte-3-27" aria-labelledby="title-3-27">
-					<div class="section-heading"><span class="section-number">3.27</span><div><p class="eyebrow"><span></span> Aplicação</p><h2 id="title-3-27">Problemas do mundo real</h2></div></div>
+					<div class="section-heading"><span class="section-number">3.27</span><div><h2 id="title-3-27">Problemas do mundo real</h2></div></div>
 					<p>Agora que você conhece operadores e expressões, pode começar a representar regras do mundo real com código.</p>
 					<CodeSample label="Verificar maioridade" code={'idade = 20\nprint(idade >= 18)'} output="True" />
 					<CodeSample label="Verificar faixa etária" code={'idade = 25\nprint(18 <= idade <= 60)'} output="True" />
@@ -360,7 +358,7 @@ const arithmetic = [
 				</section>
 
 				<section class="lesson-section" id="parte-3-28" aria-labelledby="title-3-28">
-					<div class="section-heading"><span class="section-number">3.28</span><div><p class="eyebrow"><span></span> Projeto</p><h2 id="title-3-28">Mini projeto: sistema de análise de entrada</h2></div></div>
+					<div class="section-heading"><span class="section-number">3.28</span><div><h2 id="title-3-28">Mini projeto: sistema de análise de entrada</h2></div></div>
 					<p>Crie um pequeno programa que receba dados do usuário e produza resultados booleanos a partir de regras simples.</p>
 					<CodeSample
 						label="analise_de_acesso.py"
@@ -375,7 +373,6 @@ const arithmetic = [
 				</section>
 
 				<section class="review-section" id="revisao" aria-labelledby="title-review">
-					<p class="eyebrow"><span></span> Revisão</p>
 					<h2 id="title-review">O que você aprendeu</h2>
 					<ul class="checklist">
 						<li>entendeu o papel de operadores e operandos;</li>
@@ -388,7 +385,6 @@ const arithmetic = [
 				</section>
 
 				<section class="next-section" id="proxima-parte" aria-labelledby="title-next">
-					<p class="eyebrow"><span></span> Continuação</p>
 					<h2 id="title-next">A próxima parte começa a decidir</h2>
 					<p>Com os operadores e as expressões dominados, você já está pronto para entender como um programa toma decisões com base em regras. A próxima etapa vai transformar esse raciocínio em instruções que mudam o fluxo do programa.</p>
 				</section>
@@ -624,11 +620,6 @@ const arithmetic = [
 		font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
 		font-size: clamp(1.05rem, 2.8vw, 1.45rem);
 		font-weight: 700;
-	}
-
-	.section-heading .eyebrow {
-		margin-bottom: 4px;
-		font-size: 0.65rem;
 	}
 
 	.section-heading h2,

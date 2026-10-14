@@ -62,7 +62,6 @@ const arithmetic = [
 				</p>
 				<div class="course-meta">
 					<span><i aria-hidden="true">✓</i> Pré-requisito: Parte 1</span>
-					<span>Foco: dados, expressões e entrada e saída</span>
 				</div>
 				<div class="objectives">
 					<h2>Ao final desta parte, você será capaz de:</h2>
@@ -77,8 +76,7 @@ const arithmetic = [
 
 			<nav class="toc" aria-label="Índice da Parte 2">
 				<div class="toc-heading">
-					<p class="eyebrow"><span></span> Roteiro de estudo</p>
-					<h2>Conteúdo desta parte</h2>
+					<h2>Conteúdo</h2>
 				</div>
 				<ol>
 					{sections.map((section, index) => (
@@ -94,7 +92,7 @@ const arithmetic = [
 
 			<article class="lesson" aria-label="Parte 2 — Fundamentos da linguagem Python">
 				<section class="lesson-section" id="parte-2-1" aria-labelledby="title-2-1">
-					<div class="section-heading"><span class="section-number">2.1</span><div><p class="eyebrow"><span></span> Ponto de partida</p><h2 id="title-2-1">O que é um valor?</h2></div></div>
+					<div class="section-heading"><span class="section-number">2.1</span><div><h2 id="title-2-1">O que é um valor?</h2></div></div>
 					<p>Um programa trabalha com informações chamadas <strong>valores</strong>. Um valor pode ser um número, um texto ou uma informação lógica, entre outros tipos.</p>
 					<CodeSample label="Alguns valores Python" code={'10\n3.14\n"Olá"\nTrue\nFalse'} />
 					<div class="value-grid">
@@ -108,7 +106,7 @@ const arithmetic = [
 				</section>
 
 				<section class="lesson-section" id="parte-2-2" aria-labelledby="title-2-2">
-					<div class="section-heading"><span class="section-number">2.2</span><div><p class="eyebrow"><span></span> Cálculo</p><h2 id="title-2-2">Expressões</h2></div></div>
+					<div class="section-heading"><span class="section-number">2.2</span><div><h2 id="title-2-2">Expressões</h2></div></div>
 					<p>Uma <strong>expressão</strong> combina valores e operadores para produzir um resultado. Um operador é um símbolo que indica uma operação; os valores sobre os quais ele age são seus operandos.</p>
 					<CodeSample label="Expressões simples" code={'2 + 3\n10 * 5\n"Olá " + "Python"'} language="text" />
 					<p>O interpretador avalia cada expressão. Por exemplo, a adição produz um novo valor:</p>
@@ -120,7 +118,7 @@ const arithmetic = [
 				</section>
 
 				<section class="lesson-section" id="parte-2-3" aria-labelledby="title-2-3">
-					<div class="section-heading"><span class="section-number">2.3</span><div><p class="eyebrow"><span></span> Classificação</p><h2 id="title-2-3">Tipos de dados</h2></div></div>
+					<div class="section-heading"><span class="section-number">2.3</span><div><h2 id="title-2-3">Tipos de dados</h2></div></div>
 					<p>Um <strong>tipo</strong> descreve a categoria de um valor e as operações que fazem sentido para ele. A função embutida <code>type()</code> permite observar o tipo de um exemplo:</p>
 					<div class="type-grid">
 						<article class="type-card"><h3><code>int</code></h3><p>Números inteiros.</p><CodeSample label="Tipo de 10" code="type(10)" output={"<class 'int'>"} /></article>
@@ -134,7 +132,7 @@ const arithmetic = [
 				</section>
 
 				<section class="lesson-section" id="parte-2-4" aria-labelledby="title-2-4">
-					<div class="section-heading"><span class="section-number">2.4</span><div><p class="eyebrow"><span></span> Números</p><h2 id="title-2-4">Números inteiros</h2></div></div>
+					<div class="section-heading"><span class="section-number">2.4</span><div><h2 id="title-2-4">Números inteiros</h2></div></div>
 					<p>Um <code>int</code> representa um número inteiro, sem parte fracionária. Pode ser positivo, negativo ou zero:</p>
 					<CodeSample label="Inteiros em Python" code={'10\n0\n-10\n1000'} language="text" />
 					<p>Inteiros podem participar de expressões matemáticas. A expressão é calculada antes de o resultado ser exibido:</p>
@@ -145,7 +143,7 @@ const arithmetic = [
 				</section>
 
 				<section class="lesson-section" id="parte-2-5" aria-labelledby="title-2-5">
-					<div class="section-heading"><span class="section-number">2.5</span><div><p class="eyebrow"><span></span> Números</p><h2 id="title-2-5">Números de ponto flutuante</h2></div></div>
+					<div class="section-heading"><span class="section-number">2.5</span><div><h2 id="title-2-5">Números de ponto flutuante</h2></div></div>
 					<p>Um <code>float</code> representa um número com parte decimal. Em Python, a parte fracionária é escrita com ponto:</p>
 					<CodeSample label="Alguns valores float" code={'3.14\n10.5\n-2.75'} language="text" />
 					<p>Inteiros e floats podem ser usados juntos em cálculos. A divisão comum <code>/</code> retorna um float, inclusive quando o resultado é um número inteiro, como vimos em <code>10 / 2</code>.</p>
@@ -155,7 +153,7 @@ const arithmetic = [
 				</section>
 
 				<section class="lesson-section" id="parte-2-6" aria-labelledby="title-2-6">
-					<div class="section-heading"><span class="section-number">2.6</span><div><p class="eyebrow"><span></span> Texto</p><h2 id="title-2-6">Strings</h2></div></div>
+					<div class="section-heading"><span class="section-number">2.6</span><div><h2 id="title-2-6">Strings</h2></div></div>
 					<p>Uma <strong>string</strong> é um valor de texto. Em Python, você pode delimitá-la com aspas simples ou duplas; use o mesmo tipo para abrir e fechar:</p>
 					<CodeSample label="Aspas simples e duplas" code={'"Olá"\n\'Olá\''} output={'Olá\nOlá'} />
 					<p>Uma string pode estar vazia, conter espaços ou até caracteres que parecem números. Aspas fazem o texto ser reconhecido como string:</p>
@@ -170,7 +168,7 @@ const arithmetic = [
 				</section>
 
 				<section class="lesson-section" id="parte-2-7" aria-labelledby="title-2-7">
-					<div class="section-heading"><span class="section-number">2.7</span><div><p class="eyebrow"><span></span> Texto</p><h2 id="title-2-7">Strings e caracteres especiais</h2></div></div>
+					<div class="section-heading"><span class="section-number">2.7</span><div><h2 id="title-2-7">Strings e caracteres especiais</h2></div></div>
 					<p>Uma <strong>sequência de escape</strong> começa com uma barra invertida e representa um caractere especial dentro do texto:</p>
 					<div class="table-scroll" role="region" tabindex="0" aria-label="Tabela de caracteres especiais de strings">
 						<table>
@@ -189,7 +187,7 @@ const arithmetic = [
 				</section>
 
 				<section class="lesson-section" id="parte-2-8" aria-labelledby="title-2-8">
-					<div class="section-heading"><span class="section-number">2.8</span><div><p class="eyebrow"><span></span> Lógica</p><h2 id="title-2-8">Booleanos</h2></div></div>
+					<div class="section-heading"><span class="section-number">2.8</span><div><h2 id="title-2-8">Booleanos</h2></div></div>
 					<p>O tipo <code>bool</code> tem dois valores: <code>True</code> e <code>False</code>. Eles representam, respectivamente, verdadeiro e falso, e serão importantes ao comparar informações.</p>
 					<CodeSample label="Valores booleanos" code={'True\nFalse'} language="text" />
 					<p>Escreva-os com a inicial maiúscula. <code>true</code> e <code>false</code> em letras minúsculas não são os valores booleanos de Python.</p>
@@ -198,7 +196,7 @@ const arithmetic = [
 				</section>
 
 				<section class="lesson-section" id="parte-2-9" aria-labelledby="title-2-9">
-					<div class="section-heading"><span class="section-number">2.9</span><div><p class="eyebrow"><span></span> Nomes e valores</p><h2 id="title-2-9">Variáveis</h2></div></div>
+					<div class="section-heading"><span class="section-number">2.9</span><div><h2 id="title-2-9">Variáveis</h2></div></div>
 					<p>Quando um valor precisa ser reutilizado, damos a ele um <strong>nome</strong>. Uma variável é um nome associado a um valor durante a execução do programa.</p>
 					<CodeSample label="Dois nomes associados a valores" code={'nome = "Daniel"\nidade = 19\nprint(nome)\nprint(idade)'} output={'Daniel\n19'} />
 					<dl class="explanation-list">
@@ -215,7 +213,7 @@ const arithmetic = [
 				</section>
 
 				<section class="lesson-section" id="parte-2-10" aria-labelledby="title-2-10">
-					<div class="section-heading"><span class="section-number">2.10</span><div><p class="eyebrow"><span></span> Nomes e valores</p><h2 id="title-2-10">Atribuição</h2></div></div>
+					<div class="section-heading"><span class="section-number">2.10</span><div><h2 id="title-2-10">Atribuição</h2></div></div>
 					<p>O sinal <code>=</code> em Python indica <strong>atribuição</strong>, não uma igualdade matemática. A instrução associa ao nome do lado esquerdo o valor produzido pelo lado direito:</p>
 					<CodeSample label="Uma atribuição" code={'x = 10\nprint(x)'} output="10" />
 					<p>Leia <code>x = 10</code> como “associe o valor 10 ao nome x”. O lado direito é avaliado primeiro; depois, o resultado é associado ao nome do lado esquerdo.</p>
@@ -225,7 +223,7 @@ const arithmetic = [
 				</section>
 
 				<section class="lesson-section" id="parte-2-11" aria-labelledby="title-2-11">
-					<div class="section-heading"><span class="section-number">2.11</span><div><p class="eyebrow"><span></span> Nomes e valores</p><h2 id="title-2-11">Regras para nomes de variáveis</h2></div></div>
+					<div class="section-heading"><span class="section-number">2.11</span><div><h2 id="title-2-11">Regras para nomes de variáveis</h2></div></div>
 					<p>Um nome de variável, também chamado <strong>identificador</strong>, precisa obedecer às regras de escrita da linguagem:</p>
 					<ul class="rule-list">
 						<li>comece com uma letra ou com underscore (<code>_</code>);</li>
@@ -244,7 +242,7 @@ const arithmetic = [
 				</section>
 
 				<section class="lesson-section" id="parte-2-12" aria-labelledby="title-2-12">
-					<div class="section-heading"><span class="section-number">2.12</span><div><p class="eyebrow"><span></span> Clareza</p><h2 id="title-2-12">Convenções de nomenclatura</h2></div></div>
+					<div class="section-heading"><span class="section-number">2.12</span><div><h2 id="title-2-12">Convenções de nomenclatura</h2></div></div>
 					<p>Além de válidos, nomes devem ajudar alguém a entender o que o valor representa. Em Python, uma convenção comum para variáveis com mais de uma palavra é <strong>snake_case</strong>: palavras minúsculas separadas por underscores.</p>
 					<CodeSample label="Nomes descritivos em snake_case" code={'nome_completo = "Daniel"\nidade_usuario = 19\npreco_produto = 50.0'} />
 					<div class="split-grid">
@@ -255,7 +253,7 @@ const arithmetic = [
 				</section>
 
 				<section class="lesson-section" id="parte-2-13" aria-labelledby="title-2-13">
-					<div class="section-heading"><span class="section-number">2.13</span><div><p class="eyebrow"><span></span> Atualização</p><h2 id="title-2-13">Reatribuição</h2></div></div>
+					<div class="section-heading"><span class="section-number">2.13</span><div><h2 id="title-2-13">Reatribuição</h2></div></div>
 					<p>Uma variável pode ser atualizada com uma nova atribuição. A última associação feita é a que será usada nas próximas instruções:</p>
 					<CodeSample label="Atualizações em sequência" code={'contador = 1\ncontador = 2\ncontador = 3\nprint(contador)'} output="3" />
 					<p>O valor atual também pode participar do cálculo do novo valor. Python avalia primeiro o lado direito:</p>
@@ -269,7 +267,7 @@ const arithmetic = [
 				</section>
 
 				<section class="lesson-section" id="parte-2-14" aria-labelledby="title-2-14">
-					<div class="section-heading"><span class="section-number">2.14</span><div><p class="eyebrow"><span></span> Interação</p><h2 id="title-2-14">Entrada de dados</h2></div></div>
+					<div class="section-heading"><span class="section-number">2.14</span><div><h2 id="title-2-14">Entrada de dados</h2></div></div>
 					<p>Até agora, os valores estavam escritos no código. Com <code>input()</code>, o programa pode pedir uma informação enquanto está em execução.</p>
 					<CodeSample label="Perguntar e repetir o nome" code={'nome = input("Digite seu nome: ")\nprint(nome)'} output={'Digite seu nome: Lia\nLia'} />
 					<dl class="explanation-list">
@@ -286,7 +284,7 @@ const arithmetic = [
 				</section>
 
 				<section class="lesson-section" id="parte-2-15" aria-labelledby="title-2-15">
-					<div class="section-heading"><span class="section-number">2.15</span><div><p class="eyebrow"><span></span> Conversão</p><h2 id="title-2-15">Conversão de tipos</h2></div></div>
+					<div class="section-heading"><span class="section-number">2.15</span><div><h2 id="title-2-15">Conversão de tipos</h2></div></div>
 					<p>Uma entrada numérica continua sendo texto. Para usá-la em uma operação aritmética, converta-a explicitamente para o tipo adequado:</p>
 					<CodeSample label="Texto não pode ser somado diretamente a um inteiro" code={'idade = "19"\nprint(idade + 1)'} />
 					<p>Essa soma causa <code>TypeError</code>: os operandos têm tipos incompatíveis para essa operação. Converter o texto numérico para inteiro resolve o problema:</p>
@@ -308,7 +306,7 @@ const arithmetic = [
 				</section>
 
 				<section class="lesson-section" id="parte-2-16" aria-labelledby="title-2-16">
-					<div class="section-heading"><span class="section-number">2.16</span><div><p class="eyebrow"><span></span> Cálculo</p><h2 id="title-2-16">Operadores aritméticos</h2></div></div>
+					<div class="section-heading"><span class="section-number">2.16</span><div><h2 id="title-2-16">Operadores aritméticos</h2></div></div>
 					<p>Os operadores aritméticos combinam números e produzem um resultado. Veja a mesma dupla de operandos em cada operação:</p>
 					<div class="table-scroll" role="region" tabindex="0" aria-label="Tabela de operadores aritméticos">
 						<table>
@@ -333,7 +331,7 @@ const arithmetic = [
 				</section>
 
 				<section class="lesson-section" id="parte-2-17" aria-labelledby="title-2-17">
-					<div class="section-heading"><span class="section-number">2.17</span><div><p class="eyebrow"><span></span> Cálculo</p><h2 id="title-2-17">Precedência de operadores</h2></div></div>
+					<div class="section-heading"><span class="section-number">2.17</span><div><h2 id="title-2-17">Precedência de operadores</h2></div></div>
 					<p>Quando uma expressão tem mais de um operador, Python segue uma ordem de precedência. Multiplicação é calculada antes de adição:</p>
 					<CodeSample label="Multiplicação antes da adição" code="2 + 3 * 4" language="text" output="14" />
 					<p>Parênteses agrupam uma parte que deve ser calculada primeiro:</p>
@@ -343,7 +341,7 @@ const arithmetic = [
 				</section>
 
 				<section class="lesson-section" id="parte-2-18" aria-labelledby="title-2-18">
-					<div class="section-heading"><span class="section-number">2.18</span><div><p class="eyebrow"><span></span> Comparação</p><h2 id="title-2-18">Operadores de comparação</h2></div></div>
+					<div class="section-heading"><span class="section-number">2.18</span><div><h2 id="title-2-18">Operadores de comparação</h2></div></div>
 					<p>Uma comparação verifica uma relação entre valores e produz um booleano: <code>True</code> quando a relação é verdadeira e <code>False</code> quando não é.</p>
 					<div class="table-scroll" role="region" tabindex="0" aria-label="Tabela de operadores de comparação">
 						<table>
@@ -367,7 +365,7 @@ const arithmetic = [
 				</section>
 
 				<section class="lesson-section" id="parte-2-19" aria-labelledby="title-2-19">
-					<div class="section-heading"><span class="section-number">2.19</span><div><p class="eyebrow"><span></span> Lógica</p><h2 id="title-2-19">Operadores lógicos</h2></div></div>
+					<div class="section-heading"><span class="section-number">2.19</span><div><h2 id="title-2-19">Operadores lógicos</h2></div></div>
 					<p>Os operadores lógicos combinam ou invertem expressões booleanas. Eles são úteis quando uma resposta depende de mais de uma condição.</p>
 					<div class="logic-grid">
 						<article class="logic-card"><h3><code>and</code> — e</h3><p>O resultado é verdadeiro somente quando as duas expressões são verdadeiras.</p><CodeSample label="Ambas verdadeiras" code="True and True" language="text" output="True" /><CodeSample label="Uma falsa" code="True and False" language="text" output="False" /></article>
@@ -383,7 +381,7 @@ const arithmetic = [
 				</section>
 
 				<section class="lesson-section" id="parte-2-20" aria-labelledby="title-2-20">
-					<div class="section-heading"><span class="section-number">2.20</span><div><p class="eyebrow"><span></span> Relações entre valores</p><h2 id="title-2-20">Operadores de identidade e associação</h2></div></div>
+					<div class="section-heading"><span class="section-number">2.20</span><div><h2 id="title-2-20">Operadores de identidade e associação</h2></div></div>
 					<p><code>==</code> verifica se dois valores são iguais. <code>is</code> verifica se duas referências apontam para o mesmo objeto. Essa diferença importa porque objetos diferentes podem conter valores iguais.</p>
 					<p>Um uso introdutório e comum de identidade é verificar se um valor é o marcador <code>None</code>:</p>
 					<CodeSample label="Verificar ausência de valor" code={'resposta = None\nprint(resposta is None)\nprint(resposta is not None)'} output={'True\nFalse'} />
@@ -394,7 +392,7 @@ const arithmetic = [
 				</section>
 
 				<section class="lesson-section" id="parte-2-21" aria-labelledby="title-2-21">
-					<div class="section-heading"><span class="section-number">2.21</span><div><p class="eyebrow"><span></span> Texto dinâmico</p><h2 id="title-2-21">F-strings</h2></div></div>
+					<div class="section-heading"><span class="section-number">2.21</span><div><h2 id="title-2-21">F-strings</h2></div></div>
 					<p>Para montar uma mensagem com valores guardados em variáveis, uma f-string permite inserir esses valores dentro do texto. O prefixo <code>f</code> habilita expressões entre chaves:</p>
 					<CodeSample label="Inserir valores numa mensagem" code={'nome = "Daniel"\nidade = 19\nprint(f"Meu nome é {nome} e tenho {idade} anos.")'} output="Meu nome é Daniel e tenho 19 anos." />
 					<dl class="explanation-list">
@@ -408,7 +406,7 @@ const arithmetic = [
 				</section>
 
 				<section class="lesson-section" id="parte-2-22" aria-labelledby="title-2-22">
-					<div class="section-heading"><span class="section-number">2.22</span><div><p class="eyebrow"><span></span> Apresentação</p><h2 id="title-2-22">Formatação básica</h2></div></div>
+					<div class="section-heading"><span class="section-number">2.22</span><div><h2 id="title-2-22">Formatação básica</h2></div></div>
 					<p>Uma f-string também pode indicar como apresentar um valor. Em <code>{'{'}preco:.2f{'}'}</code>, o formato <code>.2f</code> pede uma representação decimal com duas casas após o ponto:</p>
 					<CodeSample label="Duas casas decimais" code={'preco = 19.9\nprint(f"Total: R$ {preco:.2f}")'} output="Total: R$ 19.90" />
 					<p><code>f</code> indica o formato de ponto flutuante, e <code>.2</code> especifica duas casas decimais. A formatação muda a apresentação; não transforma a variável original em uma string guardada.</p>
@@ -419,7 +417,7 @@ const arithmetic = [
 				</section>
 
 				<section class="lesson-section" id="parte-2-23" aria-labelledby="title-2-23">
-					<div class="section-heading"><span class="section-number">2.23</span><div><p class="eyebrow"><span></span> Saída</p><h2 id="title-2-23">Usando <code>print()</code></h2></div></div>
+					<div class="section-heading"><span class="section-number">2.23</span><div><h2 id="title-2-23">Usando <code>print()</code></h2></div></div>
 					<p>Você já usou <code>print()</code> na Parte 1. Agora, vamos observar como ele apresenta vários valores e organiza as linhas.</p>
 					<CodeSample label="Chamadas separadas geram linhas separadas" code={'print("Olá")\nprint("Python")'} output={'Olá\nPython'} />
 					<p>Uma chamada pode receber mais de um argumento — cada valor informado entre parênteses é um argumento. Por padrão, <code>print()</code> separa argumentos com um espaço:</p>
@@ -430,7 +428,7 @@ const arithmetic = [
 				</section>
 
 				<section class="lesson-section" id="parte-2-24" aria-labelledby="title-2-24">
-					<div class="section-heading"><span class="section-number">2.24</span><div><p class="eyebrow"><span></span> Integração</p><h2 id="title-2-24">Um programa completo</h2></div></div>
+					<div class="section-heading"><span class="section-number">2.24</span><div><h2 id="title-2-24">Um programa completo</h2></div></div>
 					<p>Vamos juntar entrada, conversão, variáveis e saída formatada para criar uma breve apresentação. Ao executar, digite <code>Lia</code> quando o programa perguntar o nome e <code>19</code> para a idade:</p>
 					<CodeSample
 						label="Apresentação com entrada"
@@ -446,7 +444,6 @@ const arithmetic = [
 					</ol>
 					<p>Agora, um pequeno projeto reúne entrada, contas e comparação. Ele não usa condicionais nem laços: mostra o resultado da comparação como <code>True</code> ou <code>False</code>.</p>
 					<div class="project-card">
-						<p class="eyebrow"><span></span> Projeto da Parte 2</p>
 						<h3>Calculadora de informações pessoais</h3>
 						<p>O programa solicita nome, idade e altura, calcula um ano de nascimento estimado e informa se a idade digitada é pelo menos 18 anos.</p>
 						<CodeSample
@@ -472,7 +469,6 @@ const arithmetic = [
 				</section>
 
 				<section class="review-section" id="revisao" aria-labelledby="title-review">
-					<p class="eyebrow"><span></span> Revisão</p>
 					<h2 id="title-review">O que você construiu</h2>
 					<ul class="checklist">
 						<li>Reconhece valores e identifica tipos como <code>int</code>, <code>float</code>, <code>str</code>, <code>bool</code> e <code>NoneType</code>.</li>
@@ -485,7 +481,6 @@ const arithmetic = [
 				</section>
 
 				<section class="next-section" id="proxima-parte" aria-labelledby="title-next">
-					<p class="eyebrow"><span></span> Continuação</p>
 					<h2 id="title-next">O próximo passo: tomar decisões</h2>
 					<p>Agora você já consegue armazenar informações, calcular, receber entradas e comparar valores. Em uma próxima parte, aprenderá a usar resultados booleanos para escolher quais instruções executar — sem precisar estudar isso agora.</p>
 					<a class="next-link" href="/linguagens/python">Voltar à Parte 1: Introdução ao Python <span aria-hidden="true">↗</span></a>
@@ -742,11 +737,6 @@ const arithmetic = [
 		font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
 		font-size: clamp(1.05rem, 2.8vw, 1.45rem);
 		font-weight: 700;
-	}
-
-	.section-heading .eyebrow {
-		margin-bottom: 4px;
-		font-size: 0.65rem;
 	}
 
 	.section-heading h2,

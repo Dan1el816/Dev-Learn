@@ -1,0 +1,726 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import Navbar from '../../../components/Navbar.astro';
+import CodeSample from '../../../components/python/CodeSample.astro';
+import KeyCallout from '../../../components/python/KeyCallout.astro';
+import PythonCourseNavigation from '../../../components/python/PythonCourseNavigation.astro';
+
+const sections = [
+	{ id: 'parte-4-1', title: 'Introdução às estruturas condicionais' },
+	{ id: 'parte-4-2', title: 'A primeira estrutura if' },
+	{ id: 'parte-4-3', title: 'Como o Python avalia uma condição' },
+	{ id: 'parte-4-4', title: 'A importância da indentação' },
+	{ id: 'parte-4-5', title: 'A estrutura else' },
+	{ id: 'parte-4-6', title: 'A estrutura elif' },
+	{ id: 'parte-4-7', title: 'Comparação entre if, elif e else' },
+	{ id: 'parte-4-8', title: 'Múltiplas condições com and' },
+	{ id: 'parte-4-9', title: 'Múltiplas condições com or' },
+	{ id: 'parte-4-10', title: 'Negação com not' },
+	{ id: 'parte-4-11', title: 'Combinação de and, or e not' },
+	{ id: 'parte-4-12', title: 'Condições aninhadas' },
+	{ id: 'parte-4-13', title: 'Truthy e falsy em condicionais' },
+	{ id: 'parte-4-14', title: 'Condições com strings' },
+	{ id: 'parte-4-15', title: 'Condições com números e faixas' },
+	{ id: 'parte-4-16', title: 'Operador ternário' },
+	{ id: 'parte-4-17', title: 'pass em estruturas condicionais' },
+	{ id: 'parte-4-18', title: 'Erros comuns em condicionais' },
+	{ id: 'parte-4-19', title: 'Como simplificar condições' },
+	{ id: 'parte-4-20', title: 'Como estruturar regras de negócio' },
+	{ id: 'parte-4-21', title: 'Raciocínio passo a passo' },
+	{ id: 'parte-4-22', title: 'Exemplos completos' },
+	{ id: 'parte-4-23', title: 'Mini projeto final' },
+	{ id: 'parte-4-24', title: 'Resumo da parte' },
+];
+
+const andTable = [
+	{ left: 'True', right: 'True', result: 'True', explanation: 'As duas condições são verdadeiras.' },
+	{ left: 'True', right: 'False', result: 'False', explanation: 'Basta uma falsa para a expressão inteira ser falsa.' },
+	{ left: 'False', right: 'True', result: 'False', explanation: 'A segunda parte também é falsa.' },
+	{ left: 'False', right: 'False', result: 'False', explanation: 'Nenhuma condição torna a expressão verdadeira.' },
+];
+
+const orTable = [
+	{ left: 'True', right: 'True', result: 'True', explanation: 'Mesmo com duas verdadeiras, a expressão continua verdadeira.' },
+	{ left: 'True', right: 'False', result: 'True', explanation: 'Basta uma só ser verdadeira.' },
+	{ left: 'False', right: 'True', result: 'True', explanation: 'O caminho alternativo satisfaz a regra.' },
+	{ left: 'False', right: 'False', result: 'False', explanation: 'Se ambas forem falsas, o bloco não será executado.' },
+];
+
+const comparisonTable = [
+	{ name: 'if', purpose: 'Verifica uma condição', condition: 'Necessária', place: 'No início', behavior: 'Executa o bloco quando a condição é verdadeira.' },
+	{ name: 'elif', purpose: 'Adiciona outra possibilidade', condition: 'É avaliada somente quando o if anterior falha', place: 'Depois do if', behavior: 'Executa um bloco quando a condição específica é verdadeira.' },
+	{ name: 'else', purpose: 'Define o caminho padrão', condition: 'Não recebe expressão própria', place: 'No final', behavior: 'Executa quando todas as condições anteriores forem falsas.' },
+];
+---
+
+<Layout title="Parte 4 — Estruturas condicionais | Dev Learn">
+	<div class="part-page">
+		<Navbar />
+		<div class="python-course-layout">
+			<PythonCourseNavigation />
+			<div class="container">
+			<header class="course-hero">
+				<nav class="course-nav" aria-label="Navegação da trilha Python">
+					<a href="/linguagens/python/parte-3">← Parte 3: Operadores e lógica</a>
+					<a href="/linguagens">Todas as linguagens</a>
+				</nav>
+				<p class="eyebrow"><span></span> Trilha de Python · Parte 4</p>
+				<h1>Estruturas <span>condicionais</span></h1>
+				<p class="hero-lead">
+					Use condições para escolher caminhos e transformar regras em decisões executáveis.
+				</p>
+				<div class="course-meta">
+					<span><i aria-hidden="true">✓</i> Pré-requisito: Parte 3</span>
+				</div>
+				<div class="objectives">
+					<h2>Ao final desta parte, você será capaz de:</h2>
+					<ul>
+						<li>explicar o que é fluxo de execução e quando ele muda;</li>
+						<li>usar <code>if</code>, <code>else</code> e <code>elif</code> com compreensão;</li>
+						<li>combinar condições com <code>and</code>, <code>or</code> e <code>not</code>;</li>
+						<li>identificar erros, simplificar regras e escrever programas que tomam decisões.</li>
+					</ul>
+				</div>
+			</header>
+
+			<nav class="toc" aria-label="Índice da Parte 4">
+				<div class="toc-heading">
+					<h2>Conteúdo</h2>
+				</div>
+				<ol>
+					{sections.map((section, index) => (
+						<li>
+							<a href={`#${section.id}`}>
+								<span>{String(index + 1).padStart(2, '0')}</span>
+								{section.title}
+							</a>
+						</li>
+					))}
+				</ol>
+			</nav>
+
+			<article class="lesson" aria-label="Parte 4 — Estruturas condicionais">
+				<section class="lesson-section" id="parte-4-1" aria-labelledby="title-4-1">
+					<div class="section-heading"><span class="section-number">4.1</span><div><h2 id="title-4-1">Introdução às estruturas condicionais</h2></div></div>
+					<p>Programas executam instruções em sequência, mas situações reais exigem caminhos diferentes: aprovar ou reprovar, liberar acesso ou aplicar desconto. Uma estrutura condicional avalia uma regra e escolhe qual bloco executar.</p>
+					<p>Essa ideia está diretamente conectada com o que você aprendeu sobre expressões booleanas na Parte 3: uma comparação, como <code>idade >= 18</code>, produz um valor lógico. Esse valor é o que ativa ou não um bloco de código.</p>
+					<KeyCallout title="Ideia-chave">Fluxo de execução significa a ordem em que o programa vai executar as instruções. Condicionais mudam esse fluxo dependendo de uma condição.</KeyCallout>
+				</section>
+
+				<section class="lesson-section" id="parte-4-2" aria-labelledby="title-4-2">
+					<div class="section-heading"><span class="section-number">4.2</span><div><h2 id="title-4-2">A primeira estrutura <code>if</code></h2></div></div>
+					<CodeSample label="Primeiro if" code={'idade = 20\n\nif idade >= 18:\n    print("Maior de idade")'} output={'Maior de idade'} />
+					<ul class="instruction-list">
+						<li><code>if</code> introduz a condição;</li>
+						<li><code>idade</code> é a variável que guarda uma informação;</li>
+						<li><code>idade >= 18</code> é a expressão booleana;</li>
+						<li><code>:</code> indica que o bloco seguinte começa;</li>
+						<li>a linha indentada com quatro espaços pertence ao bloco do <code>if</code>;</li>
+						<li>o <code>print()</code> será executado somente quando a condição for verdadeira.</li>
+					</ul>
+					<p>Agora vamos mudar a variável para ver o efeito:</p>
+					<CodeSample label="Se a condição não for verdadeira" code={'idade = 16\n\nif idade >= 18:\n    print("Maior de idade")'} output={''} />
+					<p>Nesse caso, a condição <code>idade >= 18</code> resulta em <code>False</code>, então o bloco não é executado e nada aparece na tela.</p>
+					<KeyCallout title="Dica">O <code>if</code> não quer dizer “faça sempre”. Ele significa “faça isso somente quando a condição for verdadeira”.</KeyCallout>
+				</section>
+
+				<section class="lesson-section" id="parte-4-3" aria-labelledby="title-4-3">
+					<div class="section-heading"><span class="section-number">4.3</span><div><h2 id="title-4-3">Como o Python avalia uma condição</h2></div></div>
+					<p>Na Parte 3, você viu que expressões como comparações geram um valor booleano. Agora é hora de usar esse valor para controlar um programa.</p>
+					<CodeSample label="Comparação booleana" code={'idade = 20\nprint(idade >= 18)'} output={'True'} />
+					<p>O resultado <code>True</code> significa: a condição é satisfeita. Quando a expressão resulta em <code>False</code>, a parte do código do bloco não é executada.</p>
+					<CodeSample label="Condicionando a execução" code={'idade = 20\n\nif idade >= 18:\n    print("Acesso liberado")\nelse:\n    print("Acesso negado")'} output={'Acesso liberado'} />
+					<p>Antes de executar um programa, é útil prever o resultado da condição. Isso ajuda a ler o código e a evitar erros de lógica. Por exemplo, <code>10 > 15</code> é <code>False</code>, então qualquer bloco ligado a essa condição não rodará.</p>
+				</section>
+
+				<section class="lesson-section" id="parte-4-4" aria-labelledby="title-4-4">
+					<div class="section-heading"><span class="section-number">4.4</span><div><h2 id="title-4-4">A importância da indentação</h2></div></div>
+					<p>Em Python, a indentação não é decoração. Ela faz parte da sintaxe e define onde cada bloco começa e termina. Isso é essencial para interpretar corretamente um <code>if</code>.</p>
+					<CodeSample label="Indentação correta" code={'if True:\n    print("Dentro do bloco")\n\nprint("Fora do bloco")'} output={'Dentro do bloco\nFora do bloco'} />
+					<p>A primeira instrução está dentro do bloco do <code>if</code>, porque está mais deslocada para a direita. A segunda instrução está fora, por isso é executada independentemente da condição.</p>
+					<p>Agora veja um exemplo de indentação incorreta:</p>
+					<CodeSample label="Indentação inválida" code={'if True:\nprint("Esse código falha")'} output={'Erro de indentação'} language="text" />
+					<p>A mensagem sobre <code>IndentationError</code> é um aviso de que Python esperava um bloco após os dois-pontos. O problema não é que o código seja “estranho”; é que a sintaxe está incorreta.</p>
+					<ul class="instruction-list">
+						<li>use quatro espaços por nível de indentação;</li>
+						<li>mantenha a organização visual consistente;</li>
+						<li>saiba quando uma instrução pertence a um bloco;</li>
+						<li>entenda que “dentro” e “fora” de um bloco são significados diferentes.</li>
+					</ul>
+					<KeyCallout title="Regra importante">Em Python, indentação é código. Ela organiza a lógica e evita ambiguidades.</KeyCallout>
+				</section>
+
+				<section class="lesson-section" id="parte-4-5" aria-labelledby="title-4-5">
+					<div class="section-heading"><span class="section-number">4.5</span><div><h2 id="title-4-5">A estrutura <code>else</code></h2></div></div>
+					<p>Nem sempre queremos apenas “fazer algo se a condição for verdadeira”. Muitas vezes precisamos de dois caminhos: um para o caso verdadeiro e outro para o caso falso.</p>
+					<CodeSample label="Estrutura if/else" code={'idade = 16\n\nif idade >= 18:\n    print("Maior de idade")\nelse:\n    print("Menor de idade")'} output={'Menor de idade'} />
+					<p>O <code>else</code> não recebe condição própria. Ele é a alternativa que executa quando a condição do <code>if</code> não se torna verdadeira. Em uma estrutura de decisão com <code>if/else</code>, exatamente um dos blocos será executado.</p>
+					<CodeSample label="Outro exemplo" code={'idade = 20\n\nif idade >= 18:\n    print("Permitido")\nelse:\n    print("Negado")'} output={'Permitido'} />
+				</section>
+
+				<section class="lesson-section" id="parte-4-6" aria-labelledby="title-4-6">
+					<div class="section-heading"><span class="section-number">4.6</span><div><h2 id="title-4-6">A estrutura <code>elif</code></h2></div></div>
+					<p>Quando existem mais de duas possibilidades, usamos o <code>elif</code> (abreviação de “else if”). Ele funciona como uma condição intermediária: se a condição do <code>if</code> falhar, o Python testa a do <code>elif</code>.</p>
+					<CodeSample label="Classificação de nota" code={'nota = 8\n\nif nota >= 9:\n    print("Excelente")\nelif nota >= 7:\n    print("Bom")\nelif nota >= 5:\n    print("Regular")\nelse:\n    print("Insuficiente")'} output={'Bom'} />
+					<p>O Python verifica as condições em ordem. Assim que encontra a primeira que resulta em <code>True</code>, executa o bloco correspondente e não continua testando os demais.</p>
+					<p>Isso significa que a ordem das condições importa. Se você inverter as condições, o resultado pode mudar.</p>
+					<CodeSample label="Ordem incorreta" code={'nota = 8\n\nif nota >= 5:\n    print("Regular")\nelif nota >= 7:\n    print("Bom")\nelse:\n    print("Insuficiente")'} output={'Regular'} />
+					<p>O primeiro bloco vence, porque a condição <code>nota >= 5</code> é verdadeira antes da verificação do <code>elif</code>. Isso mostra por que a ordem precisa ser pensada.</p>
+				</section>
+
+				<section class="lesson-section" id="parte-4-7" aria-labelledby="title-4-7">
+					<div class="section-heading"><span class="section-number">4.7</span><div><h2 id="title-4-7">Comparação entre <code>if</code>, <code>elif</code> e <code>else</code></h2></div></div>
+					<div class="table-scroll" role="region" tabindex="0" aria-label="Tabela de comparação entre condicionais">
+						<table>
+							<thead>
+								<tr><th scope="col">Estrutura</th><th scope="col">Finalidade</th><th scope="col">Condição</th><th scope="col">Posição</th><th scope="col">Comportamento</th></tr>
+							</thead>
+							<tbody>
+								{comparisonTable.map((item) => (
+									<tr>
+										<th scope="row"><code>{item.name}</code></th>
+										<td>{item.purpose}</td>
+										<td>{item.condition}</td>
+										<td>{item.place}</td>
+										<td>{item.behavior}</td>
+									</tr>
+								))}
+							</tbody>
+						</table>
+					</div>
+					<p>Use <code>if</code> para a primeira decisão, <code>elif</code> para outras alternativas e <code>else</code> para o caminho padrão. Isso ajuda a escrever condições claras e fáceis de manter.</p>
+				</section>
+
+				<section class="lesson-section" id="parte-4-8" aria-labelledby="title-4-8">
+					<div class="section-heading"><span class="section-number">4.8</span><div><h2 id="title-4-8">Múltiplas condições com <code>and</code></h2></div></div>
+					<p>O operador <code>and</code> exige que todas as condições sejam verdadeiras. Se uma delas for falsa, a expressão inteira fica falsa.</p>
+					<CodeSample label="Requisitos combinados" code={'idade = 25\npossui_documento = True\n\nif idade >= 18 and possui_documento:\n    print("Requisitos atendidos")'} output={'Requisitos atendidos'} />
+					<div class="table-scroll" role="region" tabindex="0" aria-label="Tabela verdade do operador and">
+						<table>
+							<thead><tr><th scope="col">idade >= 18</th><th scope="col">possui_documento</th><th scope="col">resultado</th><th scope="col">explicação</th></tr></thead>
+							<tbody>
+								{andTable.map((row) => (
+									<tr><td><code>{row.left}</code></td><td><code>{row.right}</code></td><td><code>{row.result}</code></td><td>{row.explanation}</td></tr>
+								))}
+							</tbody>
+						</table>
+					</div>
+					<p>Isso é muito útil para validar requisitos como “maior de idade e com documento” ou “valor mínimo e usuário logado”.</p>
+				</section>
+
+				<section class="lesson-section" id="parte-4-9" aria-labelledby="title-4-9">
+					<div class="section-heading"><span class="section-number">4.9</span><div><h2 id="title-4-9">Múltiplas condições com <code>or</code></h2></div></div>
+					<p>O operador <code>or</code> é diferente do <code>and</code>. Ele exige apenas que uma das condições seja verdadeira. Se qualquer um dos lados for verdadeiro, a expressão completa é verdadeira.</p>
+					<CodeSample label="Uma das condições basta" code={'dia = "domingo"\n\nif dia == "sábado" or dia == "domingo":\n    print("É fim de semana")'} output={'É fim de semana'} />
+					<div class="table-scroll" role="region" tabindex="0" aria-label="Tabela verdade do operador or">
+						<table>
+							<thead><tr><th scope="col">dia == "sábado"</th><th scope="col">dia == "domingo"</th><th scope="col">resultado</th><th scope="col">explicação</th></tr></thead>
+							<tbody>
+								{orTable.map((row) => (
+									<tr><td><code>{row.left}</code></td><td><code>{row.right}</code></td><td><code>{row.result}</code></td><td>{row.explanation}</td></tr>
+								))}
+							</tbody>
+						</table>
+					</div>
+					<p>Compare com o <code>and</code>: <code>and</code> exige que tudo seja verdadeiro; <code>or</code> aceita qualquer uma verdadeira.</p>
+				</section>
+
+				<section class="lesson-section" id="parte-4-10" aria-labelledby="title-4-10">
+					<div class="section-heading"><span class="section-number">4.10</span><div><h2 id="title-4-10">Negação com <code>not</code></h2></div></div>
+					<p>O operador <code>not</code> inverte o valor booleano de uma expressão. Se a condição original era verdadeira, o <code>not</code> a transforma em falsa; e vice-versa.</p>
+					<CodeSample label="Negando uma condição" code={'possui_ingresso = False\n\nif not possui_ingresso:\n    print("É necessário adquirir um ingresso")'} output={'É necessário adquirir um ingresso'} />
+					<p>Essa ideia é útil quando a condição mais natural para o problema é uma negação. Em vez de escrever “se não tiver ingresso”, você pode escrever “se não possui_ingresso”.</p>
+					<KeyCallout title="Regra de leitura">Lembre-se: <code>not</code> inverte o valor. Quando a condição torna-se mais legível com a negação, ela pode simplificar o código.</KeyCallout>
+				</section>
+
+				<section class="lesson-section" id="parte-4-11" aria-labelledby="title-4-11">
+					<div class="section-heading"><span class="section-number">4.11</span><div><h2 id="title-4-11">Combinação de <code>and</code>, <code>or</code> e <code>not</code></h2></div></div>
+					<p>Quando um programa precisa de regras mais elaboradas, você combina operadores lógicos para representar a regra completa. A chave é deixar a condição clara e legível.</p>
+					<CodeSample label="Condições compostas" code={'cliente_cadastrado = True\nvalor_compra = 180\npossui_cupom = False\n\nif (valor_compra >= 200 or possui_cupom) and cliente_cadastrado:\n    print("Desconto aplicado")\nelse:\n    print("Desconto não aplicado")'} output={'Desconto não aplicado'} />
+					<p>O uso de parênteses ajuda a dizer ao Python qual parte da expressão deve ser avaliada primeiro. Isso aumenta a legibilidade e reduz a chance de confusão.</p>
+				</section>
+
+				<section class="lesson-section" id="parte-4-12" aria-labelledby="title-4-12">
+					<div class="section-heading"><span class="section-number">4.12</span><div><h2 id="title-4-12">Condições aninhadas</h2></div></div>
+					<p>Uma condição pode estar dentro de outra. Isso é chamado de <strong>condição aninhada</strong>.</p>
+					<CodeSample label="if dentro de if" code={'idade = 20\npossui_documento = True\n\nif idade >= 18:\n    if possui_documento:\n        print("Acesso permitido")\n    else:\n        print("Documento necessário")\nelse:\n    print("Idade insuficiente")'} output={'Acesso permitido'} />
+					<p>Isso permite representar decisões em camadas. O programa verifica primeiro a idade e, depois, o documento. A leitura do fluxo precisa ser cuidadosa para não perder o nível de cada bloco.</p>
+					<p>Em alguns casos, a versão com <code>and</code> é mais simples:</p>
+					<CodeSample label="Versão mais simples" code={'idade = 20\npossui_documento = True\n\nif idade >= 18 and possui_documento:\n    print("Acesso permitido")\nelse:\n    print("Acesso negado")'} output={'Acesso permitido'} />
+					<p>Nem todo aninhamento é ruim, mas sempre que puder, prefira a forma mais direta e legível.</p>
+				</section>
+
+				<section class="lesson-section" id="parte-4-13" aria-labelledby="title-4-13">
+					<div class="section-heading"><span class="section-number">4.13</span><div><h2 id="title-4-13">Truthy e falsy em condicionais</h2></div></div>
+					<p>Uma condição em Python não precisa ser necessariamente um valor booleano literal. Qualquer valor pode ser usado em um <code>if</code> e Python decide se ele é “verdadeiro” ou “falso” para a estrutura.</p>
+					<CodeSample label="Zero é falso" code={'if 0:\n    print("Executado")\nelse:\n    print("Não executado")'} output={'Não executado'} />
+					<CodeSample label="String não vazia é verdadeira" code={'if "Python":\n    print("A string não está vazia")\nelse:\n    print("A string está vazia")'} output={'A string não está vazia'} />
+					<p>Valores considerados falsy incluem:</p>
+					<ul class="instruction-list">
+						<li><code>False</code>;</li>
+						<li><code>None</code>;</li>
+						<li><code>0</code> e <code>0.0</code>;</li>
+						<li>strings vazias;</li>
+						<li>coleções vazias, como listas ou dicionários vazios.</li>
+					</ul>
+					<p>Essa ideia é importante porque permite escrever condições simples sem converter tudo para <code>True</code> ou <code>False</code> explicitamente.</p>
+				</section>
+
+				<section class="lesson-section" id="parte-4-14" aria-labelledby="title-4-14">
+					<div class="section-heading"><span class="section-number">4.14</span><div><h2 id="title-4-14">Condições com strings</h2></div></div>
+					<p>Strings também podem participar de decisões. Isso é muito usado em sistemas simples de login, validação e filtros textuais.</p>
+					<CodeSample label="Comparando textos" code={'senha = "python123"\n\nif senha == "python123":\n    print("Senha correspondente")\nelse:\n    print("Senha incorreta")'} output={'Senha correspondente'} />
+					<p>Strings são sensíveis a maiúsculas e minúsculas: <code>"Python"</code> e <code>"python"</code> são diferentes. Também é comum testar se um trecho aparece dentro de outra string com o operador <code>in</code>.</p>
+					<CodeSample label="Verificando presença em texto" code={'mensagem = "Olá, mundo!"\n\nif "mundo" in mensagem:\n    print("A palavra foi encontrada")\nelse:\n    print("A palavra não foi encontrada")'} output={'A palavra foi encontrada'} />
+					<KeyCallout title="Observação">O objetivo aqui é entender a lógica da comparação, não criar uma validação segura de autenticação ou e-mail em um sistema real.</KeyCallout>
+				</section>
+
+				<section class="lesson-section" id="parte-4-15" aria-labelledby="title-4-15">
+					<div class="section-heading"><span class="section-number">4.15</span><div><h2 id="title-4-15">Condições com números e faixas</h2></div></div>
+					<p>Quando você precisa verificar se um valor está dentro de um intervalo, pode escrever a comparação em uma linha só.</p>
+					<CodeSample label="Faixa numérica" code={'nota = 8\n\nif 7 <= nota <= 10:\n    print("Nota dentro da faixa")\nelse:\n    print("Nota fora da faixa")'} output={'Nota dentro da faixa'} />
+					<p>Essa forma é especialmente útil para validar faixas de idade, valores de nota, impostos, preços ou limites de quantidade. Ela deixa claro que o valor deve estar acima do mínimo e abaixo do máximo.</p>
+					<CodeSample label="Limites inferiores e superiores" code={'preco = 150\n\nif preco < 50:\n    print("Barato")\nelif preco <= 200:\n    print("Preço normal")\nelse:\n    print("Caro")'} output={'Preço normal'} />
+				</section>
+
+				<section class="lesson-section" id="parte-4-16" aria-labelledby="title-4-16">
+					<div class="section-heading"><span class="section-number">4.16</span><div><h2 id="title-4-16">O operador ternário</h2></div></div>
+					<p>Python também permite uma forma compacta de escrever uma decisão em apenas uma expressão:</p>
+					<CodeSample label="Operador ternário" code={'idade = 20\ncategoria = "Adulto" if idade >= 18 else "Menor de idade"\n\nprint(categoria)'} output={'Adulto'} />
+					<p>A sintaxe é: <code>valor_se_verdadeiro if condição else valor_se_falso</code>. Na prática, ela escolhe um valor entre duas opções com base na condição.</p>
+					<p>Ela é útil quando a decisão produz um único valor, como escolher uma categoria ou uma mensagem curta. Mas quando a lógica fica mais complexa, um bloco <code>if/else</code> costuma ser mais claro e fácil de manter.</p>
+				</section>
+
+				<section class="lesson-section" id="parte-4-17" aria-labelledby="title-4-17">
+					<div class="section-heading"><span class="section-number">4.17</span><div><h2 id="title-4-17"><code>pass</code> em estruturas condicionais</h2></div></div>
+					<p>Às vezes, você quer escrever a estrutura condicional antes de definir a lógica completa. Nesse caso, pode usar <code>pass</code>, que é uma instrução que não executa nenhuma ação.</p>
+					<CodeSample label="Pass em um if" code={'idade = 20\n\nif idade >= 18:\n    pass'} output={''} />
+					<p>Isso é útil quando você está construindo o programa e ainda não decidiu o que cada bloco deve fazer. Mas <code>pass</code> não substitui a lógica real; ele apenas mantém o código sintaticamente válido.</p>
+				</section>
+
+				<section class="lesson-section" id="parte-4-18" aria-labelledby="title-4-18">
+					<div class="section-heading"><span class="section-number">4.18</span><div><h2 id="title-4-18">Erros comuns em condicionais</h2></div></div>
+					<p>Com condicionais, é muito comum cometer pequenos erros que mudam completamente o comportamento do programa. Veja os mais frequentes.</p>
+					<ul class="instruction-list">
+						<li><strong>Esquecer os dois-pontos</strong> após a condição: <code>if idade >= 18</code> é diferente de <code>if idade >= 18:</code>;</li>
+						<li><strong>Errar a indentação</strong>, gerando <code>IndentationError</code>;</li>
+						<li><strong>Usar <code>=</code> em vez de <code>==</code></strong>; a primeira operação atribui valor, a segunda compara;</li>
+						<li><strong>Colocar <code>elif</code> em ordem inadequada</strong>, fazendo a primeira condição vencer antes do que deveria;</li>
+						<li><strong>Confundir <code>and</code> com <code>or</code></strong>, alterando o conjunto de casos aceitos;</li>
+						<li><strong>Comparar tipos incompatíveis</strong>, como texto com número, sem intenção clara;</li>
+						<li><strong>Escrever condições desnecessariamente complexas</strong>, prejudicando legibilidade.</li>
+					</ul>
+					<p>Exemplo de correção:</p>
+					<CodeSample label="Erro clássico: usar = em vez de ==" code={'idade = 20\n\nif idade == 20:\n    print("Você tem 20 anos")'} output={'Você tem 20 anos'} />
+					<p>A comparação correta usa <code>==</code>. A expressão com <code>=</code> tenta atribuir um valor, o que não é uma comparação lógica.</p>
+				</section>
+
+				<section class="lesson-section" id="parte-4-19" aria-labelledby="title-4-19">
+					<div class="section-heading"><span class="section-number">4.19</span><div><h2 id="title-4-19">Como simplificar condições</h2></div></div>
+					<p>Uma condição pode ser boa e ainda assim mais complicada do que precisa. Quando isso acontece, algumas regras podem ser simplificadas sem perder o significado.</p>
+					<CodeSample label="Condição redundante" code={'possui_acesso = True\n\nif possui_acesso == True:\n    print("Acesso permitido")\nelse:\n    print("Acesso negado")'} output={'Acesso permitido'} />
+					<p>A versão mais idiomática e mais limpa é:</p>
+					<CodeSample label="Versão mais clara" code={'possui_acesso = True\n\nif possui_acesso:\n    print("Acesso permitido")\nelse:\n    print("Acesso negado")'} output={'Acesso permitido'} />
+					<p>Também é comum simplificar comparações e intervalos em vez de escrever verificações longas e repetidas.</p>
+				</section>
+
+				<section class="lesson-section" id="parte-4-20" aria-labelledby="title-4-20">
+					<div class="section-heading"><span class="section-number">4.20</span><div><h2 id="title-4-20">Como estruturar regras de negócio</h2></div></div>
+					<p>Uma regra em português pode virar uma condição em Python quando você a traduz corretamente. O processo é simples:</p>
+					<ol class="numbered-list">
+						<li>identifique as informações relevantes;</li>
+						<li>identifique as condições da regra;</li>
+						<li>defina a relação lógica entre elas;</li>
+						<li>escreva a expressão em Python;</li>
+						<li>testa os caminhos possíveis.</li>
+					</ol>
+					<p>Exemplo:</p>
+					<CodeSample label="Regra de negócio" code={'valor_compra = 250\ncliente_cadastrado = True\n\nif valor_compra >= 200 and cliente_cadastrado:\n    print("Desconto aplicável")\nelse:\n    print("Desconto não aplicável")'} output={'Desconto aplicável'} />
+					<p>Essa estrutura imita uma regra de negócio muito comum: um cliente deve ter seu cadastro ativo e gastar pelo menos um determinado valor para receber desconto.</p>
+					<p>Você também pode transformar regras como “se o usuário é admin ou tem permissão especial” em expressões com <code>or</code>, e “se a compra for acima de X e não estiver vencida” em expressões com <code>and</code> e <code>not</code>.</p>
+				</section>
+
+				<section class="lesson-section" id="parte-4-21" aria-labelledby="title-4-21">
+					<div class="section-heading"><span class="section-number">4.21</span><div><h2 id="title-4-21">Raciocínio passo a passo</h2></div></div>
+					<p>Uma das melhores maneiras de aprender condicionais é acompanhar o programa linha por linha. Veja este exemplo:</p>
+					<CodeSample label="Analisando a execução" code={'nota = 6\n\nif nota >= 7:\n    print("Aprovado")\nelif nota >= 5:\n    print("Recuperação")\nelse:\n    print("Reprovado")'} output={'Recuperação'} />
+					<p>O raciocínio é o seguinte:</p>
+					<ol class="numbered-list">
+						<li>Python avalia <code>nota >= 7</code>;</li>
+						<li>como <code>6 >= 7</code> é falso, o primeiro bloco não é executado;</li>
+						<li>então ele verifica <code>nota >= 5</code>;</li>
+						<li>como <code>6 >= 5</code> é verdadeiro, o bloco do <code>elif</code> é executado;</li>
+						<li>os outros blocos não são testados mais.</li>
+					</ol>
+					<p>Esse tipo de análise é essencial para prever a saída de programas reais antes de executá-los.</p>
+				</section>
+
+				<section class="lesson-section" id="parte-4-22" aria-labelledby="title-4-22">
+					<div class="section-heading"><span class="section-number">4.22</span><div><h2 id="title-4-22">Exemplos completos e comentados</h2></div></div>
+					<h3>Exemplo 1 — Verificador de maioridade</h3>
+					<CodeSample label="Maioridade" code={'idade = int(input("Qual sua idade? "))\n\nif idade >= 18:\n    print("Você é maior de idade.")\nelse:\n    print("Você é menor de idade.")'} output={'Você é maior de idade.'} />
+					<h3>Exemplo 2 — Classificador de nota</h3>
+					<CodeSample label="Classificação de nota" code={'nota = 8.5\n\nif nota >= 9:\n    print("Excelente")\nelif nota >= 7:\n    print("Bom")\nelif nota >= 5:\n    print("Regular")\nelse:\n    print("Insuficiente")'} output={'Bom'} />
+					<h3>Exemplo 3 — Verificar faixa numérica</h3>
+					<CodeSample label="Faixa" code={'valor = 42\n\nif 10 <= valor <= 50:\n    print("O valor está dentro da faixa")\nelse:\n    print("O valor está fora da faixa")'} output={'O valor está dentro da faixa'} />
+					<h3>Exemplo 4 — Sistema de desconto</h3>
+					<CodeSample label="Desconto" code={'valor_compra = 280\ncliente_cadastrado = True\n\nif valor_compra >= 200 and cliente_cadastrado:\n    print("Desconto aplicado")\nelse:\n    print("Desconto não aplicável")'} output={'Desconto aplicado'} />
+				</section>
+
+				<section class="lesson-section" id="parte-4-23" aria-labelledby="title-4-23">
+					<div class="section-heading"><span class="section-number">4.23</span><div><h2 id="title-4-23">Mini projeto final</h2></div></div>
+					<p>Vamos construir um pequeno programa que classifica a elegibilidade de uma pessoa para um benefício fictício:</p>
+					<CodeSample label="Sistema de classificação e elegibilidade" code={'idade = 22\npossui_documento = True\ncontribuiu = True\n\nif idade >= 18 and possui_documento and contribuiu:\n    print("Elegível para o benefício")\nelif idade >= 18 and (not possui_documento or not contribuiu):\n    print("Faltam documentos ou registros")\nelse:\n    print("Idade insuficiente para o benefício")'} output={'Elegível para o benefício'} />
+					<p>Este programa mostra como combinar <code>if</code>, <code>elif</code>, <code>and</code>, <code>or</code> e <code>not</code> para expressar regras concretas.</p>
+					<div class="challenge-requirements">
+						<h3>Requisitos do projeto</h3>
+						<ul>
+							<li>ler idade;</li>
+							<li>ler se o usuário tem documento ou registro;</li>
+							<li>usar pelo menos duas condições compostas;</li>
+							<li>apresentar diferentes mensagens para cada cenário;</li>
+							<li>fazer a análise de cada caminho possível.</li>
+						</ul>
+					</div>
+				</section>
+
+				<section class="lesson-section" id="parte-4-24" aria-labelledby="title-4-24">
+					<div class="section-heading"><span class="section-number">✓</span><div><h2 id="title-4-24">O que você aprendeu</h2></div></div>
+					<ul class="checklist">
+						<li>como o fluxo de execução muda com uma estrutura condicional;</li>
+						<li>a diferença entre <code>if</code>, <code>elif</code> e <code>else</code>;</li>
+						<li>como a indentação define blocos de código em Python;</li>
+						<li>que expressões booleanas decidem quando um bloco é executado;</li>
+						<li>como usar <code>and</code>, <code>or</code> e <code>not</code> de forma clara;</li>
+						<li>como condições aninhadas podem representar decisões em camadas;</li>
+						<li>como valores truthy e falsy influenciam o comportamento de <code>if</code>;</li>
+						<li>como simplificar e revisar regras até escrever uma condição legível.</li>
+					</ul>
+				</section>
+
+				<section class="next-section" aria-labelledby="title-next">
+					<h2 id="title-next">Preparação para a Parte 5</h2>
+					<p>Agora que você já sabe como escolher caminhos no programa, a próxima etapa será entender como repetir tarefas. Condicionais e repetições são duas grandes ferramentas do raciocínio lógico em Python: uma decide quando agir, a outra decide quantas vezes agir.</p>
+					<a class="next-link" href="/linguagens/python/parte-3">← Revisar Parte 3</a>
+				</section>
+			</article>
+			</div>
+		</div>
+	</div>
+</Layout>
+
+<style>
+	.part-page {
+		padding-bottom: clamp(48px, 8vw, 88px);
+	}
+
+	.python-course-layout {
+		display: grid;
+		grid-template-columns: minmax(215px, 245px) minmax(0, 1fr);
+		align-items: start;
+		gap: clamp(20px, 3vw, 38px);
+		width: min(1320px, calc(100% - (var(--space-page) * 2)));
+		margin-inline: auto;
+	}
+
+	.container {
+		width: min(1000px, calc(100% - 24px));
+		margin-inline: auto;
+		min-width: 0;
+	}
+
+	.course-hero {
+		padding: clamp(28px, 5vw, 56px) 0 28px;
+	}
+
+	.course-nav {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		gap: 12px;
+		flex-wrap: wrap;
+		margin-bottom: 18px;
+		color: var(--color-muted);
+		font-size: 0.8rem;
+	}
+
+	.course-nav a {
+		transition: color 0.2s ease;
+	}
+
+	.course-nav a:hover {
+		color: var(--color-accent);
+	}
+
+	.eyebrow {
+		margin: 0;
+		color: var(--color-muted);
+		font-size: 0.72rem;
+		font-weight: 600;
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+	}
+
+	.eyebrow span {
+		display: inline-block;
+		width: 10px;
+		height: 10px;
+		border-radius: 999px;
+		margin-right: 8px;
+		background: linear-gradient(180deg, #ff4fa3, #a855f7);
+		box-shadow: 0 0 18px rgb(192 132 252 / 35%);
+	}
+
+	h1 {
+		margin: 10px 0 18px;
+		color: var(--color-text);
+		font-size: clamp(2.35rem, 4vw, 4rem);
+		line-height: 0.96;
+		letter-spacing: -0.06em;
+	}
+
+	h1 span {
+		color: var(--color-accent);
+	}
+
+	.hero-lead {
+		max-width: 760px;
+		margin: 0;
+		color: var(--color-body);
+		font-size: 1.05rem;
+		line-height: 1.8;
+	}
+
+	.course-meta {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 12px 22px;
+		margin-top: 26px;
+		padding-top: 22px;
+		border-top: 1px solid rgb(255 255 255 / 7%);
+		color: var(--color-muted);
+		font-size: 0.9rem;
+	}
+
+	.course-meta i {
+		color: #7cf7c3;
+		font-style: normal;
+		font-weight: 700;
+	}
+
+	.objectives {
+		margin-top: 26px;
+	}
+
+	.objectives h2 {
+		margin: 0 0 14px;
+		font-size: 1.2rem;
+		color: var(--color-text);
+	}
+
+	.objectives ul,
+	.instruction-list,
+	.numbered-list,
+	.checklist {
+		margin: 0;
+		padding-left: 1.2rem;
+		color: var(--color-body);
+	}
+
+	.objectives li,
+	.instruction-list li,
+	.numbered-list li,
+	.checklist li {
+		margin: 0.55rem 0;
+		line-height: 1.8;
+	}
+
+	.toc {
+		padding: 22px 22px 18px;
+		border: 1px solid rgb(192 132 252 / 22%);
+		border-radius: 18px;
+		background: rgb(14 17 40 / 88%);
+		box-shadow: inset 0 1px 0 rgb(255 255 255 / 4%);
+	}
+
+	.toc-heading {
+		margin-bottom: 16px;
+	}
+
+	.toc-heading h2 {
+		margin: 0;
+		color: var(--color-text);
+		font-size: 1.3rem;
+	}
+
+	.toc ol {
+		display: grid;
+		gap: 10px;
+		padding: 0;
+		margin: 0;
+		list-style: none;
+	}
+
+	.toc a {
+		display: flex;
+		align-items: center;
+		gap: 12px;
+		padding: 8px 10px;
+		border-radius: 12px;
+		color: var(--color-body);
+		transition: background 0.2s ease, transform 0.2s ease;
+	}
+
+	.toc a:hover {
+		background: rgb(192 132 252 / 8%);
+		transform: translateX(2px);
+	}
+
+	.toc a span {
+		display: inline-flex;
+		justify-content: center;
+		min-width: 34px;
+		padding: 4px 6px;
+		border: 1px solid rgb(192 132 252 / 24%);
+		border-radius: 9px;
+		color: var(--color-accent);
+		background: rgb(192 132 252 / 6%);
+		font-size: 0.72rem;
+		font-weight: 700;
+	}
+
+	.lesson {
+		display: grid;
+		gap: 36px;
+		padding-top: 18px;
+	}
+
+	.lesson-section {
+		padding: 30px 28px 26px;
+		border: 1px solid rgb(192 132 252 / 18%);
+		border-radius: 20px;
+		background: linear-gradient(180deg, rgba(12, 16, 32, 0.8), rgba(9, 12, 24, 0.92));
+		box-shadow: inset 0 1px 0 rgb(255 255 255 / 4%);
+	}
+
+	.section-heading {
+		display: flex;
+		align-items: flex-start;
+		gap: 16px;
+		margin-bottom: 18px;
+	}
+
+	.section-number {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		min-width: 64px;
+		padding: 8px 10px;
+		border: 1px solid rgb(192 132 252 / 24%);
+		border-radius: 12px;
+		color: var(--color-accent);
+		background: rgb(192 132 252 / 8%);
+		font-size: 0.8rem;
+		font-weight: 700;
+	}
+
+	.section-heading h2 {
+		margin: 4px 0 0;
+		color: var(--color-text);
+		font-size: clamp(1.5rem, 2vw, 2.1rem);
+		line-height: 1.2;
+		letter-spacing: -0.04em;
+	}
+
+	.lesson-section p {
+		margin: 0 0 1rem;
+		color: var(--color-body);
+		line-height: 1.8;
+	}
+
+	.table-scroll {
+		overflow-x: auto;
+		margin: 18px 0 22px;
+		border: 1px solid rgb(255 255 255 / 8%);
+		border-radius: 14px;
+		background: rgb(10 14 28 / 92%);
+	}
+
+	table {
+		width: 100%;
+		border-collapse: collapse;
+		min-width: 680px;
+	}
+
+	th,
+	td {
+		padding: 12px 14px;
+		border-bottom: 1px solid rgb(255 255 255 / 7%);
+		text-align: left;
+		vertical-align: top;
+		font-size: 0.9rem;
+	}
+
+	thead th {
+		color: var(--color-accent);
+		background: rgb(192 132 252 / 6%);
+	}
+
+	tbody td {
+		color: var(--color-body);
+	}
+
+	.challenge-requirements {
+		margin-top: 24px;
+		padding: 18px 20px;
+		border: 1px solid rgb(192 132 252 / 20%);
+		border-radius: 14px;
+		background: rgb(192 132 252 / 6%);
+	}
+
+	.challenge-requirements h3 {
+		margin-top: 0;
+		color: var(--color-text);
+	}
+
+	.next-section {
+		padding: 26px 28px;
+		border: 1px solid rgb(192 132 252 / 18%);
+		border-radius: 18px;
+		background: linear-gradient(180deg, rgba(19, 15, 40, 0.9), rgba(11, 14, 28, 0.9));
+	}
+
+	.next-section h2 {
+		margin: 0 0 10px;
+		color: var(--color-text);
+		font-size: clamp(1.6rem, 2vw, 2.2rem);
+	}
+
+	.next-link {
+		display: inline-flex;
+		margin-top: 14px;
+		color: var(--color-accent);
+		font-weight: 600;
+	}
+
+	@media (max-width: 860px) {
+		.python-course-layout {
+			grid-template-columns: 1fr;
+		}
+
+	}
+
+	@media (max-width: 560px) {
+		.lesson-section,
+		.next-section,
+		.toc {
+			padding-left: 18px;
+			padding-right: 18px;
+		}
+
+		.section-heading {
+			flex-direction: column;
+			gap: 10px;
+		}
+	}
+</style>
